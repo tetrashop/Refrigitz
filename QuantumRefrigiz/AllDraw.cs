@@ -7733,7 +7733,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].SolderesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7756,7 +7756,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].SolderesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7819,7 +7819,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].ElephantOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7842,7 +7842,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].ElephantOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7903,7 +7903,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].HoursesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7926,7 +7926,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].HoursesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7989,7 +7989,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].CastlesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8012,7 +8012,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].CastlesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8074,7 +8074,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].MinisterOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8097,7 +8097,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].MinisterOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8159,7 +8159,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].KingOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8182,7 +8182,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].KingOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8244,7 +8244,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].CastlingOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8267,7 +8267,7 @@ namespace QuantumRefrigiz
                             {
                                 if (!CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].CastlingOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -9666,7 +9666,7 @@ namespace QuantumRefrigiz
                             }
                             FullGameFound = true;
 
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();*/
@@ -9740,7 +9740,7 @@ namespace QuantumRefrigiz
                                 lock (O1)
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -9883,7 +9883,7 @@ namespace QuantumRefrigiz
                             }
                             FullGameFound = true;
 
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();*/
@@ -9956,7 +9956,7 @@ namespace QuantumRefrigiz
                                 lock (O1)
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -10080,7 +10080,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             FullGameFound = true;
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
@@ -10153,7 +10153,7 @@ namespace QuantumRefrigiz
                                 object O1 = new object();
                                 lock (O1)
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -10278,7 +10278,7 @@ namespace QuantumRefrigiz
                                 }
                             }
                             FullGameFound = true;
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
@@ -10349,7 +10349,7 @@ namespace QuantumRefrigiz
                                 object O1 = new object();
                                 lock (O1)
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -10477,7 +10477,7 @@ namespace QuantumRefrigiz
                             }
                             FullGameFound = true;
 
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();*/
@@ -10741,7 +10741,7 @@ namespace QuantumRefrigiz
                                 lock (O1)
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -10866,7 +10866,7 @@ namespace QuantumRefrigiz
                             }
                             FullGameFound = true;
 
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();*/
@@ -10940,7 +10940,7 @@ namespace QuantumRefrigiz
                                 lock (O1)
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -11009,21 +11009,21 @@ namespace QuantumRefrigiz
                    */
                 if (
                      /*(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&*/
-                     ((MaxAStarGreedy < StoreInitMaxAStarGreedy //+ PlatformHelper.ProcessorCount
+                     ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount
                                                                 ) || (CurrentMaxLevel < StoreInitMaxAStarGreedyEqual && SStopInitMaxAStarGreedy)))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                 {
                     MaxAStarGreedy = CurrentMaxLevel;
                 }
                 else
                 {
-                    //if (CurrentMaxLevel >= MaxAStarGreedy)
+                    if (CurrentMaxLevel >= MaxAStarGreedy)
                     return;
                 }
 
                 object Omm1 = new object();
                 lock (Omm1)
                 {
-                    /*//if (CurrentMaxLevel >= MaxAStarGreedy)
+                    /*if (CurrentMaxLevel >= MaxAStarGreedy)
                         return;
                     else
                     {
@@ -11188,7 +11188,7 @@ namespace QuantumRefrigiz
                         {
                             return;
                         }
-                        StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                        StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                         Color a = Color.Gray;
                         if (Order == -1)
                         {
@@ -18909,14 +18909,14 @@ namespace QuantumRefrigiz
                      }*/
                     if (
                         /*(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&*/
-                        ((MaxAStarGreedy < StoreInitMaxAStarGreedy //+ PlatformHelper.ProcessorCount
+                        ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount
                                                                    ) || (CurrentMaxLevel < StoreInitMaxAStarGreedyEqual && SStopInitMaxAStarGreedy)))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                     {
                         MaxAStarGreedy = CurrentMaxLevel;
                     }
                     else
                     {
-                        //if (CurrentMaxLevel >= MaxAStarGreedy)
+                        if (CurrentMaxLevel >= MaxAStarGreedy)
                         return true;
                     }
 
@@ -20495,14 +20495,14 @@ namespace QuantumRefrigiz
                         }
                         else
                         {
-                            //if (CurrentMaxLevel >= MaxAStarGreedy)
+                            if (CurrentMaxLevel >= MaxAStarGreedy)
                             return true;
                         }
 
                         object Omm1 = new object();
                         lock (Omm1)
                         {
-                            /*//if (CurrentMaxLevel >= MaxAStarGreedy)
+                            /*if (CurrentMaxLevel >= MaxAStarGreedy)
                                 return;
                             else
                             {
@@ -27675,7 +27675,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int[,] Tab = CloneATable(SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder[j]);
                 int Ord = Order;
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                 StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                 StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27702,7 +27702,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int[,] Tab = CloneATable(ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant[j]);
                 int Ord = Order;
                 ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27729,7 +27729,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int[,] Tab = CloneATable(HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse[j]);
                 int Ord = Order;
                 HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27756,7 +27756,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int[,] Tab = CloneATable(CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle[j]);
                 int Ord = Order;
                 CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27783,7 +27783,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int[,] Tab = CloneATable(MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister[j]);
                 int Ord = Order;
                 MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27810,7 +27810,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int[,] Tab = CloneATable(KingOnTable[ik].KingThinkingQuantum[0].TableListKing[j]);
                 int Ord = Order;
                 KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(KingOnTable[ik].KingThinkingQuantum[0].TableListKing[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
 
                 array1.Wait(); array1.Dispose();
@@ -27838,7 +27838,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int[,] Tab = CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]);
                 int Ord = Order;
                 CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
 
                 array1.Wait(); array1.Dispose();
@@ -31923,8 +31923,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;
                     AllDraw THISA = AStarGreedyString;
-                    StoreInitMaxAStarGreedy = MaxAStarGreedy;
-                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, iiii, jjjj, aaa, CloneATable(Tabl), Ord, false, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, iiii, jjjj, aaa, CloneATable(Tabl), Ord, false, FOUND, LeafAStarGreedy));
                     H.Wait();
                     H.Dispose();
                     AStarGreedyString = THISA;

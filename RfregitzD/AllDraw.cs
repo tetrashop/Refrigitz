@@ -7734,7 +7734,7 @@ namespace RefrigtzDLL
                             {
                                 if (!SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].SolderesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7757,7 +7757,7 @@ namespace RefrigtzDLL
                             {
                                 if (!SolderesOnTable[i].SoldierThinking[0].AStarGreedy[j].SolderesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7820,7 +7820,7 @@ namespace RefrigtzDLL
                             {
                                 if (!ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].ElephantOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7843,7 +7843,7 @@ namespace RefrigtzDLL
                             {
                                 if (!ElephantOnTable[i].ElefantThinking[0].AStarGreedy[j].ElephantOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7904,7 +7904,7 @@ namespace RefrigtzDLL
                             {
                                 if (!HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].HoursesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7927,7 +7927,7 @@ namespace RefrigtzDLL
                             {
                                 if (!HoursesOnTable[i].HourseThinking[0].AStarGreedy[j].HoursesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -7990,7 +7990,7 @@ namespace RefrigtzDLL
                             {
                                 if (!CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].CastlesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8013,7 +8013,7 @@ namespace RefrigtzDLL
                             {
                                 if (!CastlesOnTable[i].CastleThinking[0].AStarGreedy[j].CastlesOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8075,7 +8075,7 @@ namespace RefrigtzDLL
                             {
                                 if (!MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].MinisterOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8098,7 +8098,7 @@ namespace RefrigtzDLL
                             {
                                 if (!MinisterOnTable[i].MinisterThinking[0].AStarGreedy[j].MinisterOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8160,7 +8160,7 @@ namespace RefrigtzDLL
                             {
                                 if (!KingOnTable[i].KingThinking[0].AStarGreedy[j].KingOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8183,7 +8183,7 @@ namespace RefrigtzDLL
                             {
                                 if (!KingOnTable[i].KingThinking[0].AStarGreedy[j].KingOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8245,7 +8245,7 @@ namespace RefrigtzDLL
                             {
                                 if (!CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].CastlingOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -8268,7 +8268,7 @@ namespace RefrigtzDLL
                             {
                                 if (!CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].CastlingOnTableMove[k])
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     Color aa = Color.Gray;
                                     if (Order * -1 == -1)
                                     {
@@ -9667,7 +9667,7 @@ namespace RefrigtzDLL
                             }
                             FullGameFound = true;
 
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();*/
@@ -9741,7 +9741,7 @@ namespace RefrigtzDLL
                                 lock (O1)
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -9884,7 +9884,7 @@ namespace RefrigtzDLL
                             }
                             FullGameFound = true;
 
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();*/
@@ -9957,7 +9957,7 @@ namespace RefrigtzDLL
                                 lock (O1)
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -10081,7 +10081,7 @@ namespace RefrigtzDLL
                                 }
                             }
                             FullGameFound = true;
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
@@ -10154,7 +10154,7 @@ namespace RefrigtzDLL
                                 object O1 = new object();
                                 lock (O1)
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -10279,7 +10279,7 @@ namespace RefrigtzDLL
                                 }
                             }
                             FullGameFound = true;
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
@@ -10350,7 +10350,7 @@ namespace RefrigtzDLL
                                 object O1 = new object();
                                 lock (O1)
                                 {
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -10478,7 +10478,7 @@ namespace RefrigtzDLL
                             }
                             FullGameFound = true;
 
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();*/
@@ -10742,7 +10742,7 @@ namespace RefrigtzDLL
                                 lock (O1)
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -10867,7 +10867,7 @@ namespace RefrigtzDLL
                             }
                             FullGameFound = true;
 
-                            StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                            StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                             /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();*/
@@ -10941,7 +10941,7 @@ namespace RefrigtzDLL
                                 lock (O1)
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
-                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                                    StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                                     /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
@@ -11010,21 +11010,21 @@ namespace RefrigtzDLL
                    */
                 if (
                      /*(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&*/
-                     ((MaxAStarGreedy < StoreInitMaxAStarGreedy //+ PlatformHelper.ProcessorCount
+                     ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount
                                                                 ) || (CurrentMaxLevel < StoreInitMaxAStarGreedyEqual && SStopInitMaxAStarGreedy)))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                 {
                     MaxAStarGreedy = CurrentMaxLevel;
                 }
                 else
                 {
-                    //if (CurrentMaxLevel >= MaxAStarGreedy)
+                    if (CurrentMaxLevel >= MaxAStarGreedy)
                     return;
                 }
 
                 object Omm1 = new object();
                 lock (Omm1)
                 {
-                    /*//if (CurrentMaxLevel >= MaxAStarGreedy)
+                    /*if (CurrentMaxLevel >= MaxAStarGreedy)
                         return;
                     else
                     {
@@ -11189,7 +11189,7 @@ namespace RefrigtzDLL
                         {
                             return;
                         }
-                        StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                        StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                         Color a = Color.Gray;
                         if (Order == -1)
                         {
@@ -18910,14 +18910,14 @@ namespace RefrigtzDLL
                      }*/
                     if (
                         /*(MaxAStarGreedy <= CurrentMaxLevel + PlatformHelper.ProcessorCount) &&*/
-                        ((MaxAStarGreedy < StoreInitMaxAStarGreedy //+ PlatformHelper.ProcessorCount
+                        ((MaxAStarGreedy < StoreInitMaxAStarGreedy + PlatformHelper.ProcessorCount
                                                                    ) || (CurrentMaxLevel < StoreInitMaxAStarGreedyEqual && SStopInitMaxAStarGreedy)))// if (MaxAStarGreedy < indexStep * PlatformHelper.ProcessorCount)
                     {
                         MaxAStarGreedy = CurrentMaxLevel;
                     }
                     else
                     {
-                        //if (CurrentMaxLevel >= MaxAStarGreedy)
+                        if (CurrentMaxLevel >= MaxAStarGreedy)
                         return true;
                     }
 
@@ -20496,14 +20496,14 @@ namespace RefrigtzDLL
                         }
                         else
                         {
-                            //if (CurrentMaxLevel >= MaxAStarGreedy)
+                            if (CurrentMaxLevel >= MaxAStarGreedy)
                             return true;
                         }
 
                         object Omm1 = new object();
                         lock (Omm1)
                         {
-                            /*//if (CurrentMaxLevel >= MaxAStarGreedy)
+                            /*if (CurrentMaxLevel >= MaxAStarGreedy)
                                 return;
                             else
                             {
@@ -27676,7 +27676,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 int[,] Tab = CloneATable(SolderesOnTable[ik].SoldierThinking[0].TableListSolder[j]);
                 int Ord = Order;
                 SolderesOnTable[ik].SoldierThinking[0].AStarGreedy[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                 StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                 StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => SolderesOnTable[ik].SoldierThinking[0].AStarGreedy[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(SolderesOnTable[ik].SoldierThinking[0].TableListSolder[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 SolderesOnTable[ik].SoldierThinking[0].AStarGreedy[SolderesOnTable[ik].SoldierThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27703,7 +27703,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 int[,] Tab = CloneATable(ElephantOnTable[ik].ElefantThinking[0].TableListElefant[j]);
                 int Ord = Order;
                 ElephantOnTable[ik].ElefantThinking[0].AStarGreedy[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => ElephantOnTable[ik].ElefantThinking[0].AStarGreedy[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(ElephantOnTable[ik].ElefantThinking[0].TableListElefant[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 ElephantOnTable[ik].ElefantThinking[0].AStarGreedy[ElephantOnTable[ik].ElefantThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27730,7 +27730,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 int[,] Tab = CloneATable(HoursesOnTable[ik].HourseThinking[0].TableListHourse[j]);
                 int Ord = Order;
                 HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(HoursesOnTable[ik].HourseThinking[0].TableListHourse[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 HoursesOnTable[ik].HourseThinking[0].AStarGreedy[HoursesOnTable[ik].HourseThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27757,7 +27757,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 int[,] Tab = CloneATable(CastlesOnTable[ik].CastleThinking[0].TableListCastle[j]);
                 int Ord = Order;
                 CastlesOnTable[ik].CastleThinking[0].AStarGreedy[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => CastlesOnTable[ik].CastleThinking[0].AStarGreedy[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlesOnTable[ik].CastleThinking[0].TableListCastle[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 CastlesOnTable[ik].CastleThinking[0].AStarGreedy[CastlesOnTable[ik].CastleThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27784,7 +27784,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 int[,] Tab = CloneATable(MinisterOnTable[ik].MinisterThinking[0].TableListMinister[j]);
                 int Ord = Order;
                 MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(MinisterOnTable[ik].MinisterThinking[0].TableListMinister[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 MinisterOnTable[ik].MinisterThinking[0].AStarGreedy[MinisterOnTable[ik].MinisterThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27811,7 +27811,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 int[,] Tab = CloneATable(KingOnTable[ik].KingThinking[0].TableListKing[j]);
                 int Ord = Order;
                 KingOnTable[ik].KingThinking[0].AStarGreedy[KingOnTable[ik].KingThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => KingOnTable[ik].KingThinking[0].AStarGreedy[KingOnTable[ik].KingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(KingOnTable[ik].KingThinking[0].TableListKing[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
 
                 array1.Wait(); array1.Dispose();
@@ -27839,7 +27839,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                 int[,] Tab = CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]);
                 int Ord = Order;
                 CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
-                StoreInitMaxAStarGreedy = CurrentMaxLevel; //MaxAStarGreedy = CurrentMaxLevel;
+                StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
                 Task<AllDraw> array1 = Task.Run(() => CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
 
                 array1.Wait(); array1.Dispose();
@@ -31924,8 +31924,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinking[0].AStarGreedy != null && El
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;
                     AllDraw THISA = AStarGreedyString;
-                    StoreInitMaxAStarGreedy = MaxAStarGreedy;
-                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, iiii, jjjj, aaa, CloneATable(Tabl), Ord, false, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, iiii, jjjj, aaa, CloneATable(Tabl), Ord, false, FOUND, LeafAStarGreedy));
                     H.Wait();
                     H.Dispose();
                     AStarGreedyString = THISA;

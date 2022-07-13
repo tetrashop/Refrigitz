@@ -16351,13 +16351,13 @@ namespace QuantumRefrigiz
                 object O = new object();
                 lock (O)
                 {
-                    if (CurrentAStarGredyMax > AllDraw.MaxAStarGreedy)
+                    /*if (CurrentAStarGredyMax > AllDraw.MaxAStarGreedy)
                     {
                         ThinkingBegin = false;
                         ThinkingFinished = true;
 
                         return;
-                    }
+                    }*/
                     Thread t = new Thread(new ThreadStart(ThinkingWaite));
                     t.Start();
                     t.Join();
@@ -16373,7 +16373,7 @@ namespace QuantumRefrigiz
                         BeginThread++;
                     }
                     {
-                        if (//CheckMateOcuured ||
+                        /*if (//CheckMateOcuured ||
                             FoundFirstSelfMating > AllDraw.MaxAStarGreedy
                             )
                         {
@@ -16398,7 +16398,7 @@ namespace QuantumRefrigiz
                                 EndThread++;
                             }
                             return;
-                        }
+                        }*/
                     }
                     int DummyOrder = Order;
                     int DummyCurrentOrder = ChessRules.CurrentOrder;
@@ -16416,7 +16416,7 @@ namespace QuantumRefrigiz
                     ///For Stored Location of Objects.
                     int ii = Row;
                     int jj = Column;
-                    if (//CheckMateOcuured ||
+                    /*if (//CheckMateOcuured ||
                     FoundFirstMating > AllDraw.MaxAStarGreedy
                         )
                     {
@@ -16441,7 +16441,7 @@ namespace QuantumRefrigiz
                             EndThread++;
                         }
                         return;
-                    }
+                    }*/
                     IgnoreObjectDangour = -1;
                     ///Initiate a Local Variables.
                     TableS = new int[8, 8];

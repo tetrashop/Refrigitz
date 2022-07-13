@@ -15425,7 +15425,7 @@ else*/
 
                 int Dummy = OrderPlate;
 
-                RefrigtzDLL.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; RefrigtzDLL.AllDraw.MaxAStarGreedy = 0;
+                RefrigtzDLL.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel+PlatformHelper.ProcessorCount; //RefrigtzDLL.AllDraw.MaxAStarGreedy = 0;
 
                 RefrigtzDLL.AllDraw THISB = Draw.AStarGreedyString;
                 RefrigtzDLL.AllDraw THISStore = Draw;
@@ -15487,7 +15487,7 @@ else*/
                 {
                     RefrigtzDLL.AllDraw.ChangedInTreeOccured = false;
                 }
-                RefrigtzDLL.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel; RefrigtzDLL.AllDraw.MaxAStarGreedy = 0;
+                RefrigtzDLL.AllDraw.StoreInitMaxAStarGreedy = Draw.CurrentMaxLevel+PlatformHelper.ProcessorCount; //RefrigtzDLL.AllDraw.MaxAStarGreedy = 0;
 
                 var output = Task.Run(() => Draw.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + RefrigtzDLL.AllDraw.StoreInitMaxAStarGreedy - RefrigtzDLL.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(RefrigtzDLL.AllDraw.TableListAction[RefrigtzDLL.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0));
                 output.Wait();
@@ -15876,7 +15876,7 @@ else*/
 
                 int Dummy = OrderPlate;
 
-                QuantumRefrigiz.AllDraw.StoreInitMaxAStarGreedy = DrawQ.CurrentMaxLevel; QuantumRefrigiz.AllDraw.MaxAStarGreedy = 0;
+                QuantumRefrigiz.AllDraw.StoreInitMaxAStarGreedy = DrawQ.CurrentMaxLevel+PlatformHelper.ProcessorCount; //QuantumRefrigiz.AllDraw.MaxAStarGreedy = 0;
 
                 QuantumRefrigiz.AllDraw THISB = DrawQ.AStarGreedyString;
 
@@ -15939,7 +15939,7 @@ else*/
                 {
                     QuantumRefrigiz.AllDraw.ChangedInTreeOccured = false;
                 }
-                QuantumRefrigiz.AllDraw.StoreInitMaxAStarGreedy = DrawQ.CurrentMaxLevel; QuantumRefrigiz.AllDraw.MaxAStarGreedy = 0;
+                QuantumRefrigiz.AllDraw.StoreInitMaxAStarGreedy = DrawQ.CurrentMaxLevel+PlatformHelper.ProcessorCount; //QuantumRefrigiz.AllDraw.MaxAStarGreedy = 0;
 
                 var output = Task.Run(() => DrawQ.InitiateAStarGreedyt(PlatformHelper.ProcessorCount + QuantumRefrigiz.AllDraw.StoreInitMaxAStarGreedy - QuantumRefrigiz.AllDraw.MaxAStarGreedy, 0, 0, aa, CloneATable(QuantumRefrigiz.AllDraw.TableListAction[QuantumRefrigiz.AllDraw.TableListAction.Count - 1]), Ord, false, FOUND, 0)); output.Wait();
                 output.Dispose();

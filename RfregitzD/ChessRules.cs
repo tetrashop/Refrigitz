@@ -3239,6 +3239,34 @@ namespace RefrigtzDLL
 
                 if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
                 {
+                    Move = SoldierRulesaArrangmentsBoardOneGray(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy);
+                }
+                else//Gray int.
+                    if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                {
+                    //Depend Of First Move do For Positivism
+
+                    Move = SoldierRulesaArrangmentsBoardOneBrown(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy);
+                }
+                return Move;
+            }
+        }
+
+        public bool SoldierRulesaArrangmentsBoardOneGray(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+               
+                //When Soldier Not Moved in Original Location do
+
+                if (Table[RowFirst, ColumnFirst] > 0)
+                {
                     //Depend on First Move do For Land Of Islam
 
                     if ((RowFirst + 2 < 8) && (RowFirst + 1 < 8) &&
@@ -3268,8 +3296,24 @@ namespace RefrigtzDLL
                         }
                     }
                 }
-                else//Gray int.
-                    if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                return Move;
+            }
+        }
+
+        public bool SoldierRulesaArrangmentsBoardOneBrown(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+                
+                //When Soldier Not Moved in Original Location do
+
+                 if (Table[RowFirst, ColumnFirst] < 0)
                 {
                     //Depend Of First Move do For Positivism
 
@@ -3337,6 +3381,32 @@ namespace RefrigtzDLL
 
                 if (Order == 1 && Table[RowFirst, ColumnFirst] > 0)
                 {
+                    Move = SoldierRulesaArrangmentsBoardZeroGray(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy);
+                }
+
+                else//Gray int.
+                        if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                {
+                    Move = SoldierRulesaArrangmentsBoardZeroBrown(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy);
+                }
+                return Move;
+            }
+        }
+
+        public bool SoldierRulesaArrangmentsBoardZeroGray(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+
+                //When Soldier Not Moved in Original Location do
+
+                if (Table[RowFirst, ColumnFirst] > 0)
+                {
                     //Depend on First Move do For Land Of Islam
 
                     if ((RowSecond + 2 < 8) && (RowSecond + 1 < 8) &&
@@ -3346,25 +3416,41 @@ namespace RefrigtzDLL
                         Move = true;
 
                     }
-                }
-
-                else//Hit Brown Soldier Rulments.
+                    else//Hit Brown Soldier Rulments.
                             if ((RowSecond + 1 < 8) && RowFirst == RowSecond + 1)
-                {
-                    if ((ColumnFirst - 1 < 8) &&
-                        (ColumnSecond == ColumnFirst - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
                     {
-                        Move = true;
-                    }
-                    if ((ColumnFirst + 1 < 8) &&
-                        (ColumnSecond == ColumnFirst + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
-                    {
-                        Move = true;
+                        if ((ColumnFirst - 1 < 8) &&
+                            (ColumnSecond == ColumnFirst - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        {
+                            Move = true;
+                        }
+                        if ((ColumnFirst + 1 < 8) &&
+                            (ColumnSecond == ColumnFirst + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        {
+                            Move = true;
+                        }
                     }
                 }
 
-                else//Gray int.
-                        if (Order == -1 && Table[RowFirst, ColumnFirst] < 0)
+                
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardZeroBrown(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+
+                //When Soldier Not Moved in Original Location do
+
+
+                if (Table[RowFirst, ColumnFirst] < 0)
                 {
                     //Depend Of First Move do For Positivism
 
@@ -3397,7 +3483,6 @@ namespace RefrigtzDLL
                 return Move;
             }
         }
-
         //Solder Rule Method.
         public bool SoldierRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
         {

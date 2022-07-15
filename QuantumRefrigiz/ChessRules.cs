@@ -3205,7 +3205,6 @@ namespace QuantumRefrigiz
                 return Move;
             }
         }
-
         public bool SoldierRulesaArrangmentsBoardOne(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
         {
             object O = new object();
@@ -3269,9 +3268,7 @@ namespace QuantumRefrigiz
                 {
                     //Depend on First Move do For Land Of Islam
 
-                    if ((RowFirst + 2 < 8) && (RowFirst + 1 < 8) &&
-                        (((RowFirst + 1 == RowSecond) || (NotMoved && (RowFirst == RowSecond + 2)) && (Table[RowSecond, ColumnSecond - 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
-                        )
+                    if (SoldierRulesaArrangmentsBoardOneGrayOne(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                     {
                         //When Destination is The Empty Return Validity Else Return Not Validity.
 
@@ -3281,15 +3278,13 @@ namespace QuantumRefrigiz
                     else//Hit Brown Soldier Rulments.
                             if ((RowFirst + 1 < 8) && RowSecond == RowFirst + 1)
                     {
-                        if ((ColumnFirst + 1 < 8) &&
-                            (ColumnFirst + 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        if (SoldierRulesaArrangmentsBoardOneGrayTow(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                         {
                             //Return Validity.
                             Move = true;
                         }
 
-                        if ((ColumnFirst - 1 >= 0) &&
-                                (ColumnFirst - 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        if (SoldierRulesaArrangmentsBoardOneGrayThree(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                         {
                             //Return Validity.
                             Move = true;
@@ -3300,6 +3295,58 @@ namespace QuantumRefrigiz
             }
         }
 
+        public bool SoldierRulesaArrangmentsBoardOneGrayOne(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+                if ((RowFirst + 2 < 8) && (RowFirst + 1 < 8) && ColumnSecond - 1 >= 0)
+                    Move =
+                              (((RowFirst + 1 == RowSecond) || (NotMoved && (RowFirst == RowSecond + 2)) && (Table[RowSecond, ColumnSecond - 1] == 0)) && Table[RowSecond, ColumnSecond] == 0);
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardOneGrayTow(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+
+                //When Soldier Not Moved in Original Location do
+                if ((ColumnFirst + 1 < 8))
+                    Move =
+                                  (ColumnFirst + 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject);
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardOneGrayThree(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+
+                //When Soldier Not Moved in Original Location do
+                if ((ColumnFirst - 1 >= 0))
+                    Move =
+                                    (ColumnFirst - 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject);
+                return Move;
+            }
+        }
         public bool SoldierRulesaArrangmentsBoardOneBrown(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
         {
             object O = new object();
@@ -3317,9 +3364,7 @@ namespace QuantumRefrigiz
                 {
                     //Depend Of First Move do For Positivism
 
-                    if ((RowSecond + 2 < 8) && (RowSecond + 1 < 8) &&
-                       (((RowFirst == RowSecond + 1) || (NotMoved && (RowFirst == RowSecond + 2)) && (Table[RowSecond, ColumnSecond + 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
-                      )
+                    if (SoldierRulesaArrangmentsBoardOneBrownOne(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                     {
 
                         Move = true;
@@ -3329,15 +3374,13 @@ namespace QuantumRefrigiz
                     else//Hit Condition Enemy Movments.
                             if ((RowSecond + 1 < 8) && RowFirst == RowSecond + 1)
                     {
-                        if ((RowSecond + 1 < 8) &&
-                            (ColumnFirst == ColumnSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        if (SoldierRulesaArrangmentsBoardOneBrownTow(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                         {
                             //Return Validity.
                             Move = true;
                         }
 
-                        if ((RowSecond - 1 >= 0) &&
-                                (ColumnFirst == ColumnSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        if (SoldierRulesaArrangmentsBoardOneBrownThree(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                         {
                             //Return Validity.
                             Move = true;
@@ -3348,6 +3391,58 @@ namespace QuantumRefrigiz
             }
         }
 
+        public bool SoldierRulesaArrangmentsBoardOneBrownOne(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+                if ((RowSecond + 2 < 8) && (RowSecond + 1 < 8) && ColumnSecond + 1 < 8)
+                    Move =
+                            (((RowFirst == RowSecond + 1) || NotMoved && (RowFirst == RowSecond + 2)) && (Table[RowSecond, ColumnSecond + 1] == 0)) && Table[RowSecond, ColumnSecond] == 0;
+
+
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardOneBrownTow(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+
+                //When Soldier Not Moved in Original Location do
+                if ((RowSecond + 1 < 8))
+                    Move =
+                                  (ColumnFirst == ColumnSecond + 1) && (ExistInDestinationEnemy || IgnoreSelfObject);
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardOneBrownThree(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+
+                Move = (RowSecond - 1 >= 0) &&
+                                 (ColumnFirst == ColumnSecond - 1) && (ExistInDestinationEnemy || IgnoreSelfObject);
+                return Move;
+            }
+        }
         public bool SoldierRulesaArrangmentsBoardZero(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
         {
             object O = new object();
@@ -3409,9 +3504,7 @@ namespace QuantumRefrigiz
                 {
                     //Depend on First Move do For Land Of Islam
 
-                    if ((RowSecond + 2 < 8) && (RowSecond + 1 < 8) &&
-                       (((RowSecond + 1 == RowFirst) || (NotMoved && (RowFirst == RowSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)) && (Table[RowSecond, ColumnSecond] == 0)))
-                        )
+                    if (SoldierRulesaArrangmentsBoardZeroGrayOne(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                     {
                         Move = true;
 
@@ -3419,19 +3512,70 @@ namespace QuantumRefrigiz
                     else//Hit Brown Soldier Rulments.
                             if ((RowSecond + 1 < 8) && RowFirst == RowSecond + 1)
                     {
-                        if ((ColumnFirst - 1 < 8) &&
-                            (ColumnSecond == ColumnFirst - 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        if (SoldierRulesaArrangmentsBoardZeroGrayTow(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                         {
                             Move = true;
                         }
-                        if ((ColumnFirst + 1 < 8) &&
-                            (ColumnSecond == ColumnFirst + 1) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        if (SoldierRulesaArrangmentsBoardZeroGrayThree(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                         {
                             Move = true;
                         }
                     }
                 }
 
+
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardZeroGrayOne(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                if ((RowSecond + 2 < 8) && (RowSecond + 1 < 8) && ColumnSecond + 1 < 8)
+                    Move =
+                                       (((RowSecond + 1 == RowFirst) || (NotMoved && (RowFirst == RowSecond + 2) && (Table[RowSecond, ColumnSecond + 1] == 0)) && (Table[RowSecond, ColumnSecond] == 0)));
+
+
+
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardZeroGrayTow(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                if ((ColumnFirst - 1 < 8))
+                    Move =
+                                 (ColumnSecond == ColumnFirst - 1) && (ExistInDestinationEnemy || IgnoreSelfObject);
+
+
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardZeroGrayThree(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+
+                //When Soldier Not Moved in Original Location do
+                if ((ColumnFirst + 1 < 8))
+                    Move =
+                                  (ColumnSecond == ColumnFirst + 1) && (ExistInDestinationEnemy || IgnoreSelfObject);
 
                 return Move;
             }
@@ -3454,9 +3598,7 @@ namespace QuantumRefrigiz
                 {
                     //Depend Of First Move do For Positivism
 
-                    if ((RowFirst + 2 < 8) && (RowFirst + 1 < 8) &&
-                       (((RowSecond == RowFirst + 1) || (NotMoved && (RowSecond == RowFirst + 2) && Table[RowSecond, ColumnSecond - 1] == 0)) && Table[RowSecond, ColumnSecond] == 0)
-                        )
+                    if (SoldierRulesaArrangmentsBoardZeroBrownOne(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                     {
                         Move = true;
 
@@ -3465,15 +3607,13 @@ namespace QuantumRefrigiz
                     else//Hit Condition Enemy Movments.
                                 if ((RowFirst + 1 < 8) && RowSecond == RowFirst + 1)
                     {
-                        if ((ColumnFirst + 1 < 8) &&
-                           (ColumnFirst + 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        if (SoldierRulesaArrangmentsBoardZeroBrownTow(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                         {
                             //Return Validity.
                             Move = true;
                         }
 
-                        if ((ColumnFirst - 1 < 8) &&
-                            (ColumnFirst - 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject))
+                        if (SoldierRulesaArrangmentsBoardZeroBrownThree(RowFirst, ColumnFirst, RowSecond, ColumnSecond, NotMoved, ExistInDestinationEnemy))
                         {
                             //Return Validity.
                             Move = true;
@@ -3483,7 +3623,59 @@ namespace QuantumRefrigiz
                 return Move;
             }
         }
+        //Solder Rule Method.
+        public bool SoldierRulesaArrangmentsBoardZeroBrownOne(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
 
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+
+                //When Soldier Not Moved in Original Location do
+
+                if ((RowFirst + 2 < 8) && (RowFirst + 1 < 8) && ColumnSecond - 1 >= 0)
+                    Move =
+                            (((RowSecond == RowFirst + 1) || (NotMoved && (RowSecond == RowFirst + 2) && Table[RowSecond, ColumnSecond - 1] == 0)) && Table[RowSecond, ColumnSecond] == 0);
+
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardZeroBrownTow(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+                if ((ColumnFirst + 1 < 8))
+                    Move =
+                                              (ColumnFirst + 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject);
+                return Move;
+            }
+        }
+        public bool SoldierRulesaArrangmentsBoardZeroBrownThree(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
+        {
+            object O = new object();
+            lock (O)
+            {
+                int[,] Table = CloneATable(TableS);
+
+                //long Time = TimeElapced.TimeNow();Spaces++;
+                bool Move = false;
+                //When int is Gray.
+                if ((ColumnFirst - 1 < 8))
+                    Move =
+                                (ColumnFirst - 1 == ColumnSecond) && (ExistInDestinationEnemy || IgnoreSelfObject);
+                return Move;
+            }
+        }
         //Solder Rule Method.
         public bool SoldierRules(int RowFirst, int ColumnFirst, int RowSecond, int ColumnSecond, bool NotMoved, bool ExistInDestinationEnemy)
         {

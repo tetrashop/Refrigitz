@@ -9277,10 +9277,10 @@ namespace QuantumRefrigiz
         //main insider method for manage Heuristic count
         public double ReturnHeuristicCalculartor(int iAstarGready, int ii, int j, int Order, ref int HaveKilled)
         {
-            if (iAstarGready > PlatformHelper.ProcessorCount)
+            /*if (iAstarGready > PlatformHelper.ProcessorCount)
             {
                 return 0;
-            }
+            }*/
 
             iAstarGready++;
             object O = new object();

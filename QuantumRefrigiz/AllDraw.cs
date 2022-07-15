@@ -9667,9 +9667,9 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
 
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                            /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
-                            H.Dispose();*/
+                            H.Dispose();
                             for (int h = 0; h < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count && SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy != null; h++)
                             {
                                 SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -9798,10 +9798,10 @@ namespace QuantumRefrigiz
                                             return;
                                         }
                                     }
-                                    /*Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
                                     ah4.Dispose();
-                                    */
+
                                 }
                             }
                         }
@@ -9884,9 +9884,9 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
 
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                            /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
-                            H.Dispose();*/
+                            H.Dispose();
                             for (int h = 0; h < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
                             {
                                 ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -9957,9 +9957,9 @@ namespace QuantumRefrigiz
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
-                                    H.Dispose();*/
+                                    H.Dispose();
                                     for (int h = 0; h < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
                                     {
                                         ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -9997,9 +9997,9 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    /*Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
-                                    ah4.Dispose();*/
+                                    ah4.Dispose();
                                 }
                             }
                         }
@@ -10082,9 +10082,9 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
-                            /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
-                            H.Dispose();*/
+                            H.Dispose();
                             for (int h = 0; h < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy != null; h++)
                             {
                                 HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10154,9 +10154,9 @@ namespace QuantumRefrigiz
                                 lock (O1)
                                 {
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
-                                    H.Dispose();*/
+                                    H.Dispose();
                                     for (int h = 0; h < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy != null; h++)
                                     {
                                         HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10195,9 +10195,9 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    /*Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
-                                    ah4.Dispose();*/
+                                    ah4.Dispose();
                                 }
                             }
                         }
@@ -10280,9 +10280,9 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
-                            /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
-                            H.Dispose();*/
+                            H.Dispose();
                             for (int h = 0; h < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy != null; h++)
                             {
                                 CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10350,9 +10350,9 @@ namespace QuantumRefrigiz
                                 lock (O1)
                                 {
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
-                                    H.Dispose();*/
+                                    H.Dispose();
                                     for (int h = 0; h < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy != null; h++)
                                     {
                                         CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10393,9 +10393,9 @@ namespace QuantumRefrigiz
 
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
 
-                                    /*Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
-                                    ah4.Dispose();*/
+                                    ah4.Dispose();
                                 }
                             }
                         }
@@ -10478,9 +10478,9 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
 
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                            /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
-                            H.Dispose();*/
+                            H.Dispose();
                             for (int h = 0; h < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
                             {
                                 MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10544,9 +10544,9 @@ namespace QuantumRefrigiz
                                     }
                                 }
 
-                                /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
-                                H.Dispose();*/
+                                H.Dispose();
                                 for (int h = 0; h < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
                                 {
                                     MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10584,9 +10584,9 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    /*Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
-                                    ah4.Dispose();*/
+                                    ah4.Dispose();
                                 }
                             }
                         }
@@ -10668,9 +10668,9 @@ namespace QuantumRefrigiz
                             }
                             FullGameFound = true;
 
-                            /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
-                            H.Dispose();*/
+                            H.Dispose();
                             for (int h = 0; h < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null; h++)
                             {
                                 KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10742,9 +10742,9 @@ namespace QuantumRefrigiz
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
-                                    H.Dispose();*/
+                                    H.Dispose();
                                     for (int h = 0; h < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null; h++)
                                     {
                                         KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10782,9 +10782,9 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    /*Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
-                                    ah4.Dispose();*/
+                                    ah4.Dispose();
                                 }
                             }
                         }
@@ -10867,9 +10867,9 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
 
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                            /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
-                            H.Dispose();*/
+                            H.Dispose();
                             for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
                             {
                                 CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10941,9 +10941,9 @@ namespace QuantumRefrigiz
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
-                                    H.Dispose();*/
+                                    H.Dispose();
                                     for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
                                     {
                                         CastlingOnTable[i].CastlingThinking[0].AStarGreedy[h].AStarGreedyString = this;
@@ -10981,10 +10981,10 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    /*Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
                                     ah4.Dispose();
-                                    */
+
                                 }
                             }
                         }
@@ -11195,7 +11195,7 @@ namespace QuantumRefrigiz
                             a = Color.Brown;
                         }
 
-                        Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(AllDraw.MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                     }

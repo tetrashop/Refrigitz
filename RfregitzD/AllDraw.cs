@@ -6617,13 +6617,13 @@ namespace RefrigtzDLL
                     int f = CastlesOnTable[i].CastleThinking[0].LoseChiled.Count;
                     int h = CastlesOnTable[i].CastleThinking[0].HitNumberCastle.Count;
                     int n = CastlesOnTable[i].CastleThinking[0].WinChiled.Count;
-                    int m = CastlingOnTable[i].CastlingThinking[0].IsSup.Count;
-                    int o = CastlingOnTable[i].CastlingThinking[0].IsSupHu.Count;
-                    int l = CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfEnemy.Count;
-                    int p = CastlingOnTable[i].CastlingThinking[0].IsThereCheckOfSelf.Count;
-                    int q = CastlingOnTable[i].CastlingThinking[0].IsThereMateOfEnemy.Count;
-                    int r = CastlingOnTable[i].CastlingThinking[0].IsThereMateOfSelf.Count;
-                    int s = CastlingOnTable[i].CastlingThinking[0].KillerAtThinking.Count;
+                    int m = CastlesOnTable[i].CastleThinking[0].IsSup.Count;
+                    int o = CastlesOnTable[i].CastleThinking[0].IsSupHu.Count;
+                    int l = CastlesOnTable[i].CastleThinking[0].IsThereCheckOfEnemy.Count;
+                    int p = CastlesOnTable[i].CastleThinking[0].IsThereCheckOfSelf.Count;
+                    int q = CastlesOnTable[i].CastleThinking[0].IsThereMateOfEnemy.Count;
+                    int r = CastlesOnTable[i].CastleThinking[0].IsThereMateOfSelf.Count;
+                    int s = CastlesOnTable[i].CastleThinking[0].KillerAtThinking.Count;
                     int e = 0;
                     if (CastlesOnTable[i].CastleThinking[0].AStarGreedy == null || CastlesOnTable[i].CastleThinking[0].AStarGreedy.Count <= j)
                     {
@@ -6704,24 +6704,24 @@ namespace RefrigtzDLL
                     Task<bool> ah = Task.Run(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 5));
                     ah.Wait();
                     ah.Dispose();
-                   /* if (!Is)
-                    {
-                        if (CheckeHuristci(CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]), Order, 1))
-                        {
-                            MinisterOnTable[i].MinisterThinking[0].TableListMinister.RemoveAt(j);
-                            MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.RemoveAt(j);
-                            MinisterOnTable[i].MinisterThinking[0].RowColumnMinister.RemoveAt(j);
-                            MinisterOnTable[i].MinisterThinking[0].PenaltyRegardListMinister.RemoveAt(j);
-                            MinisterOnTable[i].MinisterThinking[0].LoseChiled.RemoveAt(j);
-                            MinisterOnTable[i].MinisterThinking[0].HitNumberMinister.RemoveAt(j);
-                            MinisterOnTable[i].MinisterThinking[0].WinChiled.RemoveAt(j);
-                            if (e >= j)
-                            {
-                                MinisterOnTable[i].MinisterThinking[0].AStarGreedy.RemoveAt(j);
-                            }
-                        }
+                    /* if (!Is)
+                     {
+                         if (CheckeHuristci(CloneATable(MinisterOnTable[i].MinisterThinking[0].TableListMinister[j]), Order, 1))
+                         {
+                             MinisterOnTable[i].MinisterThinking[0].TableListMinister.RemoveAt(j);
+                             MinisterOnTable[i].MinisterThinking[0].HeuristicListMinister.RemoveAt(j);
+                             MinisterOnTable[i].MinisterThinking[0].RowColumnMinister.RemoveAt(j);
+                             MinisterOnTable[i].MinisterThinking[0].PenaltyRegardListMinister.RemoveAt(j);
+                             MinisterOnTable[i].MinisterThinking[0].LoseChiled.RemoveAt(j);
+                             MinisterOnTable[i].MinisterThinking[0].HitNumberMinister.RemoveAt(j);
+                             MinisterOnTable[i].MinisterThinking[0].WinChiled.RemoveAt(j);
+                             if (e >= j)
+                             {
+                                 MinisterOnTable[i].MinisterThinking[0].AStarGreedy.RemoveAt(j);
+                             }
+                         }
 
-                    }*/
+                     }*/
                 }
             }
             else if (Kind == 6)

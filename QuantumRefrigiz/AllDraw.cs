@@ -732,7 +732,7 @@ namespace QuantumRefrigiz
                                         //Construct Soder Gray.
                                         SolderesOnTable[So1].Row = Row;
                                         SolderesOnTable[So1].Column = Column;
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(So1, OrderP, 1));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(So1, OrderP, 1));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increase So1.
@@ -749,7 +749,7 @@ namespace QuantumRefrigiz
                                         //Construct Soldeir Brown.
                                         SolderesOnTable[So2].Row = Row;
                                         SolderesOnTable[So2].Column = Column;
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(So2, OrderP, 1));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(So2, OrderP, 1));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increase So2.
@@ -781,7 +781,7 @@ namespace QuantumRefrigiz
                                         ElephantOnTable[El1].Row = Row;
                                         ElephantOnTable[El1].Column = Column;
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(El1, OrderP, 2));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(El1, OrderP, 2));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -801,7 +801,7 @@ namespace QuantumRefrigiz
                                         ElephantOnTable[El2].Column = Column;
                                         //satisfied of created deeper three
                                         BlitzNotValidFullGameThinkingTreePartThree(El2, OrderP, 2);
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(El2, OrderP, 2));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(El2, OrderP, 2));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -835,7 +835,7 @@ namespace QuantumRefrigiz
                                         HoursesOnTable[Ho1].Row = Row;
                                         HoursesOnTable[Ho1].Column = Column;
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ho1, OrderP, 3));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ho1, OrderP, 3));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -853,7 +853,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Brown Hourse.
                                         HoursesOnTable[Ho2].Row = Row;
                                         HoursesOnTable[Ho2].Column = Column;
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ho2, OrderP, 3));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ho2, OrderP, 3));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -886,7 +886,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Gray Castles.
                                         CastlesOnTable[Br1].Row = Row;
                                         CastlesOnTable[Br1].Column = Column;
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Br1, OrderP, 4));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Br1, OrderP, 4));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -904,7 +904,7 @@ namespace QuantumRefrigiz
                                         //Construction Draw of New Brown Castles.
                                         CastlesOnTable[Br2].Row = Row;
                                         CastlesOnTable[Br2].Column = Column;
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Br2, OrderP, 4));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Br2, OrderP, 4));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -937,7 +937,7 @@ namespace QuantumRefrigiz
                                         //construction of new draw Gray Minster.
                                         MinisterOnTable[Mi1].Row = Row;
                                         MinisterOnTable[Mi1].Column = Column;
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Mi1, OrderP, 5));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Mi1, OrderP, 5));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -955,7 +955,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Brown Minster.
                                         MinisterOnTable[Mi2].Row = Row;
                                         MinisterOnTable[Mi2].Column = Column;
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Mi2, OrderP, 5));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Mi2, OrderP, 5));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -988,7 +988,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Gray King.
                                         KingOnTable[Ki1].Row = Row;
                                         KingOnTable[Ki1].Column = Column;
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ki1, OrderP, 6));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ki1, OrderP, 6));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1006,7 +1006,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw King Brown Object.
                                         KingOnTable[Ki2].Row = Row;
                                         KingOnTable[Ki2].Column = Column;
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ki2, OrderP, 6));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ki2, OrderP, 6));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1026,14 +1026,14 @@ namespace QuantumRefrigiz
                     //Part Three For white castling
                     if (Dummy == 1)
                     {
-                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
+                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                         ah.Wait();
                         ah.Dispose();
                     }
                     //Part Three for black castling
                     else
                     {
-                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
+                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                         ah.Wait();
                         ah.Dispose();
                     }
@@ -1217,7 +1217,7 @@ namespace QuantumRefrigiz
                                         //Construct Soder Gray.
                                         SolderesOnTable[So1] = new DrawSoldierQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, So1);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(So1, OrderP, 1));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(So1, OrderP, 1));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increase So1.
@@ -1234,7 +1234,7 @@ namespace QuantumRefrigiz
                                         //Construct Soldeir Brown.
                                         SolderesOnTable[So2] = new DrawSoldierQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, So2);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(So2, OrderP, 1));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(So2, OrderP, 1));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increase So2.
@@ -1265,7 +1265,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Object.
                                         ElephantOnTable[El1] = new DrawElefantQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, El1);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(El1, OrderP, 2));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(El1, OrderP, 2));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increament of Gray Index.
@@ -1282,7 +1282,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Brown Elephant Object.
                                         ElephantOnTable[El2] = new DrawElefantQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, El2);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(El2, OrderP, 2));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(El2, OrderP, 2));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increament of Index.
@@ -1314,7 +1314,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Brown Hourse.
                                         HoursesOnTable[Ho1] = new DrawHourseQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Ho1);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ho1, OrderP, 3));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ho1, OrderP, 3));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increament of Index.
@@ -1331,7 +1331,7 @@ namespace QuantumRefrigiz
                                         //Construction of Draw Brown Hourse.
                                         HoursesOnTable[Ho2] = new DrawHourseQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Ho2);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ho2, OrderP, 3));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ho2, OrderP, 3));
                                         ah.Wait();
                                         ah.Dispose();
                                         //Increament of Index.
@@ -1363,7 +1363,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Gray Castles.
                                         CastlesOnTable[Br1] = new DrawCastleQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Br1);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Br1, OrderP, 4));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Br1, OrderP, 4));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1381,7 +1381,7 @@ namespace QuantumRefrigiz
                                         //Construction Draw of New Brown Castles.
                                         CastlesOnTable[Br2] = new DrawCastleQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Br2);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Br2, OrderP, 4));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Br2, OrderP, 4));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1414,7 +1414,7 @@ namespace QuantumRefrigiz
                                         //construction of new draw Gray Minster.
                                         MinisterOnTable[Mi1] = new DrawMinisterQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Mi1);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Mi1, OrderP, 5));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Mi1, OrderP, 5));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1432,7 +1432,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Brown Minster.
                                         MinisterOnTable[Mi2] = new DrawMinisterQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Mi2);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Mi2, OrderP, 5));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Mi2, OrderP, 5));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1465,7 +1465,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw Gray King.
                                         KingOnTable[Ki1] = new DrawKingQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), 1, false, Ki1);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ki1, OrderP, 6));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ki1, OrderP, 6));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1483,7 +1483,7 @@ namespace QuantumRefrigiz
                                         //Construction of New Draw King Brown Object.
                                         KingOnTable[Ki2] = new DrawKingQ(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Row, Column, a, CloneATable(TableList[index]), -1, false, Ki2);
                                         //satisfied of created deeper three
-                                        Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(Ki2, OrderP, 6));
+                                        Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(Ki2, OrderP, 6));
                                         ah.Wait();
                                         ah.Dispose();
 
@@ -1508,7 +1508,7 @@ namespace QuantumRefrigiz
                             //act for white castling
                             CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[0].Row, KingOnTable[0].Column, Color.Gray, CloneATable(TableList[index]), 1, false, 0);
 
-                            Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
+                            Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, 7));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -1517,7 +1517,7 @@ namespace QuantumRefrigiz
                             //act for black castling
                             CastlingOnTable[0] = new DrawCastling(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, KingOnTable[1].Row, KingOnTable[1].Column, Color.Brown, CloneATable(TableList[index]), -1, false, 0);
 
-                            Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
+                            Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(0, Dummy, -7));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -1978,7 +1978,7 @@ namespace QuantumRefrigiz
                     bool Added = false;
                     //Recursive Method.
                     double Le = LessB;
-                    Task ah = Task.Run(() => BeginIndexFoundingMaxLessofMaxList(ListIndex++, Founded, ref Le));
+                    Task ah = Task.Factory.StartNew(() => BeginIndexFoundingMaxLessofMaxList(ListIndex++, Founded, ref Le));
                     ah.Wait();
                     ah.Dispose();
                     LessB = Le;
@@ -2691,7 +2691,7 @@ namespace QuantumRefrigiz
                                 );
                             //When CheckMate Occured for Current Sodiers
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -2704,7 +2704,7 @@ namespace QuantumRefrigiz
                                     //Set Superposition.
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -2716,7 +2716,7 @@ namespace QuantumRefrigiz
                                         //Set Regard and Set Movements.
                                         Do = 1;
                                         //Regard Subbranchs.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         //Set Superpostion.
@@ -2732,7 +2732,7 @@ namespace QuantumRefrigiz
                                 for (int ii = 0; SolderesOnTable != null && SolderesOnTable[i] != null && SolderesOnTable[i].SoldierThinkingQuantum[0] != null && ii < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                                 {
                                     int D = Do;
-                                    Task ah1 = Task.Run(() => SolderesOnTable[ii].SoldierThinkingQuantum[0].AStarGreedy[i].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => SolderesOnTable[ii].SoldierThinkingQuantum[0].AStarGreedy[i].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -2755,7 +2755,7 @@ namespace QuantumRefrigiz
                             );
                             //When CheckMate Occured for Current Elephant.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -2768,7 +2768,7 @@ namespace QuantumRefrigiz
                                     //Set Superposition.
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -2780,7 +2780,7 @@ namespace QuantumRefrigiz
                                         //Set Regard Continue.
                                         Do = 1;
                                         //Regard Subolders.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         //Set Superposition.
@@ -2797,7 +2797,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => ElephantOnTable[ii].ElefantThinkingQuantum[0].AStarGreedy[i].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => ElephantOnTable[ii].ElefantThinkingQuantum[0].AStarGreedy[i].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -2820,7 +2820,7 @@ namespace QuantumRefrigiz
                             );
                             //When CheckMate Occured.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -2833,7 +2833,7 @@ namespace QuantumRefrigiz
                                     //Set Superposition.
                                     HoursesOnTable[i].HourseThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -2847,7 +2847,7 @@ namespace QuantumRefrigiz
                                         //Superposition.
                                         HoursesOnTable[i].HourseThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Set Regard For Sub Branches.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -2862,7 +2862,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -2885,7 +2885,7 @@ namespace QuantumRefrigiz
                             );
                             //When Current Gray Castles CheckMate.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -2898,7 +2898,7 @@ namespace QuantumRefrigiz
                                     //Set Superposition.
                                     CastlesOnTable[i].CastleThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Sub branchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -2912,7 +2912,7 @@ namespace QuantumRefrigiz
                                         //Superpoistion.
                                         CastlesOnTable[i].CastleThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Set Regard Subbranchs.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -2927,7 +2927,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -2950,7 +2950,7 @@ namespace QuantumRefrigiz
                             );
                             //When M ate Occured in Minister Gray.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -2963,7 +2963,7 @@ namespace QuantumRefrigiz
                                     //Superpostion.
                                     MinisterOnTable[i].MinisterThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -2977,7 +2977,7 @@ namespace QuantumRefrigiz
                                         //Superpoistion.
                                         MinisterOnTable[i].MinisterThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Set Subbranchs Regard.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -2992,7 +2992,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3015,7 +3015,7 @@ namespace QuantumRefrigiz
                             );
                             //When CheckMate Occured in King Gray.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3028,7 +3028,7 @@ namespace QuantumRefrigiz
                                     //Superposition.
                                     KingOnTable[i].KingThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -3042,7 +3042,7 @@ namespace QuantumRefrigiz
                                         //Superpoistion.
                                         KingOnTable[i].KingThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Regard Subbranchs.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -3057,7 +3057,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3080,7 +3080,7 @@ namespace QuantumRefrigiz
                             );
                             //When CheckMate Occured in Castling Gray.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3093,7 +3093,7 @@ namespace QuantumRefrigiz
                                     //Superposition.
                                     CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -3107,7 +3107,7 @@ namespace QuantumRefrigiz
                                         //Superpoistion.
                                         CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = 1;
                                         //Regard Subbranchs.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -3122,7 +3122,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3151,7 +3151,7 @@ namespace QuantumRefrigiz
                             );
                             //When Solders Brown CheckMate Occured.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3163,7 +3163,7 @@ namespace QuantumRefrigiz
                                     //Supperpoistion.
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs Soders Brown.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -3177,7 +3177,7 @@ namespace QuantumRefrigiz
                                         //Superpoition.
                                         SolderesOnTable[i].SoldierThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Penalty Subbranchs.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -3192,7 +3192,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3215,7 +3215,7 @@ namespace QuantumRefrigiz
                             );
                             //CheckMate Occured in Elephenat Brown.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3228,7 +3228,7 @@ namespace QuantumRefrigiz
                                     //Superpoistion.
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -3242,7 +3242,7 @@ namespace QuantumRefrigiz
                                         //Superposition.
                                         ElephantOnTable[i].ElefantThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Regrad Subbranchs.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -3257,7 +3257,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3280,7 +3280,7 @@ namespace QuantumRefrigiz
                             );
                             //When Hourse Broin CheckMate Ocuucred.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3293,7 +3293,7 @@ namespace QuantumRefrigiz
                                     //Superposition.
                                     HoursesOnTable[i].HourseThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -3307,7 +3307,7 @@ namespace QuantumRefrigiz
                                         //Superposition.
                                         HoursesOnTable[i].HourseThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Regrad Subbranchs.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -3322,7 +3322,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3345,7 +3345,7 @@ namespace QuantumRefrigiz
                             );
                             //When Brown Castles CheckMate Occured.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3358,7 +3358,7 @@ namespace QuantumRefrigiz
                                     //Superpoistion.
                                     CastlesOnTable[i].CastleThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Subbranchs Penalty.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -3372,7 +3372,7 @@ namespace QuantumRefrigiz
                                         //Superpoistion.
                                         CastlesOnTable[i].CastleThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Regard Subbranchs.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -3387,7 +3387,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3410,7 +3410,7 @@ namespace QuantumRefrigiz
                             );
                             //When Minister Borwn CheckMate Occcured.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3423,7 +3423,7 @@ namespace QuantumRefrigiz
                                     //Superpoistion.
                                     MinisterOnTable[i].MinisterThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranches.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -3437,7 +3437,7 @@ namespace QuantumRefrigiz
                                         //Superposition.
                                         MinisterOnTable[i].MinisterThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Regard SubBranches.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -3452,7 +3452,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3474,7 +3474,7 @@ namespace QuantumRefrigiz
                             );
                             //When King Brown Rules CheckMate Occcured.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3487,7 +3487,7 @@ namespace QuantumRefrigiz
                                     //Superposition.
                                     KingOnTable[i].KingThinkingQuantum[0].CheckMateAStarGreedy = -1;
                                     //Penalty SubBranches.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -3501,7 +3501,7 @@ namespace QuantumRefrigiz
                                         //Superposition.
                                         KingOnTable[i].KingThinkingQuantum[0].CheckMateAStarGreedy = 1;
                                         //Regard Subbranches.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -3516,7 +3516,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3537,7 +3537,7 @@ namespace QuantumRefrigiz
                             , Order);
                             //When CheckMate Occured in Castling Gray.
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = AA.CheckMate(CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -3550,7 +3550,7 @@ namespace QuantumRefrigiz
                                     //Superposition.
                                     CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = -1;
                                     //Penalty Subbranchs.
-                                    Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                    Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                     ah1.Wait();
                                     ah1.Dispose();
                                 }
@@ -3564,7 +3564,7 @@ namespace QuantumRefrigiz
                                         //Superpoistion.
                                         CastlingOnTable[i].CastlingThinking[0].CheckMateAStarGreedy = 1;
                                         //Regard Subbranchs.
-                                        Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
+                                        Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(Base, AllDraw.OrderPlate));
                                         ah1.Wait();
                                         ah1.Dispose();
                                     }
@@ -3579,7 +3579,7 @@ namespace QuantumRefrigiz
                                 {
                                     int D = Do;
 
-                                    Task ah1 = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
+                                    Task ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsPenaltyRegardCheckMateAtBranch(Order, ref D, Base));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     Do = D;
@@ -3616,7 +3616,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && ii < A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3634,7 +3634,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ii < A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3653,7 +3653,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && ii < A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3672,7 +3672,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && ii < A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3691,7 +3691,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && ii < A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3709,7 +3709,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && ii < A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3727,7 +3727,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3748,7 +3748,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && ii < A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3766,7 +3766,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ii < A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3785,7 +3785,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && ii < A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3803,7 +3803,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && ii < A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3821,7 +3821,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && ii < A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3839,7 +3839,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && ii < A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3857,7 +3857,7 @@ namespace QuantumRefrigiz
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             for (int ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakePenaltyAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3884,12 +3884,12 @@ namespace QuantumRefrigiz
                         {
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
-                            Task ah = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3903,12 +3903,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3921,12 +3921,12 @@ namespace QuantumRefrigiz
                         {
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
-                            Task ah = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3940,12 +3940,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3959,12 +3959,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3978,12 +3978,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -3997,12 +3997,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -4019,12 +4019,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -4038,12 +4038,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -4057,12 +4057,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -4076,12 +4076,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -4095,12 +4095,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -4114,12 +4114,12 @@ namespace QuantumRefrigiz
                         {
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
-                            Task ah = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -4133,12 +4133,12 @@ namespace QuantumRefrigiz
                             //iniatite penalty vars to false.
                             UsePenaltyRegardMechnisamT = false;
 
-                            Task ah = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate());
+                            Task ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].Initiate());
                             ah.Wait();
                             ah.Dispose();
                             for (int k = 0; k < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; k++)
                             {
-                                Task<AllDraw> ah1 = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
+                                Task<AllDraw> ah1 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].RemovePenalltyFromFirstBranches(Order * -1));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -4303,7 +4303,7 @@ namespace QuantumRefrigiz
             try
             {  //soldier
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BondryObjectNumber(i, 1, Order));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 1, Order));
                 ah.Wait();
                 ah.Dispose();
                 if (ac && SolderesOnTable != null && SolderesOnTable[i] != null && SolderesOnTable[i].SoldierThinkingQuantum[0] != null && SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder != null && SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy != null && j < SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count )
@@ -4312,7 +4312,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw This = THIS;
                         bool fou = Found;
-                        Task<AllDraw> ah6 = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                        Task<AllDraw> ah6 = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
                         ah6.Wait();
                         ah6.Dispose();
                         THIS = This;
@@ -4332,7 +4332,7 @@ namespace QuantumRefrigiz
             try
             {    //elephant
                 bool ac = false;
-                Task<bool> ah1 = Task.Run(() => ac = BondryObjectNumber(i, 2, Order));
+                Task<bool> ah1 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 2, Order));
                 ah1.Wait();
                 ah1.Dispose();
                 if (ac && ElephantOnTable != null && ElephantOnTable[i] != null && ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant != null && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != null && j < ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count )
@@ -4341,7 +4341,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw This = THIS;
                         bool fou = Found;
-                        Task<AllDraw> ah6 = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                        Task<AllDraw> ah6 = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
                         ah6.Wait();
                         ah6.Dispose();
                         THIS = This;
@@ -4361,7 +4361,7 @@ namespace QuantumRefrigiz
             try
             {   //hourse
                 bool ac = false;
-                Task<bool> ah2 = Task.Run(() => ac = BondryObjectNumber(i, 3, Order));
+                Task<bool> ah2 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 3, Order));
                 ah2.Wait();
                 ah2.Dispose();
                 if (ac && HoursesOnTable != null && HoursesOnTable[i] != null && HoursesOnTable[i].HourseThinkingQuantum[0] != null && HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse != null && HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy != null && j < HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count )
@@ -4370,7 +4370,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw This = THIS;
                         bool fou = Found;
-                        Task<AllDraw> ah6 = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                        Task<AllDraw> ah6 = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
                         ah6.Wait();
                         ah6.Dispose();
                         THIS = This;
@@ -4389,7 +4389,7 @@ namespace QuantumRefrigiz
             try
             {  //Castle
                 bool ac = false;
-                Task<bool> ah3 = Task.Run(() => ac = BondryObjectNumber(i, 4, Order));
+                Task<bool> ah3 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 4, Order));
                 ah3.Wait();
                 ah3.Dispose();
                 if (ac && CastlesOnTable != null && CastlesOnTable[i] != null && CastlesOnTable[i].CastleThinkingQuantum[0] != null && CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle != null && CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy != null && j < CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count )
@@ -4398,7 +4398,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw This = THIS;
                         bool fou = Found;
-                        Task<AllDraw> ah6 = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                        Task<AllDraw> ah6 = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
                         ah6.Wait();
                         ah6.Dispose();
                         THIS = This;
@@ -4418,7 +4418,7 @@ namespace QuantumRefrigiz
             try
             {  //minster
                 bool ac = false;
-                Task<bool> ah4 = Task.Run(() => ac = BondryObjectNumber(i, 5, Order));
+                Task<bool> ah4 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 5, Order));
                 ah4.Wait();
                 ah4.Dispose();
                 if (ac && MinisterOnTable != null && MinisterOnTable[i] != null && MinisterOnTable[i].MinisterThinkingQuantum[0] != null && MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy != null && j < MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count )
@@ -4427,7 +4427,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw This = THIS;
                         bool fou = Found;
-                        Task<AllDraw> ah6 = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                        Task<AllDraw> ah6 = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
                         ah6.Wait();
                         ah6.Dispose();
                         THIS = This;
@@ -4446,7 +4446,7 @@ namespace QuantumRefrigiz
             try
             {   //king
                 bool ac = false;
-                Task<bool> ah5 = Task.Run(() => ac = BondryObjectNumber(i, 6, Order));
+                Task<bool> ah5 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 6, Order));
                 ah5.Wait();
                 ah5.Dispose();
                 if (ac && KingOnTable != null && KingOnTable[i] != null && KingOnTable[i].KingThinkingQuantum[0] != null && KingOnTable[i].KingThinkingQuantum[0].TableListKing != null && j < KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count > j )
@@ -4455,7 +4455,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw This = THIS;
                         bool fou = Found;
-                        Task<AllDraw> ah6 = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                        Task<AllDraw> ah6 = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
                         ah6.Wait();
                         ah6.Dispose();
                         THIS = This;
@@ -4477,7 +4477,7 @@ namespace QuantumRefrigiz
             try
             {
                 bool ac = false;
-                Task<bool> ah7 = Task.Run(() => ac = BondryObjectNumber(i, 7, Order));
+                Task<bool> ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 7, Order));
                 ah7.Wait();
                 ah7.Dispose();
                 if (ac && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null && CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j )
@@ -4486,7 +4486,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw This = THIS;
                         bool fou = Found;
-                        Task<AllDraw> ah8 = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
+                        Task<AllDraw> ah8 = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].FoundOfCurrentTableNode(CloneATable(Tab), Order * -1, ref This, ref fou));
                         ah8.Wait();
                         ah8.Dispose();
                         THIS = This;
@@ -4508,7 +4508,7 @@ namespace QuantumRefrigiz
                 bool ac = false;
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah = Task.Run(() => ac = (TableList.Count > 0 && ThinkingQuantumChess.TableEqual(TableList[0], Tab)) || FoundOfCurrentTableNodeFirstLevel(CloneATable(Tab), Order, ref This, ref fou));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = (TableList.Count > 0 && ThinkingQuantumChess.TableEqual(TableList[0], Tab)) || FoundOfCurrentTableNodeFirstLevel(CloneATable(Tab), Order, ref This, ref fou));
                 ah.Wait();
                 ah.Dispose();
                 THIS = This;
@@ -4610,7 +4610,7 @@ namespace QuantumRefrigiz
                 try
                 {
                     bool ac = false;
-                    Task<bool> ah7 = Task.Run(() => ac = BondryObjectNumber(i, 1, Order));
+                    Task<bool> ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 1, Order));
                     ah7.Wait();
                     ah7.Dispose();
                     AllDraw This = null;
@@ -4619,7 +4619,7 @@ namespace QuantumRefrigiz
 
                     for (int j = 0; ac && SolderesOnTable != null && SolderesOnTable[i] != null && SolderesOnTable[i].SoldierThinkingQuantum[0] != null && SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder != null && j < SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                     {
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 1));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 1));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -4627,14 +4627,14 @@ namespace QuantumRefrigiz
                             continue;
                         }
 
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Tab));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Tab));
                         ah2.Wait();
                         ah2.Dispose();
                         if (ac)
                         {
                             This = THIS;
                             fou = Found;
-                            Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeSolderIJ(i, j, Order, ref This, ref fou));
+                            Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeSolderIJ(i, j, Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4649,7 +4649,7 @@ namespace QuantumRefrigiz
                             //SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[k].
                             This = THIS;
                             fou = Found;
-                            Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                            Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4673,7 +4673,7 @@ namespace QuantumRefrigiz
                 try
                 {
                     bool ac = false;
-                    Task<bool> ah7 = Task.Run(() => ac = BondryObjectNumber(i, 2, Order));
+                    Task<bool> ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 2, Order));
                     ah7.Wait();
                     ah7.Dispose();
 
@@ -4683,7 +4683,7 @@ namespace QuantumRefrigiz
 
                     for (int j = 0; ac && ElephantOnTable != null && ElephantOnTable[i] != null && ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant != null && j < ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                     {
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 2));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 2));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -4691,14 +4691,14 @@ namespace QuantumRefrigiz
                             continue;
                         }
 
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], Tab));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], Tab));
                         ah2.Wait();
                         ah2.Dispose();
                         if (ac)
                         {
                             This = THIS;
                             fou = Found;
-                            Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeElephantIJ(i, j, Order, ref This, ref fou));
+                            Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeElephantIJ(i, j, Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4713,7 +4713,7 @@ namespace QuantumRefrigiz
                             //ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[k].
                             This = THIS;
                             fou = Found;
-                            Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                            Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4737,7 +4737,7 @@ namespace QuantumRefrigiz
                 try
                 {
                     bool ac = false;
-                    Task<bool> ah7 = Task.Run(() => ac = BondryObjectNumber(i, 3, Order));
+                    Task<bool> ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 3, Order));
                     ah7.Wait();
                     ah7.Dispose();
 
@@ -4746,7 +4746,7 @@ namespace QuantumRefrigiz
 
                     for (int j = 0; ac && HoursesOnTable != null && HoursesOnTable[i] != null && HoursesOnTable[i].HourseThinkingQuantum[0] != null && HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse != null && j < HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                     {
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 3));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 3));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -4754,14 +4754,14 @@ namespace QuantumRefrigiz
                             continue;
                         }
 
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], Tab));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], Tab));
                         ah2.Wait();
                         ah2.Dispose();
                         if (ac)
                         {
                             This = THIS;
                             fou = Found;
-                            Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeHourseIJ(i, j, Order, ref This, ref fou));
+                            Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeHourseIJ(i, j, Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4776,7 +4776,7 @@ namespace QuantumRefrigiz
                             //HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[k].
                             This = THIS;
                             fou = Found;
-                            Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                            Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4800,7 +4800,7 @@ namespace QuantumRefrigiz
                 try
                 {
                     bool ac = false;
-                    Task<bool> ah7 = Task.Run(() => ac = BondryObjectNumber(i, 4, Order));
+                    Task<bool> ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 4, Order));
                     ah7.Wait();
                     ah7.Dispose();
 
@@ -4810,7 +4810,7 @@ namespace QuantumRefrigiz
 
                     for (int j = 0; ac && CastlesOnTable != null && CastlesOnTable[i] != null && CastlesOnTable[i].CastleThinkingQuantum[0] != null && CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle != null && j < CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                     {
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 4));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 4));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -4818,14 +4818,14 @@ namespace QuantumRefrigiz
                             continue;
                         }
 
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], Tab));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], Tab));
                         ah2.Wait();
                         ah2.Dispose();
                         if (ac)
                         {
                             This = THIS;
                             fou = Found;
-                            Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeCastleIJ(i, j, Order, ref This, ref fou));
+                            Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeCastleIJ(i, j, Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4840,7 +4840,7 @@ namespace QuantumRefrigiz
                             // CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[k].
                             This = THIS;
                             fou = Found;
-                            Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                            Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4864,7 +4864,7 @@ namespace QuantumRefrigiz
                 try
                 {
                     bool ac = false;
-                    Task<bool> ah7 = Task.Run(() => ac = BondryObjectNumber(i, 5, Order));
+                    Task<bool> ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 5, Order));
                     ah7.Wait();
                     ah7.Dispose();
 
@@ -4873,7 +4873,7 @@ namespace QuantumRefrigiz
 
                     for (int j = 0; ac && MinisterOnTable != null && MinisterOnTable[i] != null && MinisterOnTable[i].MinisterThinkingQuantum[0] != null && MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister != null && j < MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                     {
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 5));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 5));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -4881,14 +4881,14 @@ namespace QuantumRefrigiz
                             continue;
                         }
 
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], Tab));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], Tab));
                         ah2.Wait();
                         ah2.Dispose();
                         if (ac)
                         {
                             This = THIS;
                             fou = Found;
-                            Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeMinisterIJ(i, j, Order, ref This, ref fou));
+                            Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeMinisterIJ(i, j, Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4903,7 +4903,7 @@ namespace QuantumRefrigiz
                             //MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[k].
                             This = THIS;
                             fou = Found;
-                            Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                            Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4928,7 +4928,7 @@ namespace QuantumRefrigiz
                 try
                 {
                     bool ac = false;
-                    Task<bool> ah7 = Task.Run(() => ac = BondryObjectNumber(i, 6, Order));
+                    Task<bool> ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 6, Order));
                     ah7.Wait();
                     ah7.Dispose();
 
@@ -4937,7 +4937,7 @@ namespace QuantumRefrigiz
 
                     for (int j = 0; ac && KingOnTable != null && KingOnTable[i] != null && KingOnTable[i].KingThinkingQuantum[0] != null && KingOnTable[i].KingThinkingQuantum[0].TableListKing != null && j < KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                     {
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 6));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 6));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -4945,14 +4945,14 @@ namespace QuantumRefrigiz
                             continue;
                         }
 
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], Tab));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], Tab));
                         ah2.Wait();
                         ah2.Dispose();
                         if (ac)
                         {
                             This = THIS;
                             fou = Found;
-                            Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeKingIJ(i, j, Order, ref This, ref fou));
+                            Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeKingIJ(i, j, Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4967,7 +4967,7 @@ namespace QuantumRefrigiz
                             //KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[k].
                             This = THIS;
                             fou = Found;
-                            Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                            Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -4991,7 +4991,7 @@ namespace QuantumRefrigiz
                 try
                 {
                     bool ac = false;
-                    Task<bool> ah7 = Task.Run(() => ac = BondryObjectNumber(i, 7, Order));
+                    Task<bool> ah7 = Task.Factory.StartNew(() => ac = BondryObjectNumber(i, 7, Order));
                     ah7.Wait();
                     ah7.Dispose();
 
@@ -5001,7 +5001,7 @@ namespace QuantumRefrigiz
 
                     for (int j = 0; ac && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                     {
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 7));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 7));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -5009,14 +5009,14 @@ namespace QuantumRefrigiz
                             continue;
                         }
 
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                         ah2.Wait();
                         ah2.Dispose();
                         if (ac)
                         {
                             This = THIS;
                             fou = Found;
-                            Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeCastlingIJ(i, j, Order, ref This, ref fou));
+                            Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeCastlingIJ(i, j, Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -5031,7 +5031,7 @@ namespace QuantumRefrigiz
                             //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
                             This = THIS;
                             fou = Found;
-                            Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                            Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                             ah6.Wait();
                             ah6.Dispose();
                             THIS = This;
@@ -5063,7 +5063,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; SolderesOnTable != null && SolderesOnTable[i] != null && SolderesOnTable[i].SoldierThinkingQuantum[0] != null && SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder != null && j < SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 1));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 1));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5071,14 +5071,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeSolderIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeSolderIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5093,7 +5093,7 @@ namespace QuantumRefrigiz
                                 //SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5110,7 +5110,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; ElephantOnTable != null && ElephantOnTable[i] != null && ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant != null && j < ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 2));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 2));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5118,14 +5118,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeElephantIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeElephantIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5140,7 +5140,7 @@ namespace QuantumRefrigiz
                                 //ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5157,7 +5157,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; HoursesOnTable != null && HoursesOnTable[i] != null && HoursesOnTable[i].HourseThinkingQuantum[0] != null && HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse != null && j < HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 3));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 3));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5165,14 +5165,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeHourseIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeHourseIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5187,7 +5187,7 @@ namespace QuantumRefrigiz
                                 //HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5204,7 +5204,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; CastlesOnTable != null && CastlesOnTable[i] != null && CastlesOnTable[i].CastleThinkingQuantum[0] != null && CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle != null && j < CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 4));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 4));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5212,14 +5212,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeCastleIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeCastleIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5234,7 +5234,7 @@ namespace QuantumRefrigiz
                                 // CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5251,7 +5251,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; MinisterOnTable != null && MinisterOnTable[i] != null && MinisterOnTable[i].MinisterThinkingQuantum[0] != null && MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister != null && j < MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 5));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 5));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5259,14 +5259,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeMinisterIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeMinisterIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5281,7 +5281,7 @@ namespace QuantumRefrigiz
                                 //MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5298,7 +5298,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; KingOnTable != null && KingOnTable[i] != null && KingOnTable[i].KingThinkingQuantum[0] != null && KingOnTable[i].KingThinkingQuantum[0].TableListKing != null && j < KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 6));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 6));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5306,14 +5306,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeKingIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeKingIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5328,7 +5328,7 @@ namespace QuantumRefrigiz
                                 //KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5344,7 +5344,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 7));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5352,14 +5352,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeCastlingIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeCastlingIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5374,7 +5374,7 @@ namespace QuantumRefrigiz
                                 //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5394,7 +5394,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; SolderesOnTable != null && SolderesOnTable[i] != null && SolderesOnTable[i].SoldierThinkingQuantum[0] != null && SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder != null && j < SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 1));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 1));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5402,14 +5402,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeSolderIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeSolderIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5424,7 +5424,7 @@ namespace QuantumRefrigiz
                                 //SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5441,7 +5441,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; ElephantOnTable != null && ElephantOnTable[i] != null && ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant != null && j < ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 2));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 2));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5449,14 +5449,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeElephantIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeElephantIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5471,7 +5471,7 @@ namespace QuantumRefrigiz
                                 //ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5488,7 +5488,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; HoursesOnTable != null && HoursesOnTable[i] != null && HoursesOnTable[i].HourseThinkingQuantum[0] != null && HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse != null && j < HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 3));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 3));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5496,14 +5496,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeHourseIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeHourseIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5518,7 +5518,7 @@ namespace QuantumRefrigiz
                                 //HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5535,7 +5535,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; CastlesOnTable != null && CastlesOnTable[i] != null && CastlesOnTable[i].CastleThinkingQuantum[0] != null && CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle != null && j < CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 4));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 4));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5543,14 +5543,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeCastleIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeCastleIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5565,7 +5565,7 @@ namespace QuantumRefrigiz
                                 // CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5582,7 +5582,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; MinisterOnTable != null && MinisterOnTable[i] != null && MinisterOnTable[i].MinisterThinkingQuantum[0] != null && MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister != null && j < MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 5));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 5));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5590,14 +5590,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeMinisterIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeMinisterIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5612,7 +5612,7 @@ namespace QuantumRefrigiz
                                 //MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5629,7 +5629,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; KingOnTable != null && KingOnTable[i] != null && KingOnTable[i].KingThinkingQuantum[0] != null && KingOnTable[i].KingThinkingQuantum[0].TableListKing != null && j < KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 6));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 6));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5637,14 +5637,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeKingIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeKingIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5659,7 +5659,7 @@ namespace QuantumRefrigiz
                                 //KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5675,7 +5675,7 @@ namespace QuantumRefrigiz
                     {
                         for (int j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
-                            Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, -7));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, -7));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -5683,14 +5683,14 @@ namespace QuantumRefrigiz
                                 continue;
                             }
 
-                            Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                            Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                             ah2.Wait();
                             ah2.Dispose();
                             if (ac)
                             {
                                 This = THIS;
                                 fou = Found;
-                                Task<bool> ah6 = Task.Run(() => FoundOfCurrentTableNodeCastlingIJ(i, j, Order, ref This, ref fou));
+                                Task<bool> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeCastlingIJ(i, j, Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5705,7 +5705,7 @@ namespace QuantumRefrigiz
                                 //CastlingOnTable[i].CastlingThinking[0].AStarGreedy[k].
                                 This = THIS;
                                 fou = Found;
-                                Task<AllDraw> ah6 = Task.Run(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
+                                Task<AllDraw> ah6 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeAstardGreedy(i, j, CloneATable(Tab), Order, ref This, ref fou));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 THIS = This;
@@ -5729,7 +5729,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah = Task.Run(() => FoundOfCurrentTableNodeSoldeir(CloneATable(Tab), Order, ref This, ref fou));
+                Task<bool> ah = Task.Factory.StartNew(() => FoundOfCurrentTableNodeSoldeir(CloneATable(Tab), Order, ref This, ref fou));
                 ah.Wait();
                 ah.Dispose();
             }
@@ -5737,7 +5737,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah = Task.Run(() => FoundOfCurrentTableNodeElephant(CloneATable(Tab), Order, ref This, ref fou));
+                Task<bool> ah = Task.Factory.StartNew(() => FoundOfCurrentTableNodeElephant(CloneATable(Tab), Order, ref This, ref fou));
                 ah.Wait();
                 ah.Dispose();
             }
@@ -5745,7 +5745,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah = Task.Run(() => FoundOfCurrentTableNodeHourse(CloneATable(Tab), Order, ref This, ref fou));
+                Task<bool> ah = Task.Factory.StartNew(() => FoundOfCurrentTableNodeHourse(CloneATable(Tab), Order, ref This, ref fou));
                 ah.Wait();
                 ah.Dispose();
             }
@@ -5753,7 +5753,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah = Task.Run(() => FoundOfCurrentTableNodeCastle(CloneATable(Tab), Order, ref This, ref fou));
+                Task<bool> ah = Task.Factory.StartNew(() => FoundOfCurrentTableNodeCastle(CloneATable(Tab), Order, ref This, ref fou));
                 ah.Wait();
                 ah.Dispose();
             }
@@ -5761,7 +5761,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah = Task.Run(() => FoundOfCurrentTableNodeMinister(CloneATable(Tab), Order, ref This, ref fou));
+                Task<bool> ah = Task.Factory.StartNew(() => FoundOfCurrentTableNodeMinister(CloneATable(Tab), Order, ref This, ref fou));
                 ah.Wait();
                 ah.Dispose();
             }
@@ -5769,7 +5769,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah = Task.Run(() => FoundOfCurrentTableNodeKing(CloneATable(Tab), Order, ref This, ref fou));
+                Task<bool> ah = Task.Factory.StartNew(() => FoundOfCurrentTableNodeKing(CloneATable(Tab), Order, ref This, ref fou));
                 ah.Wait();
                 ah.Dispose();
             }
@@ -5788,7 +5788,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreSoldier(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreSoldier(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5802,7 +5802,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreElephant(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreElephant(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5816,7 +5816,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreHourse(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreHourse(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5830,7 +5830,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreCastle(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastle(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5844,7 +5844,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreMinister(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreMinister(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5858,7 +5858,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreKing(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreKing(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5871,7 +5871,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5892,7 +5892,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreSoldier(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreSoldier(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5906,7 +5906,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreElephant(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreElephant(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5920,7 +5920,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreHourse(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreHourse(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5934,7 +5934,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreCastle(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastle(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5948,7 +5948,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreMinister(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreMinister(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5962,7 +5962,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreKing(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreKing(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5975,7 +5975,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //when is not validity
-                            Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
+                            Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreCastling(Order, i, j));
                             ah.Wait();
                             ah.Dispose();
                         }
@@ -5993,13 +5993,13 @@ namespace QuantumRefrigiz
                 //Gray
                 if (Order == 1)
                 {
-                    Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreGray(Order));
+                    Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreGray(Order));
                     ah.Wait();
                     ah.Dispose();
                 }
                 else//Brown
                 {
-                    Task ah = Task.Run(() => ClearAllTablesHeuristicsAndMoreBrown(Order));
+                    Task ah = Task.Factory.StartNew(() => ClearAllTablesHeuristicsAndMoreBrown(Order));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6012,7 +6012,7 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -6049,7 +6049,7 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = IsNonValidityAllTablesHeuristicsAndMore(2, Order, i, j));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = IsNonValidityAllTablesHeuristicsAndMore(2, Order, i, j));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -6086,7 +6086,7 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = IsNonValidityAllTablesHeuristicsAndMore(3, Order, i, j));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = IsNonValidityAllTablesHeuristicsAndMore(3, Order, i, j));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -6123,7 +6123,7 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = IsNonValidityAllTablesHeuristicsAndMore(4, Order, i, j));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = IsNonValidityAllTablesHeuristicsAndMore(4, Order, i, j));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -6160,7 +6160,7 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = IsNonValidityAllTablesHeuristicsAndMore(5, Order, i, j));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = IsNonValidityAllTablesHeuristicsAndMore(5, Order, i, j));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -6197,7 +6197,7 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = IsNonValidityAllTablesHeuristicsAndMore(6, Order, i, j));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = IsNonValidityAllTablesHeuristicsAndMore(6, Order, i, j));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -6233,7 +6233,7 @@ namespace QuantumRefrigiz
             lock (O)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = IsNonValidityAllTablesHeuristicsAndMore(7, Order, i, j));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = IsNonValidityAllTablesHeuristicsAndMore(7, Order, i, j));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -6414,7 +6414,7 @@ namespace QuantumRefrigiz
         public bool IsNonValidityAllTablesHeuristicsAndMore(int Kind, int Order, int i, int j)
         {
             /*bool ac = false;
-            Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy));
+            Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy));
             ah1.Wait();
             ah1.Dispose();
             if (ac)
@@ -6460,7 +6460,7 @@ namespace QuantumRefrigiz
                         }
                     }
 
-                    Task<bool> ah = Task.Run(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 1));
+                    Task<bool> ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 1));
                     ah.Wait();
                     ah.Dispose();
                     /*if (!Is)
@@ -6520,7 +6520,7 @@ namespace QuantumRefrigiz
                         }
                     }
 
-                    Task<bool> ah = Task.Run(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 2));
+                    Task<bool> ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 2));
                     ah.Wait();
                     ah.Dispose();
                     /*if (!Is)
@@ -6580,7 +6580,7 @@ namespace QuantumRefrigiz
                         }
                     }
 
-                    Task<bool> ah = Task.Run(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 3));
+                    Task<bool> ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 3));
                     ah.Wait();
                     ah.Dispose();
                     /*if (!Is)
@@ -6640,7 +6640,7 @@ namespace QuantumRefrigiz
                         }
                     }
                     //if (a == b && b == c && d == c && a > 0)
-                    Task<bool> ah = Task.Run(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 4));
+                    Task<bool> ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 4));
                     ah.Wait();
                     ah.Dispose();
                     /*if (!Is)
@@ -6700,7 +6700,7 @@ namespace QuantumRefrigiz
                         }
                     }
 
-                    Task<bool> ah = Task.Run(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 5));
+                    Task<bool> ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 5));
                     ah.Wait();
                     ah.Dispose();
                     /* if (!Is)
@@ -6760,7 +6760,7 @@ namespace QuantumRefrigiz
                         }
                     }
 
-                    Task<bool> ah = Task.Run(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 6));
+                    Task<bool> ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 6));
                     ah.Wait();
                     ah.Dispose();
                     /*if (!Is)
@@ -6820,7 +6820,7 @@ namespace QuantumRefrigiz
                         }
                     }
 
-                    Task<bool> ah = Task.Run(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 7));
+                    Task<bool> ah = Task.Factory.StartNew(() => Is = A_B_C_D_E_ISNonEqual(a, b, c, d, e, f, h, n, m, o, l, p, q, r, s, i, j, 7));
                     ah.Wait();
                     ah.Dispose();
                     /*if (!Is)
@@ -6856,7 +6856,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 1));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 1));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6874,7 +6874,7 @@ namespace QuantumRefrigiz
                 for (int h = SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 1));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 1));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6926,7 +6926,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; SolderesOnTable[i] != null && SolderesOnTable[i].SoldierThinkingQuantum != null && SolderesOnTable[i].SoldierThinkingQuantum[0] != null && SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder != null && SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count > j; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 1));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 1));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -6934,7 +6934,7 @@ namespace QuantumRefrigiz
                         continue;
                     }
 
-                    Task<bool> ah1 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Tab));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j], Tab));
                     ah1.Wait();
                     ah1.Dispose();
                     FoundOfCurrentTableNodeSoldeirBaseKernel(ac, j, i, Tab, Order, ref THIS, ref Found);
@@ -6955,7 +6955,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah2 = Task.Run(() => FoundOfCurrentTableNodeSolderIJ(i, j, Order, ref This, ref fou));
+                Task<bool> ah2 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeSolderIJ(i, j, Order, ref This, ref fou));
                 ah2.Wait();
                 ah2.Dispose();
                 Found = fou;
@@ -6978,7 +6978,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 2));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 2));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -6996,7 +6996,7 @@ namespace QuantumRefrigiz
                 for (int h = ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 2));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 2));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7048,7 +7048,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; ElephantOnTable[i] != null && ElephantOnTable[i].ElefantThinkingQuantum != null && ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant != null && ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count > j; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 2));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 2));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7056,7 +7056,7 @@ namespace QuantumRefrigiz
                         continue;
                     }
 
-                    Task<bool> ah1 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], Tab));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j], Tab));
                     ah1.Wait();
                     ah1.Dispose();
                     FoundOfCurrentTableNodeElephantBaseKernel(ac, j, i, Tab, Order, ref THIS, ref Found);
@@ -7080,7 +7080,7 @@ namespace QuantumRefrigiz
                 {
                     AllDraw This = THIS;
                     bool fou = Found;
-                    Task<bool> ah2 = Task.Run(() => FoundOfCurrentTableNodeElephantIJ(i, j, Order, ref This, ref fou));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeElephantIJ(i, j, Order, ref This, ref fou));
                     ah2.Wait();
                     ah2.Dispose();
                     Found = fou;
@@ -7103,7 +7103,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 3));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 3));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7121,7 +7121,7 @@ namespace QuantumRefrigiz
                 for (int h = HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 3));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 3));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7174,7 +7174,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; HoursesOnTable[i] != null && HoursesOnTable[i].HourseThinkingQuantum != null && HoursesOnTable[i].HourseThinkingQuantum[0] != null && HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse != null && HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count > j; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 3));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 3));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7182,7 +7182,7 @@ namespace QuantumRefrigiz
                         continue;
                     }
 
-                    Task<bool> ah1 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], Tab));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j], Tab));
                     ah1.Wait();
                     ah1.Dispose();
                     FoundOfCurrentTableNodeHourseBaseKernel(ac, j, i, Tab, Order, ref THIS, ref Found);
@@ -7203,7 +7203,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah2 = Task.Run(() => FoundOfCurrentTableNodeHourseIJ(i, j, Order, ref This, ref fou));
+                Task<bool> ah2 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeHourseIJ(i, j, Order, ref This, ref fou));
                 ah2.Wait();
                 ah2.Dispose();
                 Found = fou;
@@ -7227,7 +7227,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 4));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 4));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7245,7 +7245,7 @@ namespace QuantumRefrigiz
                 for (int h = CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 4));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 4));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7297,7 +7297,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; CastlesOnTable[i] != null && CastlesOnTable[i].CastleThinkingQuantum != null && CastlesOnTable[i].CastleThinkingQuantum[0] != null && CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle != null && CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count > j; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 4));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 4));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7305,7 +7305,7 @@ namespace QuantumRefrigiz
                         continue;
                     }
 
-                    Task<bool> ah1 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], Tab));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j], Tab));
                     ah1.Wait();
                     ah1.Dispose();
                     FoundOfCurrentTableNodeCastleBaseKernel(ac, j, i, Tab, Order, ref THIS, ref Found);
@@ -7325,7 +7325,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah2 = Task.Run(() => FoundOfCurrentTableNodeCastleIJ(i, j, Order, ref This, ref fou));
+                Task<bool> ah2 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeCastleIJ(i, j, Order, ref This, ref fou));
                 ah2.Wait();
                 ah2.Dispose();
                 Found = fou;
@@ -7348,7 +7348,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 5));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 5));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7366,7 +7366,7 @@ namespace QuantumRefrigiz
                 for (int h = MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 5));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 5));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7418,7 +7418,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; MinisterOnTable[i] != null && MinisterOnTable[i].MinisterThinkingQuantum != null && MinisterOnTable[i].MinisterThinkingQuantum[0] != null && MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister != null && MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count > j; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 5));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 5));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7426,7 +7426,7 @@ namespace QuantumRefrigiz
                         continue;
                     }
 
-                    Task<bool> ah1 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], Tab));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j], Tab));
                     ah1.Wait();
                     ah1.Dispose();
                     FoundOfCurrentTableNodeMinisterBaseKernel(ac, j, i, Tab, Order, ref THIS, ref Found);
@@ -7446,7 +7446,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah2 = Task.Run(() => FoundOfCurrentTableNodeMinisterIJ(i, j, Order, ref This, ref fou));
+                Task<bool> ah2 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeMinisterIJ(i, j, Order, ref This, ref fou));
                 ah2.Wait();
                 ah2.Dispose();
                 Found = fou;
@@ -7469,7 +7469,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 6));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 6));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7487,7 +7487,7 @@ namespace QuantumRefrigiz
                 for (int h = KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 6));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 6));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7522,7 +7522,7 @@ namespace QuantumRefrigiz
                 for (int h = 0; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 7));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 7));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7540,7 +7540,7 @@ namespace QuantumRefrigiz
                 for (int h = CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; h <= j; h++)
                 //satisfied of created deeper three
                 {
-                    Task ah = Task.Run(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 7));
+                    Task ah = Task.Factory.StartNew(() => BlitzNotValidFullGameThinkingTreePartThree(i, Order, 7));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -7592,7 +7592,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; KingOnTable[i] != null && KingOnTable[i].KingThinkingQuantum != null && KingOnTable[i].KingThinkingQuantum[0] != null && KingOnTable[i].KingThinkingQuantum[0].TableListKing != null && KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count > j; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 6));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 6));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7600,7 +7600,7 @@ namespace QuantumRefrigiz
                         continue;
                     }
 
-                    Task<bool> ah1 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], Tab));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j], Tab));
                     ah1.Wait();
                     ah1.Dispose();
                     FoundOfCurrentTableNodeKingBaseKernel(ac, j, i, Tab, Order, ref THIS, ref Found);
@@ -7620,7 +7620,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah2 = Task.Run(() => FoundOfCurrentTableNodeKingIJ(i, j, Order, ref This, ref fou));
+                Task<bool> ah2 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeKingIJ(i, j, Order, ref This, ref fou));
                 ah2.Wait();
                 ah2.Dispose();
                 Found = fou;
@@ -7661,7 +7661,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking != null && CastlingOnTable[i].CastlingThinking[0] != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling != null && CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count > j; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 7));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 7));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7669,7 +7669,7 @@ namespace QuantumRefrigiz
                         continue;
                     }
 
-                    Task<bool> ah1 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j], Tab));
                     ah1.Wait();
                     ah1.Dispose();
                     FoundOfCurrentTableNodeCastlingBaseKernel(ac, j, i, Tab, Order, ref THIS, ref Found);
@@ -7689,7 +7689,7 @@ namespace QuantumRefrigiz
             {
                 AllDraw This = THIS;
                 bool fou = Found;
-                Task<bool> ah2 = Task.Run(() => FoundOfCurrentTableNodeCastlingIJ(i, j, Order, ref This, ref fou));
+                Task<bool> ah2 = Task.Factory.StartNew(() => FoundOfCurrentTableNodeCastlingIJ(i, j, Order, ref This, ref fou));
                 ah2.Wait();
                 ah2.Dispose();
                 Found = fou;
@@ -7716,7 +7716,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; SolderesOnTable != null && SolderesOnTable[i] != null && SolderesOnTable[i].SoldierThinkingQuantum[0] != null && j < SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 1));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 1));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7740,7 +7740,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7763,7 +7763,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7802,7 +7802,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; ElephantOnTable != null && ElephantOnTable[i] != null && ElephantOnTable[i].ElefantThinkingQuantum[0] != null && j < ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 2));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 2));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7826,7 +7826,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7849,7 +7849,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j]), Order * -1, false, false, 0));
                                     ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
                                     H.Wait();
                                     H.Dispose();
@@ -7886,7 +7886,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; HoursesOnTable != null && HoursesOnTable[i] != null && HoursesOnTable[i].HourseThinkingQuantum[0] != null && j < HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 3));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 3));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7910,7 +7910,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7933,7 +7933,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -7971,7 +7971,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; CastlesOnTable != null && CastlesOnTable[i] != null && CastlesOnTable[i].CastleThinkingQuantum[0] != null && j < CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 4));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 4));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -7996,7 +7996,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -8019,7 +8019,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -8057,7 +8057,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; MinisterOnTable != null && MinisterOnTable[i] != null && MinisterOnTable[i].MinisterThinkingQuantum[0] != null && j < MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 5));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 5));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -8081,7 +8081,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -8104,7 +8104,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -8142,7 +8142,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; KingOnTable != null && KingOnTable[i] != null && KingOnTable[i].KingThinkingQuantum[0] != null && j < KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 6));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 6));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -8166,7 +8166,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -8189,7 +8189,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].AStarGreedyString = this;
@@ -8227,7 +8227,7 @@ namespace QuantumRefrigiz
                 for (int j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[0] != null && j < CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                 {
                     bool ac = false;
-                    Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 7));
+                    Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 7));
                     ah.Wait();
                     ah.Dispose();
                     if (ac)
@@ -8251,7 +8251,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -8274,7 +8274,7 @@ namespace QuantumRefrigiz
                                         aa = Color.Brown;
                                     }
 
-                                    Task<AllDraw> H = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, 0, 0, aa, CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j]), Order * -1, false, false, 0));
                                     H.Wait();
                                     H.Dispose();
                                     CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].AStarGreedyString = this;
@@ -8325,7 +8325,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindSoldier(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindSoldier(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8343,7 +8343,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindElephant(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindElephant(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8360,7 +8360,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindHourse(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindHourse(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8377,7 +8377,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindCastle(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindCastle(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8394,7 +8394,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindMinister(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindMinister(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8411,7 +8411,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindKing(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindKing(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8428,7 +8428,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindCastling(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindCastling(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8448,7 +8448,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindSoldier(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindSoldier(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8465,7 +8465,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindElephant(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindElephant(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8482,7 +8482,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindHourse(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindHourse(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8499,7 +8499,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindCastle(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindCastle(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8516,7 +8516,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindMinister(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindMinister(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8533,7 +8533,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindKing(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindKing(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8550,7 +8550,7 @@ namespace QuantumRefrigiz
                     {
                         AllDraw le = Leaf;
                         bool fou = Found;
-                        Task<AllDraw> ah = Task.Run(() => FoundOfLeafDepenOfKindCastling(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
+                        Task<AllDraw> ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindCastling(i, ref le, ref fou, Order, LeafDeep, ik, jk, iii, jjj));
                         ah.Wait();
                         ah.Dispose();
                         Leaf = le;
@@ -8682,7 +8682,7 @@ namespace QuantumRefrigiz
                             for (int ii = 0; ii < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 bool fou = Found;
-                                Task<bool> ah = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 Found = fou;
@@ -8724,7 +8724,7 @@ namespace QuantumRefrigiz
                             for (int ii = 0; ii < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 bool fou = Found;
-                                Task<bool> ah = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 Found = fou;
@@ -8766,7 +8766,7 @@ namespace QuantumRefrigiz
                             for (int ii = 0; ii < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 bool fou = Found;
-                                Task<bool> ah = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 Found = fou;
@@ -8808,7 +8808,7 @@ namespace QuantumRefrigiz
                             for (int ii = 0; ii < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 bool fou = Found;
-                                Task<bool> ah = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 Found = fou;
@@ -8850,7 +8850,7 @@ namespace QuantumRefrigiz
                             for (int ii = 0; ii < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 bool fou = Found;
-                                Task<bool> ah = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 Found = fou;
@@ -8893,7 +8893,7 @@ namespace QuantumRefrigiz
                             for (int ii = 0; ii < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
                                 bool fou = Found;
-                                Task<bool> ah = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 Found = fou;
@@ -8934,7 +8934,7 @@ namespace QuantumRefrigiz
                             for (int ii = 0; ii < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
                                 bool fou = Found;
-                                Task<bool> ah = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii].IsFoundOfLeafDepenOfKindhaveVictory(Kind, ref fou, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 Found = fou;
@@ -8958,13 +8958,13 @@ namespace QuantumRefrigiz
             int Is = 0;
             //determine deeper have right contained
             bool a = false;
-            Task<bool> ah = Task.Run(() => a = IsNotAStarGreedyConanaied(i, j, Kind));
+            Task<bool> ah = Task.Factory.StartNew(() => a = IsNotAStarGreedyConanaied(i, j, Kind));
             ah.Wait();
             ah.Dispose();
 
             //determined deeper contained have computatinal list correctly.
             bool b = false;
-            Task<bool> ah1 = Task.Run(() => b = IsNotComputationsConanaiedAStarGreedy(i, j, Kind));
+            Task<bool> ah1 = Task.Factory.StartNew(() => b = IsNotComputationsConanaiedAStarGreedy(i, j, Kind));
             ah1.Wait();
             ah1.Dispose();
 
@@ -8996,7 +8996,7 @@ namespace QuantumRefrigiz
             //when is 2 consider determinstic results about contanied
             if (Is == 2)
             {
-                Task<bool> ah2 = Task.Run(() => IsThereCalculatedAStarGreedyNode(i, Kind));
+                Task<bool> ah2 = Task.Factory.StartNew(() => IsThereCalculatedAStarGreedyNode(i, Kind));
                 ah2.Wait();
                 ah2.Dispose();
             }
@@ -9268,7 +9268,7 @@ namespace QuantumRefrigiz
                 {
                     //when tow lists tables not is equal return true
                     bool ac = false;
-                    Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j])));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder[j])));
                     ah2.Wait();
                     ah2.Dispose();
                     if (!ac)
@@ -9316,7 +9316,7 @@ namespace QuantumRefrigiz
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j])));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -9365,7 +9365,7 @@ namespace QuantumRefrigiz
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j])));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -9414,7 +9414,7 @@ namespace QuantumRefrigiz
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j])));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -9463,7 +9463,7 @@ namespace QuantumRefrigiz
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j])));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -9513,7 +9513,7 @@ namespace QuantumRefrigiz
                     {
                         //when tow lists tables not is equal return true
                         bool ac = false;
-                        Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j])));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].TableList[0], CloneATable(KingOnTable[i].KingThinkingQuantum[0].TableListKing[j])));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -9562,7 +9562,7 @@ namespace QuantumRefrigiz
                 {
                     //when tow lists tables not is equal return true
                     bool ac = false;
-                    Task<bool> ah2 = Task.Run(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => ac = ThinkingQuantumChess.TableEqual(CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].TableList[0], CloneATable(CastlingOnTable[i].CastlingThinking[0].TableListCastling[j])));
                     ah2.Wait();
                     ah2.Dispose();
                     if (!ac)
@@ -9618,7 +9618,7 @@ namespace QuantumRefrigiz
                         lock (OOOOO)
                         {
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 1));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 1));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -9626,7 +9626,7 @@ namespace QuantumRefrigiz
                                 return;
                             }
                             //when search finished stop and return
-                            Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -9636,12 +9636,12 @@ namespace QuantumRefrigiz
                         }
                         //determine about validity of list on current and deeper return true when successfull
                         bool IA = false;
-                        Task<bool> ah2 = Task.Run(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(1, Order, i, j));
                         ah2.Wait();
                         ah2.Dispose();
                         //determine about situation of deeper against other lists computation in 4 state
                         int Is = 0;
-                        Task<int> ah3 = Task.Run(() => Is = IsSuitableForInitiation(i, j, 1));
+                        Task<int> ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 1));
                         ah3.Wait();
                         ah3.Dispose();
                         if (!IA)
@@ -9656,7 +9656,7 @@ namespace QuantumRefrigiz
                             {
                                 //when search finished stop and return
                                 bool ac = false;
-                                Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                 ah1.Wait();
                                 ah1.Dispose();
                                 if (ac)
@@ -9667,7 +9667,7 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
 
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();
                             for (int h = 0; h < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count && SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9696,7 +9696,7 @@ namespace QuantumRefrigiz
 
                                         //when search finished stop and return
                                         bool ac = false;
-                                        Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         if (ac)
@@ -9727,7 +9727,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -9741,7 +9741,7 @@ namespace QuantumRefrigiz
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    /*Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    /*Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();*/
                                     for (int h = 0; h < SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count && SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9764,7 +9764,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -9790,7 +9790,7 @@ namespace QuantumRefrigiz
 
                                         //when search finished stop and return
                                         bool ac = false;
-                                        Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         if (ac)
@@ -9798,7 +9798,7 @@ namespace QuantumRefrigiz
                                             return;
                                         }
                                     }
-                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Factory.StartNew(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
                                     ah4.Dispose();
 
@@ -9834,7 +9834,7 @@ namespace QuantumRefrigiz
                         lock (OOOOO)
                         {
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 2));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 2));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -9842,7 +9842,7 @@ namespace QuantumRefrigiz
                                 return;
                             }
                             //when search finished stop and return
-                            Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -9852,12 +9852,12 @@ namespace QuantumRefrigiz
                         }
                         //determine about validity of list on current and deeper return true when successfull
                         bool IA = false;
-                        Task<bool> ah2 = Task.Run(() => IA = IsNonValidityAllTablesHeuristicsAndMore(2, Order, i, j));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(2, Order, i, j));
                         ah2.Wait();
                         ah2.Dispose();
                         //determine about situation of deeper against other lists computation in 4 state
                         int Is = 0;
-                        Task<int> ah3 = Task.Run(() => Is = IsSuitableForInitiation(i, j, 2));
+                        Task<int> ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 2));
                         ah3.Wait();
                         ah3.Dispose();
                         if (!IA)
@@ -9873,7 +9873,7 @@ namespace QuantumRefrigiz
                             {
                                 //when search finished stop and return
                                 bool ac = false;
-                                Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                 ah1.Wait();
                                 ah1.Dispose();
                                 if (ac)
@@ -9884,7 +9884,7 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
 
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();
                             for (int h = 0; h < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9912,7 +9912,7 @@ namespace QuantumRefrigiz
                                         FirstTraversalTree = false;
                                         //when search finished stop and return
                                         bool ac = false;
-                                        Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         if (ac)
@@ -9943,7 +9943,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -9957,7 +9957,7 @@ namespace QuantumRefrigiz
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();
                                     for (int h = 0; h < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != null; h++)
@@ -9980,7 +9980,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -9997,7 +9997,7 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Factory.StartNew(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
                                     ah4.Dispose();
                                 }
@@ -10032,7 +10032,7 @@ namespace QuantumRefrigiz
                         lock (OOOOO)
                         {
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 3));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 3));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -10040,7 +10040,7 @@ namespace QuantumRefrigiz
                                 return;
                             }
                             //when search finished stop and return
-                            Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -10050,12 +10050,12 @@ namespace QuantumRefrigiz
                         }
                         //determine about validity of list on current and deeper return true when successfull
                         bool IA = false;
-                        Task<bool> ah2 = Task.Run(() => IA = IsNonValidityAllTablesHeuristicsAndMore(3, Order, i, j));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(3, Order, i, j));
                         ah2.Wait();
                         ah2.Dispose();
                         //determine about situation of deeper against other lists computation in 4 state
                         int Is = 0;
-                        Task<int> ah3 = Task.Run(() => Is = IsSuitableForInitiation(i, j, 3));
+                        Task<int> ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 3));
                         ah3.Wait();
                         ah3.Dispose();
                         if (!IA)
@@ -10071,7 +10071,7 @@ namespace QuantumRefrigiz
                             {
                                 //when search finished stop and return
                                 bool ac = false;
-                                Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                 ah1.Wait();
                                 ah1.Dispose();
                                 if (ac)
@@ -10082,7 +10082,7 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
-                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();
                             for (int h = 0; h < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy != null; h++)
@@ -10110,7 +10110,7 @@ namespace QuantumRefrigiz
                                         FirstTraversalTree = false;
                                         //when search finished stop and return
                                         bool ac = false;
-                                        Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         if (ac)
@@ -10141,7 +10141,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10154,7 +10154,7 @@ namespace QuantumRefrigiz
                                 lock (O1)
                                 {
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();
                                     for (int h = 0; h < HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count && HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy != null; h++)
@@ -10177,7 +10177,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10195,7 +10195,7 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Factory.StartNew(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
                                     ah4.Dispose();
                                 }
@@ -10227,7 +10227,7 @@ namespace QuantumRefrigiz
                     Parallel.For(0, CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count, j =>
                     {
                         bool ac = false;
-                        Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 4));
+                        Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 4));
                         ah.Wait();
                         ah.Dispose();
                         if (ac)
@@ -10239,7 +10239,7 @@ namespace QuantumRefrigiz
                         lock (OOOOO)
                         {
                             //when search finished stop and return
-                            Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -10249,13 +10249,13 @@ namespace QuantumRefrigiz
                         }
                         //determine about validity of list on current and deeper return true when successfull
                         bool IA = false;
-                        Task<bool> ah2 = Task.Run(() => IA = IsNonValidityAllTablesHeuristicsAndMore(4, Order, i, j));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(4, Order, i, j));
                         ah2.Wait();
                         ah2.Dispose();
 
                         //determine about situation of deeper against other lists computation in 4 state
                         int Is = 0;
-                        Task<int> ah3 = Task.Run(() => Is = IsSuitableForInitiation(i, j, 4));
+                        Task<int> ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 4));
                         ah3.Wait();
                         ah3.Dispose();
                         if (!IA)
@@ -10269,7 +10269,7 @@ namespace QuantumRefrigiz
                             lock (OOOO)
                             {
                                 //when search finished stop and return
-                                Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                 ah1.Wait();
                                 ah1.Dispose();
                                 if (ac)
@@ -10280,7 +10280,7 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
 
-                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();
                             for (int h = 0; h < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy != null; h++)
@@ -10307,7 +10307,7 @@ namespace QuantumRefrigiz
                                     {
                                         FirstTraversalTree = false;
                                         //when search finished stop and return
-                                        Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         if (ac)
@@ -10337,7 +10337,7 @@ namespace QuantumRefrigiz
                                 lock (OOOO)
                                 {
                                     //when search finished stop and return
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10350,7 +10350,7 @@ namespace QuantumRefrigiz
                                 lock (O1)
                                 {
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();
                                     for (int h = 0; h < CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count && CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy != null; h++)
@@ -10372,7 +10372,7 @@ namespace QuantumRefrigiz
                                 lock (OOOO)
                                 {
                                     //when search finished stop and return
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10393,7 +10393,7 @@ namespace QuantumRefrigiz
 
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
 
-                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Factory.StartNew(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
                                     ah4.Dispose();
                                 }
@@ -10425,7 +10425,7 @@ namespace QuantumRefrigiz
                     Parallel.For(0, MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count, j =>
                     {
                         bool ac = false;
-                        Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 5));
+                        Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 5));
                         ah.Wait();
                         ah.Dispose();
                         if (ac)
@@ -10437,7 +10437,7 @@ namespace QuantumRefrigiz
                         lock (OOOOO)
                         {
                             //when search finished stop and return
-                            Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -10447,13 +10447,13 @@ namespace QuantumRefrigiz
                         }
                         //determine about validity of list on current and deeper return true when successfull
                         bool IA = false;
-                        Task<bool> ah2 = Task.Run(() => IA = IsNonValidityAllTablesHeuristicsAndMore(5, Order, i, j));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(5, Order, i, j));
                         ah2.Wait();
                         ah2.Dispose();
 
                         //determine about situation of deeper against other lists computation in 4 state
                         int Is = 0;
-                        Task<int> ah3 = Task.Run(() => Is = IsSuitableForInitiation(i, j, 5));
+                        Task<int> ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 5));
                         ah3.Wait();
                         ah3.Dispose();
                         if (!IA)
@@ -10467,7 +10467,7 @@ namespace QuantumRefrigiz
                             lock (OOOO)
                             {
                                 //when search finished stop and return
-                                Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                 ah1.Wait();
                                 ah1.Dispose();
                                 if (ac)
@@ -10478,7 +10478,7 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
 
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();
                             for (int h = 0; h < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
@@ -10505,7 +10505,7 @@ namespace QuantumRefrigiz
                                     {
                                         FirstTraversalTree = false;
                                         //when search finished stop and return
-                                        Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         if (ac)
@@ -10535,7 +10535,7 @@ namespace QuantumRefrigiz
                                 lock (OOOO)
                                 {
                                     //when search finished stop and return
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10544,7 +10544,7 @@ namespace QuantumRefrigiz
                                     }
                                 }
 
-                                Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                 H.Wait();
                                 H.Dispose();
                                 for (int h = 0; h < MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count && MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy != null; h++)
@@ -10565,7 +10565,7 @@ namespace QuantumRefrigiz
                                 lock (OOOO)
                                 {
                                     //when search finished stop and return
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10584,7 +10584,7 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Factory.StartNew(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
                                     ah4.Dispose();
                                 }
@@ -10619,7 +10619,7 @@ namespace QuantumRefrigiz
                         lock (OOOOO)
                         {
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 6));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 6));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -10627,7 +10627,7 @@ namespace QuantumRefrigiz
                                 return;
                             }
                             //when search finished stop and return
-                            Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -10637,13 +10637,13 @@ namespace QuantumRefrigiz
                         }
                         //determine about validity of list on current and deeper return true when successfull
                         bool IA = false;
-                        Task<bool> ah2 = Task.Run(() => IA = IsNonValidityAllTablesHeuristicsAndMore(6, Order, i, j));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(6, Order, i, j));
                         ah2.Wait();
                         ah2.Dispose();
 
                         //determine about situation of deeper against other lists computation in 4 state
                         int Is = 0;
-                        Task<int> ah3 = Task.Run(() => Is = IsSuitableForInitiation(i, j, 6));
+                        Task<int> ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 6));
                         ah3.Wait();
                         ah3.Dispose();
                         if (!IA)
@@ -10658,7 +10658,7 @@ namespace QuantumRefrigiz
                             {
                                 //when search finished stop and return
                                 bool ac = false;
-                                Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                 ah1.Wait();
                                 ah1.Dispose();
                                 if (ac)
@@ -10668,7 +10668,7 @@ namespace QuantumRefrigiz
                             }
                             FullGameFound = true;
 
-                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();
                             for (int h = 0; h < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null; h++)
@@ -10697,7 +10697,7 @@ namespace QuantumRefrigiz
 
                                         //when search finished stop and return
                                         bool ac = false;
-                                        Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         if (ac)
@@ -10728,7 +10728,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10742,7 +10742,7 @@ namespace QuantumRefrigiz
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();
                                     for (int h = 0; h < KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy != null; h++)
@@ -10765,7 +10765,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10782,7 +10782,7 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Factory.StartNew(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
                                     ah4.Dispose();
                                 }
@@ -10817,7 +10817,7 @@ namespace QuantumRefrigiz
                         lock (OOOOO)
                         {
                             bool ac = false;
-                            Task<bool> ah = Task.Run(() => ac = IsSupHuTrue(i, j, 7));
+                            Task<bool> ah = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 7));
                             ah.Wait();
                             ah.Dispose();
                             if (ac)
@@ -10825,7 +10825,7 @@ namespace QuantumRefrigiz
                                 return;
                             }
                             //when search finished stop and return
-                            Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                            Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                             ah1.Wait();
                             ah1.Dispose();
                             if (ac)
@@ -10835,13 +10835,13 @@ namespace QuantumRefrigiz
                         }
                         //determine about validity of list on current and deeper return true when successfull
                         bool IA = false;
-                        Task<bool> ah2 = Task.Run(() => IA = IsNonValidityAllTablesHeuristicsAndMore(7, Order, i, j));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => IA = IsNonValidityAllTablesHeuristicsAndMore(7, Order, i, j));
                         ah2.Wait();
                         ah2.Dispose();
 
                         //determine about situation of deeper against other lists computation in 4 state
                         int Is = 0;
-                        Task<int> ah3 = Task.Run(() => Is = IsSuitableForInitiation(i, j, 7));
+                        Task<int> ah3 = Task.Factory.StartNew(() => Is = IsSuitableForInitiation(i, j, 7));
                         ah3.Wait();
                         ah3.Dispose();
                         if (!IA)
@@ -10856,7 +10856,7 @@ namespace QuantumRefrigiz
                             {
                                 //when search finished stop and return
                                 bool ac = false;
-                                Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                 ah1.Wait();
                                 ah1.Dispose();
                                 if (ac)
@@ -10867,7 +10867,7 @@ namespace QuantumRefrigiz
                             FullGameFound = true;
 
                             StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                            Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                            Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                             H.Wait();
                             H.Dispose();
                             for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
@@ -10896,7 +10896,7 @@ namespace QuantumRefrigiz
 
                                         //when search finished stop and return
                                         bool ac = false;
-                                        Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                         ah1.Wait();
                                         ah1.Dispose();
                                         if (ac)
@@ -10927,7 +10927,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10941,7 +10941,7 @@ namespace QuantumRefrigiz
                                 {
                                     int Ord = Order, ii1 = ii, jj1 = jj, i1 = i, j1 = j;
                                     StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                                    Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                                    Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                                     H.Wait();
                                     H.Dispose();
                                     for (int h = 0; h < CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count && CastlingOnTable[i].CastlingThinking[0].AStarGreedy != null; h++)
@@ -10964,7 +10964,7 @@ namespace QuantumRefrigiz
                                 {
                                     //when search finished stop and return
                                     bool ac = false;
-                                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                                     ah1.Wait();
                                     ah1.Dispose();
                                     if (ac)
@@ -10981,7 +10981,7 @@ namespace QuantumRefrigiz
                                         a = Color.Brown;
                                     }
 
-                                    Task<bool> ah4 = Task.Run(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                                    Task<bool> ah4 = Task.Factory.StartNew(() => FullGameThinkingTree(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                                     ah4.Wait();
                                     ah4.Dispose();
 
@@ -11047,7 +11047,7 @@ namespace QuantumRefrigiz
                     {
                         //parallel full game all deeper foundation
                         Color a = Color.Gray;
-                        Task output = Task.Run(() =>
+                        Task output = Task.Factory.StartNew(() =>
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
@@ -11111,7 +11111,7 @@ namespace QuantumRefrigiz
                     else//Brown
                     {
                         Color a = Color.Brown;
-                        Task output = Task.Run(() =>
+                        Task output = Task.Factory.StartNew(() =>
                         {
                             //if (!feedCancellationTokenSource.IsCancellationRequested)
                             {
@@ -11181,7 +11181,7 @@ namespace QuantumRefrigiz
                     {
                         //when search finished stop and return
                         bool ac = false;
-                        Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -11195,7 +11195,7 @@ namespace QuantumRefrigiz
                             a = Color.Brown;
                         }
 
-                        Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
+                        Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, a, CloneATable(Table), Order, false, false, LeafAStarGreedy));
                         H.Wait();
                         H.Dispose();
                     }
@@ -11218,7 +11218,7 @@ namespace QuantumRefrigiz
                 {
                     //when search finished stop and return
                     bool ac = false;
-                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -11229,7 +11229,7 @@ namespace QuantumRefrigiz
                 object P = new object();
                 lock (P)
                 {
-                    Task ah = Task.Run(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    Task ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameSoldeir(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -11251,7 +11251,7 @@ namespace QuantumRefrigiz
                 {
                     //when search finished stop and return
                     bool ac = false;
-                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -11262,7 +11262,7 @@ namespace QuantumRefrigiz
                 object P = new object();
                 lock (P)
                 {
-                    Task ah = Task.Run(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    Task ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameElepahnt(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -11284,7 +11284,7 @@ namespace QuantumRefrigiz
                 {
                     //when search finished stop and return
                     bool ac = false;
-                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -11295,7 +11295,7 @@ namespace QuantumRefrigiz
                 object P = new object();
                 lock (P)
                 {
-                    Task ah = Task.Run(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    Task ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameHourse(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -11317,7 +11317,7 @@ namespace QuantumRefrigiz
                 {
                     //when search finished stop and return
                     bool ac = false;
-                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -11328,7 +11328,7 @@ namespace QuantumRefrigiz
                 object P = new object();
                 lock (P)
                 {
-                    Task ah = Task.Run(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    Task ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastle(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -11349,7 +11349,7 @@ namespace QuantumRefrigiz
                 {
                     //when search finished stop and return
                     bool ac = false;
-                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -11360,7 +11360,7 @@ namespace QuantumRefrigiz
                 object P = new object();
                 lock (P)
                 {
-                    Task ah = Task.Run(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    Task ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameMinister(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -11382,7 +11382,7 @@ namespace QuantumRefrigiz
                 {
                     //when search finished stop and return
                     bool ac = false;
-                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -11393,7 +11393,7 @@ namespace QuantumRefrigiz
                 object P = new object();
                 lock (P)
                 {
-                    Task ah = Task.Run(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    Task ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameKing(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -11414,7 +11414,7 @@ namespace QuantumRefrigiz
                 {
                     //when search finished stop and return
                     bool ac = false;
-                    Task<bool> ah1 = Task.Run(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = FullBoundryConditions(CurrentAStarGredyMax, Order, iAStarGreedy));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -11425,7 +11425,7 @@ namespace QuantumRefrigiz
                 object P = new object();
                 lock (P)
                 {
-                    Task ah = Task.Run(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
+                    Task ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGameCastling(a, ref FullGameFound, CloneATable(Table), Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, jjj, FOUND, LeafAStarGreedy));
                     ah.Wait();
                     ah.Dispose();
                 }
@@ -11450,7 +11450,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && j < A.SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder[i].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder[i].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11458,7 +11458,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && ii < A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11471,7 +11471,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && j < A.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11479,7 +11479,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ii < A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11492,7 +11492,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && j < A.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11500,7 +11500,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && ii < A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11513,7 +11513,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && j < A.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11521,7 +11521,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && ii < A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11534,7 +11534,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && j < A.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11542,7 +11542,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && ii < A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11555,14 +11555,14 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && j < A.KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             //deeper call
                             for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && ii < A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11575,14 +11575,14 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             //deeper call
                             for (int ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11598,7 +11598,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && j < A.SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder[i].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.SolderesOnTable[i].SoldierThinkingQuantum[0].PenaltyRegardListSolder[i].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11606,7 +11606,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.SolderesOnTable != null && SolderesOnTable[i] != null && A.SolderesOnTable[i].SoldierThinkingQuantum[0] != null && ii < A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.SolderesOnTable[i].SoldierThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11619,7 +11619,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && j < A.ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.ElephantOnTable[i].ElefantThinkingQuantum[0].PenaltyRegardListElefant[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11627,7 +11627,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.ElephantOnTable != null && ElephantOnTable[i] != null && A.ElephantOnTable[i].ElefantThinkingQuantum[0] != null && ii < A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11640,7 +11640,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && j < A.HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.HoursesOnTable[i].HourseThinkingQuantum[0].PenaltyRegardListHourse[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11648,7 +11648,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.HoursesOnTable != null && HoursesOnTable[i] != null && A.HoursesOnTable[i].HourseThinkingQuantum[0] != null && ii < A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11661,7 +11661,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && j < A.CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.CastlesOnTable[i].CastleThinkingQuantum[0].PenaltyRegardListCastle[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11669,7 +11669,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.CastlesOnTable != null && CastlesOnTable[i] != null && A.CastlesOnTable[i].CastleThinkingQuantum[0] != null && ii < A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11682,7 +11682,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && j < A.MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.MinisterOnTable[i].MinisterThinkingQuantum[0].PenaltyRegardListMinister[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
 
@@ -11690,7 +11690,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.MinisterOnTable != null && MinisterOnTable[i] != null && A.MinisterOnTable[i].MinisterThinkingQuantum[0] != null && ii < A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11703,7 +11703,7 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && j < A.KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
                             A.KingOnTable[i].KingThinkingQuantum[0].PenaltyRegardListKing[j].LearningAlgorithmRegard();
@@ -11711,7 +11711,7 @@ namespace QuantumRefrigiz
                             //deeper call
                             for (int ii = 0; A.KingOnTable != null && KingOnTable[i] != null && A.KingOnTable[i].KingThinkingQuantum[0] != null && ii < A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11724,14 +11724,14 @@ namespace QuantumRefrigiz
                         for (int j = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && j < A.CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count; j++)
                         {
                             //make regard
-                            Task<double> ah = Task.Run(() => A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
+                            Task<double> ah = Task.Factory.StartNew(() => A.CastlingOnTable[i].CastlingThinking[0].PenaltyRegardListCastling[j].LearningAlgorithmRegard());
                             ah.Wait();
                             ah.Dispose();
                             Order *= -1; ChessRules.CurrentOrder *= -1;
                             //deeper call
                             for (int ii = 0; A.CastlingOnTable != null && CastlingOnTable[i] != null && A.CastlingOnTable[i].CastlingThinking[0] != null && ii < A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count; ii++)
                             {
-                                Task ah1 = Task.Run(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
+                                Task ah1 = Task.Factory.StartNew(() => MakeRegardAllCheckMateBranches(A.CastlingOnTable[i].CastlingThinking[0].AStarGreedy[ii], Order));
                                 ah1.Wait();
                                 ah1.Dispose();
                             }
@@ -11776,7 +11776,7 @@ namespace QuantumRefrigiz
                                        for (int ij = 0; ij < SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy.Count - 1; ij++)
                                        {
                                            int D = Do;
-                                           var ah = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
+                                           var ah = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
                                            ah.Wait();
                                            ah.Dispose();
                                            Do = D;
@@ -12039,7 +12039,7 @@ namespace QuantumRefrigiz
                                        for (int ij = 0; ij < ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count - 1; ij++)
                                        {
                                            int D = Do;
-                                           var ah = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
+                                           var ah = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
                                            ah.Wait();
                                            ah.Dispose();
                                            Do = D;
@@ -12221,7 +12221,7 @@ namespace QuantumRefrigiz
                                        for (int ij = 0; ij < HoursesOnTable[i].HourseThinkingQuantum[k].AStarGreedy.Count - 1; ij++)
                                        {
                                            int D = Do;
-                                           var ah = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
+                                           var ah = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
                                            ah.Wait();
                                            ah.Dispose();
                                            Do = D;
@@ -12405,7 +12405,7 @@ namespace QuantumRefrigiz
                                        for (int ij = 0; ij < CastlesOnTable[i].CastleThinkingQuantum[k].AStarGreedy.Count - 1; ij++)
                                        {
                                            int D = Do;
-                                           var ah = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
+                                           var ah = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
                                            ah.Wait();
                                            ah.Dispose();
                                            Do = D;
@@ -12590,7 +12590,7 @@ namespace QuantumRefrigiz
                                        for (int ij = 0; ij < MinisterOnTable[i].MinisterThinkingQuantum[k].AStarGreedy.Count - 1; ij++)
                                        {
                                            int D = Do;
-                                           var ah = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
+                                           var ah = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
                                            ah.Wait();
                                            ah.Dispose();
                                            Do = D;
@@ -12776,7 +12776,7 @@ namespace QuantumRefrigiz
                                        for (int ij = 0; ij < KingOnTable[i].KingThinkingQuantum[k].AStarGreedy.Count - 1; ij++)
                                        {
                                            int D = Do;
-                                           var ah = Task.Run(() => KingOnTable[i].KingThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
+                                           var ah = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[k].AStarGreedy[ij].IsPenaltyRegardCheckMateAtBranch(Order, ref D, SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[ij]));
                                            ah.Wait();
                                            ah.Dispose();
                                            Do = D;
@@ -13281,19 +13281,19 @@ namespace QuantumRefrigiz
                     {
                         //if (!RegardLessOptimized(i, j, k, Kind, ref Less, AA, Order))
 
-                        Task ah = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                        Task ah = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                         ah.Wait();
                         ah.Dispose();
 
                         int[,] Th = TableHeuristic;
-                        Task ah1 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                        Task ah1 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                         ah1.Wait();
                         ah1.Dispose();
                         TableHeuristic = Th;
 
                         double le = Less;
                         bool AAA = AA;
-                        Task ah2 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                        Task ah2 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                         ah2.Wait();
                         ah2.Dispose();
                         Less = le;
@@ -13345,19 +13345,19 @@ namespace QuantumRefrigiz
                     {
                         //if (!RegardLessOptimized(i, j, k, Kind, ref Less, AA, Order))
 
-                        Task ah = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                        Task ah = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                         ah.Wait();
                         ah.Dispose();
 
                         int[,] Th = TableHeuristic;
-                        Task ah1 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                        Task ah1 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                         ah1.Wait();
                         ah1.Dispose();
                         TableHeuristic = Th;
 
                         double le = Less;
                         bool AAA = AA;
-                        Task ah2 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                        Task ah2 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                         ah2.Wait();
                         ah2.Dispose();
                         Less = le;
@@ -13378,19 +13378,19 @@ namespace QuantumRefrigiz
                     {
                         //if (!RegardLessOptimized(i, j, k, Kind, ref Less, AA, Order))
 
-                        Task ah = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                        Task ah = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                         ah.Wait();
                         ah.Dispose();
 
                         int[,] Th = TableHeuristic;
-                        Task ah1 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                        Task ah1 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                         ah1.Wait();
                         ah1.Dispose();
                         TableHeuristic = Th;
 
                         double le = Less;
                         bool AAA = AA;
-                        Task ah2 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                        Task ah2 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                         ah2.Wait();
                         ah2.Dispose();
                         Less = le;
@@ -13411,19 +13411,19 @@ namespace QuantumRefrigiz
                     {
                         //if (!RegardLessOptimized(i, j, k, Kind, ref Less, AA, Order))
 
-                        Task ah = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                        Task ah = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                         ah.Wait();
                         ah.Dispose();
 
                         int[,] Th = TableHeuristic;
-                        Task ah1 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                        Task ah1 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                         ah1.Wait();
                         ah1.Dispose();
                         TableHeuristic = Th;
 
                         double le = Less;
                         bool AAA = AA;
-                        Task ah2 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                        Task ah2 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                         ah2.Wait();
                         ah2.Dispose();
                         Less = le;
@@ -13444,19 +13444,19 @@ namespace QuantumRefrigiz
                     {
                         //if (!RegardLessOptimized(i, j, k, Kind, ref Less, AA, Order))
 
-                        Task ah = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                        Task ah = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                         ah.Wait();
                         ah.Dispose();
 
                         int[,] Th = TableHeuristic;
-                        Task ah1 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                        Task ah1 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                         ah1.Wait();
                         ah1.Dispose();
                         TableHeuristic = Th;
 
                         double le = Less;
                         bool AAA = AA;
-                        Task ah2 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                        Task ah2 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                         ah2.Wait();
                         ah2.Dispose();
                         Less = le;
@@ -13478,19 +13478,19 @@ namespace QuantumRefrigiz
                     {
                         //if (!RegardLessOptimized(i, j, k, Kind, ref Less, AA, Order))
 
-                        Task ah = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                        Task ah = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                         ah.Wait();
                         ah.Dispose();
 
                         int[,] Th = TableHeuristic;
-                        Task ah1 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                        Task ah1 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                         ah1.Wait();
                         ah1.Dispose();
                         TableHeuristic = Th;
 
                         double le = Less;
                         bool AAA = AA;
-                        Task ah2 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                        Task ah2 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                         ah2.Wait();
                         ah2.Dispose();
                         Less = le;
@@ -13514,19 +13514,19 @@ namespace QuantumRefrigiz
                     {
                         //if (!RegardLessOptimized(i, j, k, Kind, ref Less, AA, Order))
 
-                        Task ah = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                        Task ah = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                         ah.Wait();
                         ah.Dispose();
 
                         int[,] Th = TableHeuristic;
-                        Task ah1 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                        Task ah1 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                         ah1.Wait();
                         ah1.Dispose();
                         TableHeuristic = Th;
 
                         double le = Less;
                         bool AAA = AA;
-                        Task ah2 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                        Task ah2 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                         ah2.Wait();
                         ah2.Dispose();
                         Less = le;
@@ -13628,7 +13628,7 @@ namespace QuantumRefrigiz
             ChessRules AB = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Ki, CloneATable(TableS), Order);
             //If there is kish or kshachamaz Order.
             bool ac = false;
-            Task<bool> ah = Task.Run(() => ac = AB.Check(CloneATable(TableS), Order));
+            Task<bool> ah = Task.Factory.StartNew(() => ac = AB.Check(CloneATable(TableS), Order));
             ah.Wait();
             ah.Dispose();
 
@@ -13686,7 +13686,7 @@ namespace QuantumRefrigiz
                 bool AAA = AA;
                 double Le = Less;
                 int Havk = HaveKilled;
-                Task<bool> ah = Task.Run(() => ac = SolderesOnTable[i].SoldierThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
+                Task<bool> ah = Task.Factory.StartNew(() => ac = SolderesOnTable[i].SoldierThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
                 ah.Wait();
                 ah.Dispose();
                 AA = AAA;
@@ -13711,7 +13711,7 @@ namespace QuantumRefrigiz
                             }
                         }
                         //When there is not Penalty regard mechanism.
-                        Task<bool> ah1 = Task.Run(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -13719,14 +13719,14 @@ namespace QuantumRefrigiz
                             return true;
                         }
 
-                        Task ah2 = Task.Run(() => InitiateVars(i, j, k, Kind));
+                        Task ah2 = Task.Factory.StartNew(() => InitiateVars(i, j, k, Kind));
                         ah2.Wait();
                         ah2.Dispose();
 
                         //Set Max of Soldier.
                         AAA = AA;
                         Havk = HaveKilled;
-                        Task<double> ah3 = Task.Run(() => MaxLess1 = SolderesOnTable[RW1].SoldierThinkingQuantum[CL1].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                        Task<double> ah3 = Task.Factory.StartNew(() => MaxLess1 = SolderesOnTable[RW1].SoldierThinkingQuantum[CL1].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                         ah3.Wait();
                         ah3.Dispose();
                         AA = AAA;
@@ -13782,19 +13782,19 @@ namespace QuantumRefrigiz
                             object On = new object();
                             lock (On)
                             {
-                                Task ah4 = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                                Task ah4 = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                                 ah4.Wait();
                                 ah4.Dispose();
 
                                 int[,] Th = TableHeuristic;
-                                Task ah5 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                                Task ah5 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 TableHeuristic = Th;
 
                                 double le = Less;
                                 AAA = AA;
-                                Task ah6 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                                Task ah6 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                                 ah6.Wait();
                                 ah6.Dispose();
                                 Less = le;
@@ -13843,7 +13843,7 @@ namespace QuantumRefrigiz
                 bool AAA = AA;
                 double Le = Less;
                 int Havk = HaveKilled;
-                Task<bool> ah = Task.Run(() => ac = ElephantOnTable[i].ElefantThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
+                Task<bool> ah = Task.Factory.StartNew(() => ac = ElephantOnTable[i].ElefantThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
                 ah.Wait();
                 ah.Dispose();
                 AA = AAA;
@@ -13870,7 +13870,7 @@ namespace QuantumRefrigiz
                         }
                     }
                     //When there is not Penalty regard mechanism.
-                    Task<bool> ah1 = Task.Run(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -13878,13 +13878,13 @@ namespace QuantumRefrigiz
                         return true;
                     }
 
-                    Task ah2 = Task.Run(() => InitiateVars(i, j, k, Kind));
+                    Task ah2 = Task.Factory.StartNew(() => InitiateVars(i, j, k, Kind));
                     ah2.Wait();
                     ah2.Dispose();
 
                     AAA = AA;
                     Havk = HaveKilled;
-                    Task<double> ah3 = Task.Run(() => MaxLess2 = ElephantOnTable[RW2].ElefantThinkingQuantum[CL2].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                    Task<double> ah3 = Task.Factory.StartNew(() => MaxLess2 = ElephantOnTable[RW2].ElefantThinkingQuantum[CL2].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                     ah3.Wait();
                     ah3.Dispose();
                     AA = AAA;
@@ -13939,19 +13939,19 @@ namespace QuantumRefrigiz
                         object On = new object();
                         lock (On)
                         {
-                            Task ah4 = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                            Task ah4 = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                             ah4.Wait();
                             ah4.Dispose();
 
                             int[,] Th = TableHeuristic;
-                            Task ah5 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                            Task ah5 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                             ah5.Wait();
                             ah5.Dispose();
                             TableHeuristic = Th;
 
                             double le = Less;
                             AAA = AA;
-                            Task ah6 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                            Task ah6 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                             ah6.Wait();
                             ah6.Dispose();
                             Less = le;
@@ -13968,7 +13968,7 @@ namespace QuantumRefrigiz
                 bool AAA = AA;
                 double Le = Less;
                 int Havk = HaveKilled;
-                Task<bool> ah = Task.Run(() => ac = HoursesOnTable[i].HourseThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
+                Task<bool> ah = Task.Factory.StartNew(() => ac = HoursesOnTable[i].HourseThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
                 ah.Wait();
                 ah.Dispose();
                 AA = AAA;
@@ -13997,7 +13997,7 @@ namespace QuantumRefrigiz
                         }
                     }
                     //When there is not Penalty regard mechanism.
-                    Task<bool> ah1 = Task.Run(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -14005,13 +14005,13 @@ namespace QuantumRefrigiz
                         return true;
                     }
 
-                    Task ah2 = Task.Run(() => InitiateVars(i, j, k, Kind));
+                    Task ah2 = Task.Factory.StartNew(() => InitiateVars(i, j, k, Kind));
                     ah2.Wait();
                     ah2.Dispose();
 
                     AAA = AA;
                     Havk = HaveKilled;
-                    Task<double> ah3 = Task.Run(() => MaxLess3 = HoursesOnTable[RW3].HourseThinkingQuantum[CL3].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                    Task<double> ah3 = Task.Factory.StartNew(() => MaxLess3 = HoursesOnTable[RW3].HourseThinkingQuantum[CL3].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                     ah3.Wait();
                     ah3.Dispose();
                     AA = AAA;
@@ -14066,19 +14066,19 @@ namespace QuantumRefrigiz
                         object On = new object();
                         lock (On)
                         {
-                            Task ah4 = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                            Task ah4 = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                             ah4.Wait();
                             ah4.Dispose();
 
                             int[,] Th = TableHeuristic;
-                            Task ah5 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                            Task ah5 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                             ah5.Wait();
                             ah5.Dispose();
                             TableHeuristic = Th;
 
                             double le = Less;
                             AAA = AA;
-                            Task ah6 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                            Task ah6 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                             ah6.Wait();
                             ah6.Dispose();
                             Less = le;
@@ -14095,7 +14095,7 @@ namespace QuantumRefrigiz
                 bool AAA = AA;
                 double Le = Less;
                 int Havk = HaveKilled;
-                Task<bool> ah = Task.Run(() => ac = CastlesOnTable[i].CastleThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
+                Task<bool> ah = Task.Factory.StartNew(() => ac = CastlesOnTable[i].CastleThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
                 ah.Wait();
                 ah.Dispose();
                 AA = AAA;
@@ -14123,7 +14123,7 @@ namespace QuantumRefrigiz
                         }
                     }
                     //When there is not Penalty regard mechanism.
-                    Task<bool> ah1 = Task.Run(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -14131,13 +14131,13 @@ namespace QuantumRefrigiz
                         return true;
                     }
 
-                    Task ah2 = Task.Run(() => InitiateVars(i, j, k, Kind));
+                    Task ah2 = Task.Factory.StartNew(() => InitiateVars(i, j, k, Kind));
                     ah2.Wait();
                     ah2.Dispose();
 
                     AAA = AA;
                     Havk = HaveKilled;
-                    Task<double> ah3 = Task.Run(() => MaxLess4 = CastlesOnTable[RW4].CastleThinkingQuantum[CL4].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                    Task<double> ah3 = Task.Factory.StartNew(() => MaxLess4 = CastlesOnTable[RW4].CastleThinkingQuantum[CL4].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                     ah3.Wait();
                     ah3.Dispose();
                     AA = AAA;
@@ -14192,19 +14192,19 @@ namespace QuantumRefrigiz
                         object On = new object();
                         lock (On)
                         {
-                            Task ah4 = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                            Task ah4 = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                             ah4.Wait();
                             ah4.Dispose();
 
                             int[,] Th = TableHeuristic;
-                            Task ah5 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                            Task ah5 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                             ah5.Wait();
                             ah5.Dispose();
                             TableHeuristic = Th;
 
                             double le = Less;
                             AAA = AA;
-                            Task ah6 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                            Task ah6 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                             ah6.Wait();
                             ah6.Dispose();
                             Less = le;
@@ -14224,7 +14224,7 @@ namespace QuantumRefrigiz
                 bool AAA = AA;
                 double Le = Less;
                 int Havk = HaveKilled;
-                Task<bool> ah = Task.Run(() => ac = MinisterOnTable[i].MinisterThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
+                Task<bool> ah = Task.Factory.StartNew(() => ac = MinisterOnTable[i].MinisterThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
                 ah.Wait();
                 ah.Dispose();
                 AA = AAA;
@@ -14252,7 +14252,7 @@ namespace QuantumRefrigiz
                         }
                     }
                     //When there is not Penalty regard mechanism.
-                    Task<bool> ah1 = Task.Run(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -14260,13 +14260,13 @@ namespace QuantumRefrigiz
                         return true;
                     }
 
-                    Task ah2 = Task.Run(() => InitiateVars(i, j, k, Kind));
+                    Task ah2 = Task.Factory.StartNew(() => InitiateVars(i, j, k, Kind));
                     ah2.Wait();
                     ah2.Dispose();
 
                     AAA = AA;
                     Havk = HaveKilled;
-                    Task<double> ah3 = Task.Run(() => MaxLess5 = MinisterOnTable[RW5].MinisterThinkingQuantum[CL5].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                    Task<double> ah3 = Task.Factory.StartNew(() => MaxLess5 = MinisterOnTable[RW5].MinisterThinkingQuantum[CL5].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                     ah3.Wait();
                     ah3.Dispose();
                     AA = AAA;
@@ -14321,19 +14321,19 @@ namespace QuantumRefrigiz
                         object On = new object();
                         lock (On)
                         {
-                            Task ah4 = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                            Task ah4 = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                             ah4.Wait();
                             ah4.Dispose();
 
                             int[,] Th = TableHeuristic;
-                            Task ah5 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                            Task ah5 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                             ah5.Wait();
                             ah5.Dispose();
                             TableHeuristic = Th;
 
                             double le = Less;
                             AAA = AA;
-                            Task ah6 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                            Task ah6 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                             ah6.Wait();
                             ah6.Dispose();
                             Less = le;
@@ -14350,7 +14350,7 @@ namespace QuantumRefrigiz
                 bool AAA = AA;
                 double Le = Less;
                 int Havk = HaveKilled;
-                Task<bool> ah = Task.Run(() => ac = KingOnTable[i].KingThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
+                Task<bool> ah = Task.Factory.StartNew(() => ac = KingOnTable[i].KingThinkingQuantum[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
                 ah.Wait();
                 ah.Dispose();
                 AA = AAA;
@@ -14378,7 +14378,7 @@ namespace QuantumRefrigiz
                         }
                     }
                     //When there is not Penalty regard mechanism.
-                    Task<bool> ah1 = Task.Run(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -14386,13 +14386,13 @@ namespace QuantumRefrigiz
                         return true;
                     }
 
-                    Task ah2 = Task.Run(() => InitiateVars(i, j, k, Kind));
+                    Task ah2 = Task.Factory.StartNew(() => InitiateVars(i, j, k, Kind));
                     ah2.Wait();
                     ah2.Dispose();
 
                     AAA = AA;
                     Havk = HaveKilled;
-                    Task<double> ah3 = Task.Run(() => MaxLess6 = KingOnTable[RW6].KingThinkingQuantum[CL6].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                    Task<double> ah3 = Task.Factory.StartNew(() => MaxLess6 = KingOnTable[RW6].KingThinkingQuantum[CL6].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                     ah3.Wait();
                     ah3.Dispose();
                     AA = AAA;
@@ -14447,19 +14447,19 @@ namespace QuantumRefrigiz
                         object On = new object();
                         lock (On)
                         {
-                            Task ah4 = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                            Task ah4 = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                             ah4.Wait();
                             ah4.Dispose();
 
                             int[,] Th = TableHeuristic;
-                            Task ah5 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                            Task ah5 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                             ah5.Wait();
                             ah5.Dispose();
                             TableHeuristic = Th;
 
                             double le = Less;
                             AAA = AA;
-                            Task ah6 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                            Task ah6 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                             ah6.Wait();
                             ah6.Dispose();
                             Less = le;
@@ -14479,7 +14479,7 @@ namespace QuantumRefrigiz
                 bool AAA = AA;
                 double Le = Less;
                 int Havk = HaveKilled;
-                Task<bool> ah = Task.Run(() => ac = CastlingOnTable[i].CastlingThinking[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
+                Task<bool> ah = Task.Factory.StartNew(() => ac = CastlingOnTable[i].CastlingThinking[0].ReturnHeuristic(i, j, Order, AAA, ref Havk) > Le);
                 ah.Wait();
                 ah.Dispose();
                 AA = AAA;
@@ -14507,7 +14507,7 @@ namespace QuantumRefrigiz
                         }
                     }
                     //When there is not Penalty regard mechanism.
-                    Task<bool> ah1 = Task.Run(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac =  CheckeHuristci(CloneATable(TableS), Order,Kind));
                     ah1.Wait();
                     ah1.Dispose();
                     if (ac)
@@ -14515,13 +14515,13 @@ namespace QuantumRefrigiz
                         return true;
                     }
 
-                    Task ah2 = Task.Run(() => InitiateVars(i, j, k, Kind));
+                    Task ah2 = Task.Factory.StartNew(() => InitiateVars(i, j, k, Kind));
                     ah2.Wait();
                     ah2.Dispose();
 
                     AAA = AA;
                     Havk = HaveKilled;
-                    Task<double> ah3 = Task.Run(() => MaxLess7 = CastlingOnTable[RW7].CastlingThinking[CL7].ReturnHeuristic(i, j, Order, AAA, ref Havk));
+                    Task<double> ah3 = Task.Factory.StartNew(() => MaxLess7 = CastlingOnTable[RW7].CastlingThinking[CL7].ReturnHeuristic(i, j, Order, AAA, ref Havk));
                     ah3.Wait();
                     ah3.Dispose();
                     AA = AAA;
@@ -14576,19 +14576,19 @@ namespace QuantumRefrigiz
                         object On = new object();
                         lock (On)
                         {
-                            Task ah4 = Task.Run(() => SaveBeginEndLocation(i, j, k, Kind));
+                            Task ah4 = Task.Factory.StartNew(() => SaveBeginEndLocation(i, j, k, Kind));
                             ah4.Wait();
                             ah4.Dispose();
 
                             int[,] Th = TableHeuristic;
-                            Task ah5 = Task.Run(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
+                            Task ah5 = Task.Factory.StartNew(() => SaveTableHeuristic(i, j, k, Kind, ref Th));
                             ah5.Wait();
                             ah5.Dispose();
                             TableHeuristic = Th;
 
                             double le = Less;
                             AAA = AA;
-                            Task ah6 = Task.Run(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
+                            Task ah6 = Task.Factory.StartNew(() => SaveLess(i, j, k, Kind, ref le, AAA, Order));
                             ah6.Wait();
                             ah6.Dispose();
                             Less = le;
@@ -14992,7 +14992,7 @@ namespace QuantumRefrigiz
                     for (j = 0; SolderesOnTable != null && SolderesOnTable[i] != null && SolderesOnTable != null && SolderesOnTable[i] != null && SolderesOnTable[i].SoldierThinkingQuantum != null && SolderesOnTable[i].SoldierThinkingQuantum[k] != null && j < SolderesOnTable[i].SoldierThinkingQuantum[k].TableListSolder.Count; j++)
                     {
                         bool ac = false;
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 1));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 1));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -15014,7 +15014,7 @@ namespace QuantumRefrigiz
                             if (SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy.Count > j && SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                Task<bool> ah = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[k].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -15024,7 +15024,7 @@ namespace QuantumRefrigiz
                             Do = 0;
 
                             // StringHeuristics(1, 1, AA, Do, SolderesOnTable[i].WinOcuuredatChiled, SolderesOnTable[i].LoseOcuuredatChiled);
-                            /* var ah3 = Task.Run(() => ac = Lose(1, i, j, Order));
+                            /* var ah3 = Task.Factory.StartNew(() => ac = Lose(1, i, j, Order));
                            ah3.Wait();
                            ah3.Dispose();
                            if (ac)
@@ -15038,7 +15038,7 @@ namespace QuantumRefrigiz
                             int[,] Ta = TableHeuristic;
                             bool AAA = AA;
                             int D = Do;
-                            Task<bool> ah4 = Task.Run(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 1, ref D, AStarGreedyi, Order));
+                            Task<bool> ah4 = Task.Factory.StartNew(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 1, ref D, AStarGreedyi, Order));
                             ah4.Wait();
                             ah4.Dispose();
                             Act = ac;
@@ -15065,7 +15065,7 @@ namespace QuantumRefrigiz
                                 bool CuTH = CurrentTableHeuristic;
                                 AAA = AA;
                                 D = Do;
-                                Task<bool> ah5 = Task.Run(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 1, ref D, AStarGreedyi, Order));
+                                Task<bool> ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 1, ref D, AStarGreedyi, Order));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 Act = ac;
@@ -15100,7 +15100,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchSoldier(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchSoldier(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15125,7 +15125,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchSoldier(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchSoldier(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15151,7 +15151,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchElephant(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchElephant(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15177,7 +15177,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchElephant(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchElephant(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15207,7 +15207,7 @@ namespace QuantumRefrigiz
                     for (j = 0; ElephantOnTable != null && ElephantOnTable[i] != null && ElephantOnTable != null && ElephantOnTable[i] != null && ElephantOnTable[i].ElefantThinkingQuantum != null && ElephantOnTable[i].ElefantThinkingQuantum[k] != null && j < ElephantOnTable[i].ElefantThinkingQuantum[k].TableListElefant.Count; j++)
                     {
                         bool ac = false;
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 2));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 2));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -15229,7 +15229,7 @@ namespace QuantumRefrigiz
                             if (ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy.Count > j && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                Task<bool> ah = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -15239,7 +15239,7 @@ namespace QuantumRefrigiz
                             Do = 0;
 
                             // StringHeuristics(2, 1, AA, Do, ElephantOnTable[i].WinOcuuredatChiled, ElephantOnTable[i].LoseOcuuredatChiled);
-                            /* var ah3 = Task.Run(() => ac = Lose(2, i, j, Order));
+                            /* var ah3 = Task.Factory.StartNew(() => ac = Lose(2, i, j, Order));
                           ah3.Wait();
                           ah3.Dispose();
                           if (ac)
@@ -15252,7 +15252,7 @@ namespace QuantumRefrigiz
                             int[,] Ta = TableHeuristic;
                             bool AAA = AA;
                             int D = Do;
-                            Task<bool> ah4 = Task.Run(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 2, ref D, AStarGreedyi, Order));
+                            Task<bool> ah4 = Task.Factory.StartNew(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 2, ref D, AStarGreedyi, Order));
                             ah4.Wait();
                             ah4.Dispose();
                             Act = ac;
@@ -15280,7 +15280,7 @@ namespace QuantumRefrigiz
                                 bool CuTH = CurrentTableHeuristic;
                                 AAA = AA;
                                 D = Do;
-                                Task<bool> ah5 = Task.Run(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 2, ref D, AStarGreedyi, Order));
+                                Task<bool> ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 2, ref D, AStarGreedyi, Order));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 Act = ac;
@@ -15315,7 +15315,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchHourse(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchHourse(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15341,7 +15341,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchHourse(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchHourse(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15372,7 +15372,7 @@ namespace QuantumRefrigiz
                     for (j = 0; HoursesOnTable != null && HoursesOnTable[i] != null && HoursesOnTable != null && HoursesOnTable[i] != null && HoursesOnTable[i].HourseThinkingQuantum != null && HoursesOnTable[i].HourseThinkingQuantum[k] != null && j < HoursesOnTable[i].HourseThinkingQuantum[k].TableListHourse.Count; j++)
                     {
                         bool ac = false;
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 3));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 3));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -15394,7 +15394,7 @@ namespace QuantumRefrigiz
                             if (HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy.Count > j && HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                Task<bool> ah = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -15403,7 +15403,7 @@ namespace QuantumRefrigiz
                             Order *= -1;
                             Do = 0;
                             // StringHeuristics(3, 1, AA, Do, HoursesOnTable[i].WinOcuuredatChiled, HoursesOnTable[i].LoseOcuuredatChiled);
-                            /* var ah3 = Task.Run(() => ac = Lose(3, i, j, Order));
+                            /* var ah3 = Task.Factory.StartNew(() => ac = Lose(3, i, j, Order));
                         ah3.Wait();
                         ah3.Dispose();
                         if (ac)
@@ -15417,7 +15417,7 @@ namespace QuantumRefrigiz
                             int[,] Ta = TableHeuristic;
                             bool AAA = AA;
                             int D = Do;
-                            Task<bool> ah4 = Task.Run(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 3, ref D, AStarGreedyi, Order));
+                            Task<bool> ah4 = Task.Factory.StartNew(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 3, ref D, AStarGreedyi, Order));
                             ah4.Wait();
                             ah4.Dispose();
                             Act = ac;
@@ -15445,7 +15445,7 @@ namespace QuantumRefrigiz
                                 bool CuTH = CurrentTableHeuristic;
                                 AAA = AA;
                                 D = Do;
-                                Task<bool> ah5 = Task.Run(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 3, ref D, AStarGreedyi, Order));
+                                Task<bool> ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 3, ref D, AStarGreedyi, Order));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 Act = ac;
@@ -15479,7 +15479,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchCastle(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchCastle(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15504,7 +15504,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchCastle(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchCastle(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15534,7 +15534,7 @@ namespace QuantumRefrigiz
                     for (j = 0; CastlesOnTable != null && CastlesOnTable[i] != null && CastlesOnTable != null && CastlesOnTable[i] != null && CastlesOnTable[i].CastleThinkingQuantum != null && CastlesOnTable[i].CastleThinkingQuantum[k] != null && j < CastlesOnTable[i].CastleThinkingQuantum[k].TableListCastle.Count; j++)
                     {
                         bool ac = false;
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 4));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 4));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -15556,7 +15556,7 @@ namespace QuantumRefrigiz
                             if (CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy.Count > j && CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                Task<bool> ah = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -15565,7 +15565,7 @@ namespace QuantumRefrigiz
                             Order *= -1;
                             Order = COrder;
                             // StringHeuristics(4, 1, AA, Do, CastlesOnTable[i].WinOcuuredatChiled, CastlesOnTable[i].LoseOcuuredatChiled);
-                            /* var ah3 = Task.Run(() => ac = Lose(4, i, j, Order));
+                            /* var ah3 = Task.Factory.StartNew(() => ac = Lose(4, i, j, Order));
                          ah3.Wait();
                          ah3.Dispose();
                          if (ac)
@@ -15578,7 +15578,7 @@ namespace QuantumRefrigiz
                             int[,] Ta = TableHeuristic;
                             bool AAA = AA;
                             int D = Do;
-                            Task<bool> ah4 = Task.Run(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 4, ref D, AStarGreedyi, Order));
+                            Task<bool> ah4 = Task.Factory.StartNew(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 4, ref D, AStarGreedyi, Order));
                             ah4.Wait();
                             ah4.Dispose();
                             Act = ac;
@@ -15606,7 +15606,7 @@ namespace QuantumRefrigiz
                                 bool CuTH = CurrentTableHeuristic;
                                 AAA = AA;
                                 D = Do;
-                                Task<bool> ah5 = Task.Run(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 4, ref D, AStarGreedyi, Order));
+                                Task<bool> ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 4, ref D, AStarGreedyi, Order));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 Act = ac;
@@ -15641,7 +15641,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchMinsister(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchMinsister(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15666,7 +15666,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchMinsister(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchMinsister(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15696,7 +15696,7 @@ namespace QuantumRefrigiz
                     for (j = 0; MinisterOnTable != null && MinisterOnTable[i] != null && MinisterOnTable != null && MinisterOnTable[i] != null && MinisterOnTable[i].MinisterThinkingQuantum != null && MinisterOnTable[i].MinisterThinkingQuantum[k] != null && j < MinisterOnTable[i].MinisterThinkingQuantum[k].TableListMinister.Count; j++)
                     {
                         bool ac = false;
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 5));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 5));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -15718,7 +15718,7 @@ namespace QuantumRefrigiz
                             if (MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy.Count > j && MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                Task<bool> ah = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -15727,7 +15727,7 @@ namespace QuantumRefrigiz
                             Order *= -1;
                             Do = 0;
                             // StringHeuristics(5, 1, AA, Do, MinisterOnTable[i].WinOcuuredatChiled, MinisterOnTable[i].LoseOcuuredatChiled);
-                            /* var ah3 = Task.Run(() => ac = Lose(5, i, j, Order));
+                            /* var ah3 = Task.Factory.StartNew(() => ac = Lose(5, i, j, Order));
                          ah3.Wait();
                          ah3.Dispose();
                          if (ac)
@@ -15741,7 +15741,7 @@ namespace QuantumRefrigiz
                             int[,] Ta = TableHeuristic;
                             bool AAA = AA;
                             int D = Do;
-                            Task<bool> ah4 = Task.Run(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 5, ref D, AStarGreedyi, Order));
+                            Task<bool> ah4 = Task.Factory.StartNew(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 5, ref D, AStarGreedyi, Order));
                             ah4.Wait();
                             ah4.Dispose();
                             Act = ac;
@@ -15768,7 +15768,7 @@ namespace QuantumRefrigiz
                                 bool CuTH = CurrentTableHeuristic;
                                 AAA = AA;
                                 D = Do;
-                                Task<bool> ah5 = Task.Run(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 5, ref D, AStarGreedyi, Order));
+                                Task<bool> ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 5, ref D, AStarGreedyi, Order));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 Act = ac;
@@ -15802,7 +15802,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchKing(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchKing(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15826,7 +15826,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchCastling(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchCastling(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15851,7 +15851,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchKing(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchKing(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15875,7 +15875,7 @@ namespace QuantumRefrigiz
                     {
                         int[,] Ta = TableHeuristic;
                         bool Ac = Act;
-                        Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchCastling(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                        Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchCastling(ref Ta, i, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                         ah.Wait();
                         ah.Dispose();
                         Act = Ac;
@@ -15905,7 +15905,7 @@ namespace QuantumRefrigiz
                     for (j = 0; CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable != null && CastlingOnTable[i] != null && CastlingOnTable[i].CastlingThinking[k] != null && CastlingOnTable[i].CastlingThinking != null && j < CastlingOnTable[i].CastlingThinking[k].TableListCastling.Count; j++)
                     {
                         bool ac = false;
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 7));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 7));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -15927,7 +15927,7 @@ namespace QuantumRefrigiz
                             if (CastlingOnTable[i].CastlingThinking[0].AStarGreedy.Count > j && CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                Task<bool> ah = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -15937,7 +15937,7 @@ namespace QuantumRefrigiz
                             Do = 0;
                             // StringHeuristics(6, 1, AA, Do, CastlingOnTable[i].WinOcuuredatChiled, CastlingOnTable[i].LoseOcuuredatChiled);
 
-                            /* var ah3 = Task.Run(() => ac = Lose(7, i, j, Order));
+                            /* var ah3 = Task.Factory.StartNew(() => ac = Lose(7, i, j, Order));
                             ah3.Wait();
                             ah3.Dispose();
                             if (ac)
@@ -15951,7 +15951,7 @@ namespace QuantumRefrigiz
                             int[,] Ta = TableHeuristic;
                             bool AAA = AA;
                             int D = Do;
-                            Task<bool> ah4 = Task.Run(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 6, ref D, AStarGreedyi, Order));
+                            Task<bool> ah4 = Task.Factory.StartNew(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 6, ref D, AStarGreedyi, Order));
                             ah4.Wait();
                             ah4.Dispose();
                             Act = ac;
@@ -15979,7 +15979,7 @@ namespace QuantumRefrigiz
                                 bool CuTH = CurrentTableHeuristic;
                                 AAA = AA;
                                 D = Do;
-                                Task<bool> ah5 = Task.Run(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 7, ref D, AStarGreedyi, Order));
+                                Task<bool> ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 7, ref D, AStarGreedyi, Order));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 Act = ac;
@@ -16018,7 +16018,7 @@ namespace QuantumRefrigiz
                     for (j = 0; KingOnTable != null && KingOnTable[i] != null && KingOnTable != null && KingOnTable[i] != null && KingOnTable[i].KingThinkingQuantum[k] != null && KingOnTable[i].KingThinkingQuantum != null && j < KingOnTable[i].KingThinkingQuantum[k].TableListKing.Count; j++)
                     {
                         bool ac = false;
-                        Task<bool> ah1 = Task.Run(() => ac = IsSupHuTrue(i, j, 6));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsSupHuTrue(i, j, 6));
                         ah1.Wait();
                         ah1.Dispose();
                         if (ac)
@@ -16040,7 +16040,7 @@ namespace QuantumRefrigiz
                             if (KingOnTable[i].KingThinkingQuantum[0].AStarGreedy.Count > j && KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j] != null)
                             {
                                 bool AAAA = AA;
-                                Task<bool> ah = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
+                                Task<bool> ah = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].AStarGreedy[j].IsFoundOfLeafDepenOfKindhaveVictory(1, ref AAAA, Order * -1));
                                 ah.Wait();
                                 ah.Dispose();
                                 AA = AAAA;
@@ -16050,7 +16050,7 @@ namespace QuantumRefrigiz
                             Do = 0;
                             // StringHeuristics(6, 1, AA, Do, KingOnTable[i].WinOcuuredatChiled, KingOnTable[i].LoseOcuuredatChiled);
 
-                            /* var ah3 = Task.Run(() => ac = Lose(6, i, j, Order));
+                            /* var ah3 = Task.Factory.StartNew(() => ac = Lose(6, i, j, Order));
                         ah3.Wait();
                         ah3.Dispose();
                         if (ac)
@@ -16064,7 +16064,7 @@ namespace QuantumRefrigiz
                             int[,] Ta = TableHeuristic;
                             bool AAA = AA;
                             int D = Do;
-                            Task<bool> ah4 = Task.Run(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 6, ref D, AStarGreedyi, Order));
+                            Task<bool> ah4 = Task.Factory.StartNew(() => ac = HeuristicRegardSection(i, j, k, ref Ac, ref Ta, ref AAA, a, 6, ref D, AStarGreedyi, Order));
                             ah4.Wait();
                             ah4.Dispose();
                             Act = ac;
@@ -16092,7 +16092,7 @@ namespace QuantumRefrigiz
                                 bool CuTH = CurrentTableHeuristic;
                                 AAA = AA;
                                 D = Do;
-                                Task<bool> ah5 = Task.Run(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 6, ref D, AStarGreedyi, Order));
+                                Task<bool> ah5 = Task.Factory.StartNew(() => ac = HeuristicMainBody(i, j, k, ref Ac, ref Ta, ref CuTH, ref AAA, a, 6, ref D, AStarGreedyi, Order));
                                 ah5.Wait();
                                 ah5.Dispose();
                                 Act = ac;
@@ -16123,7 +16123,7 @@ namespace QuantumRefrigiz
                 int[,] TableHeuristic = new int[8, 8];
                 bool Ac = Act;
                 int[,] Ta = TableHeuristic;
-                Task<int[,]> ah = Task.Run(() => HeuristicAStarGreadySearchSoldierGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                Task<int[,]> ah = Task.Factory.StartNew(() => HeuristicAStarGreadySearchSoldierGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                 ah.Wait();
                 ah.Dispose();
                 Act = Ac;
@@ -16133,7 +16133,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchElephantGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchElephantGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16143,7 +16143,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchHourseGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchHourseGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16154,7 +16154,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchCastleGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchCastleGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16164,7 +16164,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchMinsisterGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchMinsisterGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16174,7 +16174,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchKingGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchKingGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16184,7 +16184,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchCastlingGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchCastlingGray(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16203,7 +16203,7 @@ namespace QuantumRefrigiz
                 int[,] TableHeuristic = new int[8, 8];
                 bool Ac = Act;
                 int[,] Ta = TableHeuristic;
-                Task<int[,]> ah = Task.Run(() => HeuristicAStarGreadySearchSoldierBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                Task<int[,]> ah = Task.Factory.StartNew(() => HeuristicAStarGreadySearchSoldierBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                 ah.Wait();
                 ah.Dispose();
                 Act = Ac;
@@ -16213,7 +16213,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchElephantBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchElephantBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16223,7 +16223,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchHourseBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchHourseBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16234,7 +16234,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchCastleBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchCastleBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16244,7 +16244,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchMinsisterBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchMinsisterBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16254,7 +16254,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchKingBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchKingBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -16264,7 +16264,7 @@ namespace QuantumRefrigiz
                 {
                     Ac = Act;
                     Ta = TableHeuristic;
-                    Task<int[,]> ah1 = Task.Run(() => HeuristicAStarGreadySearchCastlingBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah1 = Task.Factory.StartNew(() => HeuristicAStarGreadySearchCastlingBrown(ref Ta, AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah1.Wait();
                     ah1.Dispose();
                     Act = Ac;
@@ -17530,7 +17530,7 @@ namespace QuantumRefrigiz
                 {
                     bool Ac = Act;
                     int[,] Ta = TableHeuristic;
-                    Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchGray(AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchGray(AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah.Wait();
                     ah.Dispose();
                     Act = Ac;
@@ -17540,7 +17540,7 @@ namespace QuantumRefrigiz
                 {
                     bool Ac = Act;
                     int[,] Ta = TableHeuristic;
-                    Task<int[,]> ah = Task.Run(() => Ta = HeuristicAStarGreadySearchBrown(AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
+                    Task<int[,]> ah = Task.Factory.StartNew(() => Ta = HeuristicAStarGreadySearchBrown(AStarGreedyi, a, Order, CurrentTableHeuristic, ref Ac));
                     ah.Wait();
                     ah.Dispose();
                     Act = Ac;
@@ -18876,7 +18876,7 @@ namespace QuantumRefrigiz
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.For(0, SodierMidle, i =>
  {
-     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
      H.Wait();
      H.Dispose();
  });
@@ -19214,7 +19214,7 @@ namespace QuantumRefrigiz
             {
                 SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingBegin = true;
                 SolderesOnTable[i].SoldierThinkingQuantum[0].ThinkingFinished = false;
-                Task array = Task.Run(() => SolderesOnTable[i].SoldierThinkingQuantum[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
+                Task array = Task.Factory.StartNew(() => SolderesOnTable[i].SoldierThinkingQuantum[0].Thinking(iAStarGreedy, this, ref SolderesOnTable[i].LoseOcuuredatChiled, ref SolderesOnTable[i].WinOcuuredatChiled));
                 array.Wait(); array.Dispose();
                 if (SolderesOnTable[i].SoldierThinkingQuantum[0].TableListSolder.Count != 0)
                 {
@@ -19238,7 +19238,7 @@ namespace QuantumRefrigiz
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.For(0, ElefantMidle, i =>
                  {
-                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                      H.Wait();
                      H.Dispose();
                  });
@@ -19299,7 +19299,7 @@ namespace QuantumRefrigiz
             {
                 ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingBegin = true;
                 ElephantOnTable[i].ElefantThinkingQuantum[0].ThinkingFinished = false;
-                Task array = Task.Run(() => ElephantOnTable[i].ElefantThinkingQuantum[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
+                Task array = Task.Factory.StartNew(() => ElephantOnTable[i].ElefantThinkingQuantum[0].Thinking(iAStarGreedy, this, ref ElephantOnTable[i].LoseOcuuredatChiled, ref ElephantOnTable[i].WinOcuuredatChiled));
                 array.Wait(); array.Dispose();
                 if (ElephantOnTable[i].ElefantThinkingQuantum[0].TableListElefant.Count != 0)
                 {
@@ -19323,7 +19323,7 @@ namespace QuantumRefrigiz
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.For(0, HourseMidle, i =>
                  {
-                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                      H.Wait();
                      H.Dispose();
                  });
@@ -19390,7 +19390,7 @@ namespace QuantumRefrigiz
 
                 HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingBegin = true;
                 HoursesOnTable[i].HourseThinkingQuantum[0].ThinkingFinished = false;
-                Task array = Task.Run(() => HoursesOnTable[i].HourseThinkingQuantum[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
+                Task array = Task.Factory.StartNew(() => HoursesOnTable[i].HourseThinkingQuantum[0].Thinking(iAStarGreedy, this, ref HoursesOnTable[i].LoseOcuuredatChiled, ref HoursesOnTable[i].WinOcuuredatChiled));
                 array.Wait(); array.Dispose();
                 if (HoursesOnTable[i].HourseThinkingQuantum[0].TableListHourse.Count != 0)
                 {
@@ -19415,7 +19415,7 @@ namespace QuantumRefrigiz
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.For(0, CastleMidle, i =>
                  {
-                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                      H.Wait();
                      H.Dispose();
                  });
@@ -19480,7 +19480,7 @@ namespace QuantumRefrigiz
                 //Thinking of Gray Castles Operational.
                 CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingBegin = true;
                 CastlesOnTable[i].CastleThinkingQuantum[0].ThinkingFinished = false;
-                Task array = Task.Run(() => CastlesOnTable[i].CastleThinkingQuantum[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled));
+                Task array = Task.Factory.StartNew(() => CastlesOnTable[i].CastleThinkingQuantum[0].Thinking(iAStarGreedy, this, ref CastlesOnTable[i].LoseOcuuredatChiled, ref CastlesOnTable[i].WinOcuuredatChiled));
                 array.Wait(); array.Dispose();
 
                 if (CastlesOnTable[i].CastleThinkingQuantum[0].TableListCastle.Count != 0)
@@ -19506,7 +19506,7 @@ namespace QuantumRefrigiz
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.For(0, MinisterMidle, i =>
                  {
-                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                      H.Wait();
                      H.Dispose();
                  });
@@ -19578,7 +19578,7 @@ namespace QuantumRefrigiz
                     {
                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingBegin = true;
                         MinisterOnTable[i].MinisterThinkingQuantum[0].ThinkingFinished = false;
-                        Task array = Task.Run(() => MinisterOnTable[i].MinisterThinkingQuantum[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
+                        Task array = Task.Factory.StartNew(() => MinisterOnTable[i].MinisterThinkingQuantum[0].Thinking(iAStarGreedy, this, ref MinisterOnTable[i].LoseOcuuredatChiled, ref MinisterOnTable[i].WinOcuuredatChiled));
                         array.Wait(); array.Dispose();
                         if (MinisterOnTable[i].MinisterThinkingQuantum[0].TableListMinister.Count != 0)
                         {
@@ -19604,7 +19604,7 @@ namespace QuantumRefrigiz
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.For(0, KingMidle, i =>
                  {
-                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                      H.Wait();
                      H.Dispose();
                  });
@@ -19624,7 +19624,7 @@ namespace QuantumRefrigiz
                     MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                 }; Parallel.For(0, 1, i =>
                  {
-                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythCastling(7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythCastling(7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                      H.Wait();
                      H.Dispose();
                  });
@@ -19692,7 +19692,7 @@ namespace QuantumRefrigiz
                 {
                     KingOnTable[i].KingThinkingQuantum[0].ThinkingBegin = true;
                     KingOnTable[i].KingThinkingQuantum[0].ThinkingFinished = false;
-                    ; Task array = Task.Run(() => KingOnTable[i].KingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
+                    ; Task array = Task.Factory.StartNew(() => KingOnTable[i].KingThinkingQuantum[0].Thinking(iAStarGreedy, this, ref KingOnTable[i].LoseOcuuredatChiled, ref KingOnTable[i].WinOcuuredatChiled));
                     array.Wait(); array.Dispose();
                     if (KingOnTable[i].KingThinkingQuantum[0].TableListKing.Count != 0)
                     {
@@ -19760,7 +19760,7 @@ namespace QuantumRefrigiz
                 //Thinking Of Gray Castling Operatins.
                 CastlingOnTable[i].CastlingThinking[0].ThinkingBegin = true;
                 CastlingOnTable[i].CastlingThinking[0].ThinkingFinished = false;
-                Task array = Task.Run(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
+                Task array = Task.Factory.StartNew(() => CastlingOnTable[i].CastlingThinking[0].Thinking(iAStarGreedy, this, ref CastlingOnTable[i].LoseOcuuredatChiled, ref CastlingOnTable[i].WinOcuuredatChiled));
                 array.Wait(); array.Dispose();
                 if (CastlingOnTable[i].CastlingThinking[0].TableListCastling.Count != 0)
                 {
@@ -19785,7 +19785,7 @@ namespace QuantumRefrigiz
                 }; Parallel.For(SodierMidle, SodierHigh, i =>
 
  {
-     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedytSodler(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
      H.Wait();
      H.Dispose();
  });
@@ -19807,7 +19807,7 @@ namespace QuantumRefrigiz
                 }; Parallel.For(ElefantMidle, ElefantHigh, i =>
 
  {
-     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedytElephant(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
      H.Wait();
      H.Dispose();
  });
@@ -19829,7 +19829,7 @@ namespace QuantumRefrigiz
                 }; Parallel.For(HourseMidle, HourseHight, i =>
 
  {
-     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythHourse(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
      H.Wait();
      H.Dispose();
  });
@@ -19851,7 +19851,7 @@ namespace QuantumRefrigiz
                 }; Parallel.For(CastleMidle, CastleHigh, i =>
 
  {
-     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythCastle(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
      H.Wait();
      H.Dispose();
  });
@@ -19873,7 +19873,7 @@ namespace QuantumRefrigiz
                 }; Parallel.For(MinisterMidle, MinisterHigh, i =>
 
  {
-     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythMinister(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
      H.Wait();
      H.Dispose();
  });
@@ -19895,7 +19895,7 @@ namespace QuantumRefrigiz
                 }; Parallel.For(KingMidle, KingHigh, i =>
 
                  {
-                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythKing(i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                      H.Wait();
                      H.Dispose();
                  });
@@ -19916,7 +19916,7 @@ namespace QuantumRefrigiz
                 }; Parallel.For(0, 1, i =>
 
                  {
-                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythCastling(-7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythCastling(-7, i, iii, jjj, CloneATable(Table), DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
                      H.Wait();
                      H.Dispose();
                  });
@@ -20717,14 +20717,14 @@ namespace QuantumRefrigiz
                 //If Order is Gray.
                 if (Order == 1)
                 {
-                    Task<bool> array1 = Task.Run(() => InitiateAStarGreedytCreationThinkingGray(DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, j, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                    Task<bool> array1 = Task.Factory.StartNew(() => InitiateAStarGreedytCreationThinkingGray(DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, j, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
 
                     array1.Wait();
                     array1.Dispose();
                 }
                 else//Brown Order Considarations.
                 {
-                    Task<bool> array1 = Task.Run(() => InitiateAStarGreedytCreationThinkingBrown(DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, j, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                    Task<bool> array1 = Task.Factory.StartNew(() => InitiateAStarGreedytCreationThinkingBrown(DummyOrder, DummyCurrentOrder, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, i, j, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
 
                     array1.Wait();
                     array1.Dispose();
@@ -20745,7 +20745,7 @@ namespace QuantumRefrigiz
                 int DummyOrder1 = DummyOrder, DummyCurrentOrder1 = DummyCurrentOrder, iAStarGreedy1 = iAStarGreedy, ii1 = ii, jj1 = jj, Ord1 = OrderP;
                 bool TB1 = TB;
                 Color aa = a;
-                Task output = Task.Run(() =>
+                Task output = Task.Factory.StartNew(() =>
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
@@ -20758,7 +20758,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedytSodlerGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedytSodlerGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20768,7 +20768,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedytElephantGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedytElephantGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20778,7 +20778,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythHourseGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythHourseGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20787,7 +20787,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythCastleGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythCastleGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20796,7 +20796,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythMinisterGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythMinisterGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20806,7 +20806,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythKingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythKingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20815,7 +20815,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythCastlingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythCastlingGray(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20839,7 +20839,7 @@ namespace QuantumRefrigiz
                 bool TB1 = TB;
                 Color aa = a;
                 //If Order is Gray.
-                Task output = Task.Run(() =>
+                Task output = Task.Factory.StartNew(() =>
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
@@ -20852,7 +20852,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythSoldierBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythSoldierBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20862,7 +20862,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythElephantBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythElephantBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20872,7 +20872,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythHourseBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythHourseBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20881,7 +20881,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythCastleBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythCastleBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20890,7 +20890,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythMinisterBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythMinisterBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20899,7 +20899,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythKingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythKingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -20908,7 +20908,7 @@ namespace QuantumRefrigiz
      object O = new object();
      lock (O)
      {
-         Task<AllDraw> H = Task.Run(() => InitiateAStarGreedythCastlingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
+         Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedythCastlingBrown(i1, j1, CloneATable(Tabl), DummyOrder1, DummyCurrentOrder1, iAStarGreedy1, ii1, jj1, aa, CloneATable(Tabl), Ord1, TB1, FOUND, LeafAStarGreedy));
          H.Wait();
          H.Dispose();
      }
@@ -21212,7 +21212,7 @@ namespace QuantumRefrigiz
             object oo = new object();
             lock (oo)
             {
-                Task output = Task.Run(() =>
+                Task output = Task.Factory.StartNew(() =>
                 {
                     ParallelOptions po = new ParallelOptions
                     {
@@ -21338,7 +21338,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < jungle.SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || MergeJungleTree(jungle, p, k, 1));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 1));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -21389,7 +21389,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < jungle.ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || MergeJungleTree(jungle, p, k, 2));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 2));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -21440,7 +21440,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < jungle.HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || MergeJungleTree(jungle, p, k, 3));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 3));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -21491,7 +21491,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < jungle.CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || MergeJungleTree(jungle, p, k, 4));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 4));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -21542,7 +21542,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < jungle.MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || MergeJungleTree(jungle, p, k, 5));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 5));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -21593,7 +21593,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < jungle.KingOnTable[p].KingThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || MergeJungleTree(jungle, p, k, 6));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 6));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -21644,7 +21644,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || MergeJungleTree(jungle, p, k, 7));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || MergeJungleTree(jungle, p, k, 7));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -21719,7 +21719,7 @@ namespace QuantumRefrigiz
                 }
             }
 
-            Task output = Task.Run(() =>
+            Task output = Task.Factory.StartNew(() =>
             {
                 ParallelOptions po = new ParallelOptions
                 {
@@ -21746,7 +21746,7 @@ namespace QuantumRefrigiz
                                              {
                                                  for (int k = 0; k < SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
                                                  {
-                                                     Task<bool> outputH = Task.Run(() => Act = Act || SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k], p, k, 1));
+                                                     Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k], p, k, 1));
                                                      outputH.Wait();
                                                      outputH.Dispose();
                                                  }
@@ -21800,7 +21800,7 @@ namespace QuantumRefrigiz
                                              {
                                                  for (int k = 0; k < ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
                                                  {
-                                                     Task<bool> outputH = Task.Run(() => Act = Act || ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k], p, k, 2));
+                                                     Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k], p, k, 2));
                                                      outputH.Wait();
                                                      outputH.Dispose();
                                                  }
@@ -21854,7 +21854,7 @@ namespace QuantumRefrigiz
                                              {
                                                  for (int k = 0; k < HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
                                                  {
-                                                     Task<bool> outputH = Task.Run(() => Act = Act || HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k], p, k, 3));
+                                                     Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k], p, k, 3));
                                                      outputH.Wait();
                                                      outputH.Dispose();
                                                  }
@@ -21907,7 +21907,7 @@ namespace QuantumRefrigiz
                                              {
                                                  for (int k = 0; k < CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
                                                  {
-                                                     Task<bool> outputH = Task.Run(() => Act = Act || CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k], p, k, 4));
+                                                     Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k], p, k, 4));
                                                      outputH.Wait();
                                                      outputH.Dispose();
                                                  }
@@ -21961,7 +21961,7 @@ namespace QuantumRefrigiz
                                              {
                                                  for (int k = 0; k < MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
                                                  {
-                                                     Task<bool> outputH = Task.Run(() => Act = Act || MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k], p, k, 5));
+                                                     Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k], p, k, 5));
                                                      outputH.Wait();
                                                      outputH.Dispose();
                                                  }
@@ -22014,7 +22014,7 @@ namespace QuantumRefrigiz
                                              {
                                                  for (int k = 0; k < KingOnTable[p].KingThinkingQuantum[0].AStarGreedy.Count; k++)
                                                  {
-                                                     Task<bool> outputH = Task.Run(() => Act = Act || KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k], p, k, 6));
+                                                     Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k].MergeJungleTree(jungle.KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k], p, k, 6));
                                                      outputH.Wait();
                                                      outputH.Dispose();
                                                  }
@@ -22068,7 +22068,7 @@ namespace QuantumRefrigiz
                                              {
                                                  for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                                  {
-                                                     Task<bool> outputH = Task.Run(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k], p, k, 7));
+                                                     Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].MergeJungleTree(jungle.CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k], p, k, 7));
                                                      outputH.Wait();
                                                      outputH.Dispose();
                                                  }
@@ -22950,7 +22950,7 @@ namespace QuantumRefrigiz
                     }
                 }
             }
-            Task output = Task.Run(() =>
+            Task output = Task.Factory.StartNew(() =>
             {
                 ParallelOptions po = new ParallelOptions
                 {
@@ -23512,7 +23512,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || SolderesOnTable[p].SoldierThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 1));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -23563,7 +23563,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || ElephantOnTable[p].ElefantThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 2));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -23615,7 +23615,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || HoursesOnTable[p].HourseThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 3));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -23667,7 +23667,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || CastlesOnTable[p].CastleThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 4));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -23719,7 +23719,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || MinisterOnTable[p].MinisterThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 5));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -23769,7 +23769,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < KingOnTable[p].KingThinkingQuantum[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || KingOnTable[p].KingThinkingQuantum[0].AStarGreedy[k].HarasAlphaBeta(p, k, 6));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -23821,7 +23821,7 @@ namespace QuantumRefrigiz
                                 {
                                     for (int k = 0; k < CastlingOnTable[p].CastlingThinking[0].AStarGreedy.Count; k++)
                                     {
-                                        Task<bool> outputH = Task.Run(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7));
+                                        Task<bool> outputH = Task.Factory.StartNew(() => Act = Act || CastlingOnTable[p].CastlingThinking[0].AStarGreedy[k].HarasAlphaBeta(p, k, 7));
                                         outputH.Wait();
                                         outputH.Dispose();
                                     }
@@ -23945,7 +23945,7 @@ namespace QuantumRefrigiz
                 object o = new object();
                 lock (o)
                 {
-                    Task<bool> array1 = Task.Run(() => InitiateAStarGreedytCreationThinking(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
+                    Task<bool> array1 = Task.Factory.StartNew(() => InitiateAStarGreedytCreationThinking(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(Tab), Order, TB, FOUND, LeafAStarGreedy));
 
                     array1.Wait();
                     array1.Dispose();
@@ -23953,7 +23953,7 @@ namespace QuantumRefrigiz
             }
             Order = DummyOrder;
             ChessRules.CurrentOrder = DummyCurrentOrder;
-            Task array = Task.Run(() => Serve(Order));
+            Task array = Task.Factory.StartNew(() => Serve(Order));
             array.Wait();
             array.Dispose();
 
@@ -23966,14 +23966,14 @@ namespace QuantumRefrigiz
                     QuantumRefrigiz.AllDraw Leaf = null;
                     Tabl = CloneATable(Table);
                     int LeafDeep = 0;// MaxAStarGreedy;
-                    Task<AllDraw> array1 = Task.Run(() => FoundOfLeafDepenOfKind(ref Leaf, ref FOUND, Order, LeafDeep, 0, 0, 0, 0));
+                    Task<AllDraw> array1 = Task.Factory.StartNew(() => FoundOfLeafDepenOfKind(ref Leaf, ref FOUND, Order, LeafDeep, 0, 0, 0, 0));
 
                     array1.Wait();
                     array1.Dispose();
-                    Task<int> array11 = Task.Run(() => FullGameThinkingTreeWin(Order));
+                    Task<int> array11 = Task.Factory.StartNew(() => FullGameThinkingTreeWin(Order));
                     array11.Wait();
                     array11.Dispose();
-                    array11 = Task.Run(() => FullGameThinkingTreeLose(Order));
+                    array11 = Task.Factory.StartNew(() => FullGameThinkingTreeLose(Order));
                     array11.Wait();
                     array11.Dispose();
                 }
@@ -23990,21 +23990,21 @@ namespace QuantumRefrigiz
                         ChessRules.CurrentOrder = DummyCurrentOrder;
                         int Ord = Order, iAStarGreedy1 = iAStarGreedy, ii1 = ii, jj1 = jj, ik1 = ik, j1 = j;
 
-                        Task<bool> array1 = Task.Run(() => Do = FullGameThinkingTree(Ord, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
+                        Task<bool> array1 = Task.Factory.StartNew(() => Do = FullGameThinkingTree(Ord, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
 
                         array1.Wait();
                         array1.Dispose();
                         if (NumberOfnewMove == 0)
                         {
                             UsedRestrictedMoveBlitzAndFull = false;
-                            array1 = Task.Run(() => Do = FullGameThinkingTree(Ord, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
+                            array1 = Task.Factory.StartNew(() => Do = FullGameThinkingTree(Ord, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii1, jj1, ik1, j1, false, LeafAStarGreedy));
                             array1.Wait();
                             array1.Dispose();
                         }
-                        Task<int> array11 = Task.Run(() => FullGameThinkingTreeWin(Order));
+                        Task<int> array11 = Task.Factory.StartNew(() => FullGameThinkingTreeWin(Order));
                         array11.Wait();
                         array11.Dispose();
-                        array11 = Task.Run(() => FullGameThinkingTreeLose(Order));
+                        array11 = Task.Factory.StartNew(() => FullGameThinkingTreeLose(Order));
                         array11.Wait();
                         array11.Dispose();
                     }
@@ -24868,7 +24868,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = 0; ik < SodierMidle; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 1));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 1));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -24889,7 +24889,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 1, ik, j));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 1, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
@@ -24897,7 +24897,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             continue;
                         }
                         //when node have kings dangoures ignore and continue.
-                        Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder[j]), Order,1));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder[j]), Order,1));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -24917,7 +24917,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[0] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessS;
-                                Task<double> ah3 = Task.Run(() => pre = SolderesOnTable[ik].SoldierThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = SolderesOnTable[ik].SoldierThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -24936,7 +24936,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[0] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessS;
-                                Task<double> ah3 = Task.Run(() => pre = SolderesOnTable[ik].SoldierThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = SolderesOnTable[ik].SoldierThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -24956,7 +24956,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = 0; ik < ElefantMidle; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 2));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 2));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -24977,7 +24977,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 2, ik, j));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 2, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
@@ -24985,7 +24985,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             continue;
                         }
                         //when node have kings dangoures ignore and continue.
-                        Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant[j]), Order,2));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant[j]), Order,2));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -25005,7 +25005,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[1] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessE;
-                                Task<double> ah3 = Task.Run(() => pre = ElephantOnTable[ik].ElefantThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = ElephantOnTable[ik].ElefantThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25024,7 +25024,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[1] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessE;
-                                Task<double> ah3 = Task.Run(() => pre = ElephantOnTable[ik].ElefantThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = ElephantOnTable[ik].ElefantThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25043,7 +25043,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = 0; ik < HourseMidle; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 3));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 3));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25064,7 +25064,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 3, ik, j));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 3, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
@@ -25072,7 +25072,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             continue;
                         }
                         //when node have kings dangoures ignore and continue.
-                        Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse[j]), Order,3));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse[j]), Order,3));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -25092,7 +25092,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[2] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessH;
-                                Task<double> ah3 = Task.Run(() => pre = HoursesOnTable[ik].HourseThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = HoursesOnTable[ik].HourseThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25111,7 +25111,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[2] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessH;
-                                Task<double> ah3 = Task.Run(() => pre = HoursesOnTable[ik].HourseThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = HoursesOnTable[ik].HourseThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25130,7 +25130,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = 0; ik < CastleMidle; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 4));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 4));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25151,7 +25151,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 4, ik, j));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 4, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
@@ -25159,7 +25159,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             continue;
                         }
                         //when node have kings dangoures ignore and continue.
-                        Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle[j]), Order,4));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle[j]), Order,4));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -25179,7 +25179,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[3] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessB;
-                                Task<double> ah3 = Task.Run(() => pre = CastlesOnTable[ik].CastleThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = CastlesOnTable[ik].CastleThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25198,7 +25198,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[3] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessB;
-                                Task<double> ah3 = Task.Run(() => pre = CastlesOnTable[ik].CastleThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = CastlesOnTable[ik].CastleThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25217,7 +25217,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = 0; ik < MinisterMidle; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 5));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 5));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25234,7 +25234,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node is empty deeper and there is not computatiional node continue
-                    Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 5, ik, j));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 5, ik, j));
                     ah1.Wait();
                     ah1.Dispose();
                     if (!ac)
@@ -25242,7 +25242,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node have kings dangoures ignore and continue.
-                    Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister[j]), Order,5));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister[j]), Order,5));
                     ah2.Wait();
                     ah2.Dispose();
                     if (!ac)
@@ -25266,7 +25266,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[4] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessM;
-                                Task<double> ah3 = Task.Run(() => pre = MinisterOnTable[ik].MinisterThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = MinisterOnTable[ik].MinisterThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25285,7 +25285,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[4] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessM;
-                                Task<double> ah3 = Task.Run(() => pre = MinisterOnTable[ik].MinisterThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = MinisterOnTable[ik].MinisterThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25304,7 +25304,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = 0; ik < KingMidle; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 6));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 6));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25325,7 +25325,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 6, ik, j));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 6, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
@@ -25333,7 +25333,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             continue;
                         }
                         //when node have kings dangoures ignore and continue.
-                        Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(KingOnTable[ik].KingThinkingQuantum[0].TableListKing[j]), Order,6));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(KingOnTable[ik].KingThinkingQuantum[0].TableListKing[j]), Order,6));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -25353,7 +25353,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[5] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessK;
-                                Task<double> ah3 = Task.Run(() => pre = KingOnTable[ik].KingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = KingOnTable[ik].KingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25372,7 +25372,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[5] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessK;
-                                Task<double> ah3 = Task.Run(() => pre = KingOnTable[ik].KingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = KingOnTable[ik].KingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25391,7 +25391,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = 0; ik < 1; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 7));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 7));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25412,7 +25412,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 7, ik, j));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 7, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
@@ -25420,7 +25420,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             continue;
                         }
                         //when node have Castlings dangoures ignore and continue.
-                        Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order,7));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order,7));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -25440,7 +25440,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessCa;
-                                Task<double> ah3 = Task.Run(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25459,7 +25459,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessCa;
-                                Task<double> ah3 = Task.Run(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -25477,7 +25477,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = SodierMidle; ik < SodierHigh; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 1));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 1));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25495,7 +25495,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node is empty deeper and there is not computatiional node continue
-                    Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 1, ik, j));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 1, ik, j));
                     ah1.Wait();
                     ah1.Dispose();
                     if (!ac)
@@ -25503,7 +25503,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node have kings dangoures ignore and continue.
-                    Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder[j]), Order,1));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder[j]), Order,1));
                     ah2.Wait();
                     ah2.Dispose();
                     if (!ac)
@@ -25523,7 +25523,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[0] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessS;
-                            Task<double> ah3 = Task.Run(() => pre = SolderesOnTable[ik].SoldierThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = SolderesOnTable[ik].SoldierThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -25542,7 +25542,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[0] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessS;
-                            Task<double> ah3 = Task.Run(() => pre = SolderesOnTable[ik].SoldierThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = SolderesOnTable[ik].SoldierThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -25560,7 +25560,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = ElefantMidle; ik < ElefantHigh; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 2));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 2));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25577,7 +25577,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node is empty deeper and there is not computatiional node continue
-                    Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 2, ik, j));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 2, ik, j));
                     ah1.Wait();
                     ah1.Dispose();
                     if (!ac)
@@ -25585,7 +25585,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node have kings dangoures ignore and continue.
-                    Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant[j]), Order,2));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant[j]), Order,2));
                     ah2.Wait();
                     ah2.Dispose();
                     if (!ac)
@@ -25605,7 +25605,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[1] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessE;
-                            Task<double> ah3 = Task.Run(() => pre = ElephantOnTable[ik].ElefantThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = ElephantOnTable[ik].ElefantThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -25624,7 +25624,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[1] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessE;
-                            Task<double> ah3 = Task.Run(() => pre = ElephantOnTable[ik].ElefantThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = ElephantOnTable[ik].ElefantThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -25642,7 +25642,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = HourseMidle; ik < HourseHight; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 3));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 3));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25659,7 +25659,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node is empty deeper and there is not computatiional node continue
-                    Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 3, ik, j));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 3, ik, j));
                     ah1.Wait();
                     ah1.Dispose();
                     if (!ac)
@@ -25667,7 +25667,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node have kings dangoures ignore and continue.
-                    Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse[j]), Order,3));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse[j]), Order,3));
                     ah2.Wait();
                     ah2.Dispose();
                     if (!ac)
@@ -25687,7 +25687,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[2] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessH;
-                            Task<double> ah3 = Task.Run(() => pre = HoursesOnTable[ik].HourseThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = HoursesOnTable[ik].HourseThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -25706,7 +25706,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[2] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessH;
-                            Task<double> ah3 = Task.Run(() => pre = HoursesOnTable[ik].HourseThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = HoursesOnTable[ik].HourseThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -25868,7 +25868,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = CastleMidle; ik < CastleHigh; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 4));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 4));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25885,7 +25885,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node is empty deeper and there is not computatiional node continue
-                    Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 4, ik, j));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 4, ik, j));
                     ah1.Wait();
                     ah1.Dispose();
                     if (!ac)
@@ -25893,7 +25893,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node have kings dangoures ignore and continue.
-                    Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle[j]), Order,4));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle[j]), Order,4));
                     ah2.Wait();
                     ah2.Dispose();
                     if (!ac)
@@ -25914,7 +25914,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             int Hav = HaveKilled;
                             double pre = PreviousLessB;
 
-                            Task<double> ah3 = Task.Run(() => pre = CastlesOnTable[ik].CastleThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = CastlesOnTable[ik].CastleThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -25933,7 +25933,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[3] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessB;
-                            Task<double> ah3 = Task.Run(() => pre = CastlesOnTable[ik].CastleThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = CastlesOnTable[ik].CastleThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -25951,7 +25951,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = MinisterMidle; ik < MinisterHigh; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 5));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 5));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -25968,7 +25968,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node is empty deeper and there is not computatiional node continue
-                    Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 5, ik, j));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 5, ik, j));
                     ah1.Wait();
                     ah1.Dispose();
                     if (!ac)
@@ -25976,7 +25976,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node have kings dangoures ignore and continue.
-                    Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister[j]), Order,5));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister[j]), Order,5));
                     ah2.Wait();
                     ah2.Dispose();
                     if (!ac)
@@ -25997,7 +25997,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[4] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessM;
-                            Task<double> ah3 = Task.Run(() => pre = MinisterOnTable[ik].MinisterThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = MinisterOnTable[ik].MinisterThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -26017,7 +26017,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[4] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessM;
-                            Task<double> ah3 = Task.Run(() => pre = MinisterOnTable[ik].MinisterThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = MinisterOnTable[ik].MinisterThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -26035,7 +26035,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = KingMidle; ik < KingHigh; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 6));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, 6));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -26052,7 +26052,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node is empty deeper and there is not computatiional node continue
-                    Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 6, ik, j));
+                    Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 6, ik, j));
                     ah1.Wait();
                     ah1.Dispose();
                     if (!ac)
@@ -26060,7 +26060,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         continue;
                     }
                     //when node have kings dangoures ignore and continue.
-                    Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(KingOnTable[ik].KingThinkingQuantum[0].TableListKing[j]), Order,6));
+                    Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(KingOnTable[ik].KingThinkingQuantum[0].TableListKing[j]), Order,6));
                     ah2.Wait();
                     ah2.Dispose();
                     if (!ac)
@@ -26080,7 +26080,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[5] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessK;
-                            Task<double> ah3 = Task.Run(() => pre = KingOnTable[ik].KingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = KingOnTable[ik].KingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -26099,7 +26099,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             jIndex[5] = j;
                             int Hav = HaveKilled;
                             double pre = PreviousLessK;
-                            Task<double> ah3 = Task.Run(() => pre = KingOnTable[ik].KingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                            Task<double> ah3 = Task.Factory.StartNew(() => pre = KingOnTable[ik].KingThinkingQuantum[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                             ah3.Wait();
                             ah3.Dispose();
                             HaveKilled = Hav;
@@ -26117,7 +26117,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             for (ik = 0; ik < 1; ik++)
             {
                 bool ac = false;
-                Task<bool> ah = Task.Run(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, -7));
+                Task<bool> ah = Task.Factory.StartNew(() => ac = BlitzGameThinkingTreeBoundryConditions(ik, -7));
                 ah.Wait();
                 ah.Dispose();
                 if (ac)
@@ -26138,7 +26138,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     lock (O)
                     {
                         //when node is empty deeper and there is not computatiional node continue
-                        Task<bool> ah1 = Task.Run(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 7, ik, j));
+                        Task<bool> ah1 = Task.Factory.StartNew(() => ac = IsThereEmptyOrNonCalculatedAStarGreedyNode(Order, 7, ik, j));
                         ah1.Wait();
                         ah1.Dispose();
                         if (!ac)
@@ -26146,7 +26146,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                             continue;
                         }
                         //when node have Castlings dangoures ignore and continue.
-                        Task<bool> ah2 = Task.Run(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order,7));
+                        Task<bool> ah2 = Task.Factory.StartNew(() => ac = CheckeHuristci(CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Order,7));
                         ah2.Wait();
                         ah2.Dispose();
                         if (!ac)
@@ -26166,7 +26166,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessK;
-                                Task<double> ah3 = Task.Run(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -26185,7 +26185,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                                 jIndex[6] = j;
                                 int Hav = HaveKilled;
                                 double pre = PreviousLessK;
-                                Task<double> ah3 = Task.Run(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
+                                Task<double> ah3 = Task.Factory.StartNew(() => pre = CastlingOnTable[ik].CastlingThinking[0].ReturnHeuristic(ik, j, Order, false, ref Hav));
                                 ah3.Wait();
                                 ah3.Dispose();
                                 HaveKilled = Hav;
@@ -27676,7 +27676,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int Ord = Order;
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                  StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                Task<AllDraw> array1 = Task.Run(() => SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
+                Task<AllDraw> array1 = Task.Factory.StartNew(() => SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, a, CloneATable(SolderesOnTable[ik].SoldierThinkingQuantum[0].TableListSolder[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy[SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 if (SolderesOnTable[ik].SoldierThinkingQuantum[0].AStarGreedyMove.Count > 0)
@@ -27703,7 +27703,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int Ord = Order;
                 ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                Task<AllDraw> array1 = Task.Run(() => ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
+                Task<AllDraw> array1 = Task.Factory.StartNew(() => ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(ElephantOnTable[ik].ElefantThinkingQuantum[0].TableListElefant[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy[ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 if (ElephantOnTable[ik].ElefantThinkingQuantum[0].AStarGreedyMove.Count > 0)
@@ -27730,7 +27730,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int Ord = Order;
                 HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                Task<AllDraw> array1 = Task.Run(() => HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
+                Task<AllDraw> array1 = Task.Factory.StartNew(() => HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(HoursesOnTable[ik].HourseThinkingQuantum[0].TableListHourse[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy[HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 if (HoursesOnTable[ik].HourseThinkingQuantum[0].AStarGreedyMove.Count > 0)
@@ -27757,7 +27757,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int Ord = Order;
                 CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                Task<AllDraw> array1 = Task.Run(() => CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
+                Task<AllDraw> array1 = Task.Factory.StartNew(() => CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlesOnTable[ik].CastleThinkingQuantum[0].TableListCastle[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy[CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 if (CastlesOnTable[ik].CastleThinkingQuantum[0].AStarGreedyMove.Count > 0)
@@ -27784,7 +27784,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int Ord = Order;
                 MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                Task<AllDraw> array1 = Task.Run(() => MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
+                Task<AllDraw> array1 = Task.Factory.StartNew(() => MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(MinisterOnTable[ik].MinisterThinkingQuantum[0].TableListMinister[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
                 array1.Wait(); array1.Dispose();
                 MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy[MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
                 if (MinisterOnTable[ik].MinisterThinkingQuantum[0].AStarGreedyMove.Count > 0)
@@ -27811,7 +27811,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int Ord = Order;
                 KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                Task<AllDraw> array1 = Task.Run(() => KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(KingOnTable[ik].KingThinkingQuantum[0].TableListKing[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
+                Task<AllDraw> array1 = Task.Factory.StartNew(() => KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(KingOnTable[ik].KingThinkingQuantum[0].TableListKing[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
 
                 array1.Wait(); array1.Dispose();
                 KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy[KingOnTable[ik].KingThinkingQuantum[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -27839,7 +27839,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 int Ord = Order;
                 CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].CurrentMaxLevel = CurrentMaxLevel + 1;
                 StoreInitMaxAStarGreedy = CurrentMaxLevel; MaxAStarGreedy = CurrentMaxLevel;
-                Task<AllDraw> array1 = Task.Run(() => CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
+                Task<AllDraw> array1 = Task.Factory.StartNew(() => CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].InitiateAStarGreedyt(PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, iii, jjj, aa, CloneATable(CastlingOnTable[ik].CastlingThinking[0].TableListCastling[j]), Ord * -1, false, FOUND, LeafAStarGreedy));
 
                 array1.Wait(); array1.Dispose();
                 CastlingOnTable[ik].CastlingThinking[0].AStarGreedy[CastlingOnTable[ik].CastlingThinking[0].AStarGreedy.Count - 1].AStarGreedyString = this;
@@ -28723,7 +28723,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return false;
                 }
                 //semaphore
-                Task array = Task.Run(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 1));
+                Task array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 1));
 
                 array.Wait(); array.Dispose();
                 object OOOO = new object();
@@ -28768,7 +28768,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         }
 
                         bool ac = false;
-                        Task<bool> ah3 = Task.Run(() => ac = Lose(1, ik, j, Order));
+                        Task<bool> ah3 = Task.Factory.StartNew(() => ac = Lose(1, ik, j, Order));
                         ah3.Wait();
                         ah3.Dispose();
                         if (ac)
@@ -28925,7 +28925,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -28947,7 +28947,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return false;
                 }
                 //semaphore
-                Task array = Task.Run(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 2));
+                Task array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 2));
                 array.Wait(); array.Dispose();
                 object OOOO = new object();
                 lock (OOOO)
@@ -28990,7 +28990,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         }
 
                         bool ac = false;
-                        Task<bool> ah3 = Task.Run(() => ac = Lose(2, ik, j, Order));
+                        Task<bool> ah3 = Task.Factory.StartNew(() => ac = Lose(2, ik, j, Order));
                         ah3.Wait();
                         ah3.Dispose();
                         if (ac)
@@ -29149,7 +29149,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeElephant(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeElephant(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -29171,7 +29171,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return false;
                 }
                 //semaphore
-                Task array = Task.Run(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 3));
+                Task array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 3));
                 array.Wait(); array.Dispose();
 
                 object OOOO = new object();
@@ -29196,7 +29196,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         }
 
                         bool ac = false;
-                        Task<bool> ah3 = Task.Run(() => ac = Lose(3, ik, j, Order));
+                        Task<bool> ah3 = Task.Factory.StartNew(() => ac = Lose(3, ik, j, Order));
                         ah3.Wait();
                         ah3.Dispose();
                         if (ac)
@@ -29373,7 +29373,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeHourse(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeHourse(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -29395,7 +29395,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return false;
                 }
                 //semaphore
-                Task array = Task.Run(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 4));
+                Task array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 4));
                 array.Wait(); array.Dispose();
                 object OOOO = new object();
                 lock (OOOO)
@@ -29416,7 +29416,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     }
 
                     bool ac = false;
-                    Task<bool> ah3 = Task.Run(() => ac = Lose(4, ik, j, Order));
+                    Task<bool> ah3 = Task.Factory.StartNew(() => ac = Lose(4, ik, j, Order));
                     ah3.Wait();
                     ah3.Dispose();
                     if (ac)
@@ -29598,7 +29598,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeCastle(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastle(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -29620,7 +29620,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return false;
                 }
                 //semaphore
-                Task array = Task.Run(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 5));
+                Task array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 5));
                 array.Wait(); array.Dispose();
 
                 object OOOO = new object();
@@ -29645,7 +29645,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         }
 
                         bool ac = false;
-                        Task<bool> ah3 = Task.Run(() => ac = Lose(5, ik, j, Order));
+                        Task<bool> ah3 = Task.Factory.StartNew(() => ac = Lose(5, ik, j, Order));
                         ah3.Wait();
                         ah3.Dispose();
                         if (ac)
@@ -29823,7 +29823,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeMinister(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeMinister(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -29845,7 +29845,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return false;
                 }
                 //semaphore
-                Task array = Task.Run(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 6));
+                Task array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, 6));
                 array.Wait(); array.Dispose();
 
                 object OOOO = new object();
@@ -29874,7 +29874,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         }
 
                         bool ac = false;
-                        Task<bool> ah3 = Task.Run(() => ac = Lose(6, ik, j, Order));
+                        Task<bool> ah3 = Task.Factory.StartNew(() => ac = Lose(6, ik, j, Order));
                         ah3.Wait();
                         ah3.Dispose();
                         if (ac)
@@ -30040,7 +30040,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     return false;
                 }
                 //semaphore
-                Task array = Task.Run(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, kin));
+                Task array = Task.Factory.StartNew(() => ReturnFullGameThinkingTreeSemaphoreAs(Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ik, kin));
                 array.Wait(); array.Dispose();
 
                 object OOOO = new object();
@@ -30088,7 +30088,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                         }
 
                         bool ac = false;
-                        Task<bool> ah3 = Task.Run(() => ac = Lose(7, ik, j, Order));
+                        Task<bool> ah3 = Task.Factory.StartNew(() => ac = Lose(7, ik, j, Order));
                         ah3.Wait();
                         ah3.Dispose();
                         if (ac)
@@ -30245,7 +30245,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeKing(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeKing(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -30276,7 +30276,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                          object O = new object();
                          lock (O)
                          {
-                             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeCastling(7, ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastling(7, ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                              array.Wait(); array.Dispose();
                              //TH.Add(array);
                          }
@@ -30308,7 +30308,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeSoldier(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -30340,7 +30340,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeElephant(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeElephant(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -30372,7 +30372,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeHourse(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeHourse(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -30404,7 +30404,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeCastle(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastle(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -30436,7 +30436,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          object O = new object();
          lock (O)
          {
-             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeMinister(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeMinister(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
              array.Wait(); array.Dispose();
              //TH.Add(array);
          }
@@ -30468,7 +30468,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                          object O = new object();
                          lock (O)
                          {
-                             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeKing(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeKing(ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                              array.Wait(); array.Dispose();
                              //TH.Add(array);
                          }
@@ -30499,7 +30499,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                          object O = new object();
                          lock (O)
                          {
-                             Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeCastling(-7, ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                             Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeCastling(-7, ik, a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
                              array.Wait(); array.Dispose();
                              //TH.Add(array);
                          }
@@ -30518,7 +30518,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 bool Do = false;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
-                Task output = Task.Run(() =>
+                Task output = Task.Factory.StartNew(() =>
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
@@ -30544,7 +30544,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a1 = a;
          int iAStarGreedy1 = iAStarGreedy;
 
-         Task<bool> array1 = Task.Run(() => Do |= FullGameThinkingTreeSoldierGray(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
+         Task<bool> array1 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeSoldierGray(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
          array1.Wait(); array1.Dispose();
 
          Order = DummyOrder;
@@ -30569,7 +30569,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a2 = a;
          int iAStarGreedy2 = iAStarGreedy;
 
-         Task<bool> array2 = Task.Run(() => Do |= FullGameThinkingTreeElephantGray(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
+         Task<bool> array2 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeElephantGray(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
          array2.Wait(); array2.Dispose();
 
          //Initiatye Variables.
@@ -30595,7 +30595,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a3 = a;
          int iAStarGreedy3 = iAStarGreedy;
 
-         Task<bool> array3 = Task.Run(() => Do |= FullGameThinkingTreeHourseGray(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
+         Task<bool> array3 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeHourseGray(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
          array3.Wait(); array3.Dispose();
 
          //Initiatye Variables.
@@ -30621,7 +30621,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a4 = a;
          int iAStarGreedy4 = iAStarGreedy;
 
-         Task<bool> array4 = Task.Run(() => Do |= FullGameThinkingTreeCastleGray(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
+         Task<bool> array4 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeCastleGray(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
          array4.Wait(); array4.Dispose();
 
          //Initiatye Variables.
@@ -30647,7 +30647,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a5 = a;
          int iAStarGreedy5 = iAStarGreedy;
 
-         Task<bool> array5 = Task.Run(() => Do |= FullGameThinkingTreeMinisterGray(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
+         Task<bool> array5 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeMinisterGray(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
          array5.Wait(); array5.Dispose();
 
          //Initiatye Variables.
@@ -30673,7 +30673,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a6 = a;
          int iAStarGreedy6 = iAStarGreedy;
 
-         Task<bool> array6 = Task.Run(() => Do |= FullGameThinkingTreeKingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+         Task<bool> array6 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeKingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
          array6.Wait(); array6.Dispose();
 
          Order = DummyOrder;
@@ -30698,7 +30698,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a6 = a;
          int iAStarGreedy6 = iAStarGreedy;
 
-         Task<bool> array7 = Task.Run(() => Do |= FullGameThinkingTreeCastlingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+         Task<bool> array7 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeCastlingGray(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
          array7.Wait(); array7.Dispose();
 
          Order = DummyOrder;
@@ -30726,7 +30726,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                 bool Do = false;
                 int DummyOrder = Order;
                 int DummyCurrentOrder = ChessRules.CurrentOrder;
-                Task output = Task.Run(() =>
+                Task output = Task.Factory.StartNew(() =>
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
@@ -30752,7 +30752,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a1 = a;
          int iAStarGreedy1 = iAStarGreedy;
 
-         Task<bool> array1 = Task.Run(() => Do |= FullGameThinkingTreeSoldierBrown(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
+         Task<bool> array1 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeSoldierBrown(a1, Ord1, iAStarGreedy1, ii1, jj1, ik11, j11, FOUND, LeafAStarGreedy));
          array1.Wait(); array1.Dispose();
 
          Order = DummyOrder;
@@ -30777,7 +30777,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a2 = a;
          int iAStarGreedy2 = iAStarGreedy;
 
-         Task<bool> array2 = Task.Run(() => Do |= FullGameThinkingTreeElephantBrown(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
+         Task<bool> array2 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeElephantBrown(a2, Ord2, iAStarGreedy2, ii2, jj2, ik12, j12, FOUND, LeafAStarGreedy));
          array2.Wait(); array2.Dispose();
 
          //Initiatye Variables.
@@ -30803,7 +30803,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a3 = a;
          int iAStarGreedy3 = iAStarGreedy;
 
-         Task<bool> array3 = Task.Run(() => Do |= FullGameThinkingTreeHourseBrown(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
+         Task<bool> array3 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeHourseBrown(a3, Ord3, iAStarGreedy3, ii3, jj3, ik13, j13, FOUND, LeafAStarGreedy));
          array3.Wait(); array3.Dispose();
 
          //Initiatye Variables.
@@ -30829,7 +30829,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a4 = a;
          int iAStarGreedy4 = iAStarGreedy;
 
-         Task<bool> array4 = Task.Run(() => Do |= FullGameThinkingTreeCastleBrown(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
+         Task<bool> array4 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeCastleBrown(a4, Ord4, iAStarGreedy4, ii4, jj4, ik14, j14, FOUND, LeafAStarGreedy));
          array4.Wait(); array4.Dispose();
 
          //Initiatye Variables.
@@ -30855,7 +30855,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a5 = a;
          int iAStarGreedy5 = iAStarGreedy;
 
-         Task<bool> array5 = Task.Run(() => Do |= FullGameThinkingTreeMinisterBrown(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
+         Task<bool> array5 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeMinisterBrown(a5, Ord5, iAStarGreedy5, ii5, jj5, ik15, j15, FOUND, LeafAStarGreedy));
          array5.Wait(); array5.Dispose();
 
          //Initiatye Variables.
@@ -30881,7 +30881,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a6 = a;
          int iAStarGreedy6 = iAStarGreedy;
 
-         Task<bool> array6 = Task.Run(() => Do |= FullGameThinkingTreeKingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+         Task<bool> array6 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeKingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
          array6.Wait(); array6.Dispose();
 
          Order = DummyOrder;
@@ -30906,7 +30906,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
          Color a6 = a;
          int iAStarGreedy6 = iAStarGreedy;
 
-         Task<bool> array7 = Task.Run(() => Do |= FullGameThinkingTreeCastlingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
+         Task<bool> array7 = Task.Factory.StartNew(() => Do |= FullGameThinkingTreeCastlingBrown(a6, Ord6, iAStarGreedy6, ii6, jj6, ik16, j16, FOUND, LeafAStarGreedy));
          array7.Wait(); array7.Dispose();
 
          Order = DummyOrder;
@@ -30970,14 +30970,14 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             {
                 //Soldeir
                 //Initiatye Variables.
-                Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeGray(a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeGray(a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
 
                 array.Wait(); array.Dispose();
             }
             //For Brown Order Blitz Game Calculate Maximum Table Inclusive AStarGreedy First Game Search.
             else
             {
-                Task<bool> array = Task.Run(() => Do = FullGameThinkingTreeBrown(a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
+                Task<bool> array = Task.Factory.StartNew(() => Do = FullGameThinkingTreeBrown(a, Order, PlatformHelper.ProcessorCount + StoreInitMaxAStarGreedy - MaxAStarGreedy, ii, jj, ik1, j1, FOUND, LeafAStarGreedy));
 
                 array.Wait(); array.Dispose();
             }
@@ -31774,7 +31774,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
             object o = new object();
             lock (o)
             {
-                Task ah = Task.Run(() => FoundOfLeafDepenOfKindFullGame(CloneATable(Table), Order, PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, 0, 0, FOUND, LeafAStarGreedy));
+                Task ah = Task.Factory.StartNew(() => FoundOfLeafDepenOfKindFullGame(CloneATable(Table), Order, PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, ii, jj, 0, 0, FOUND, LeafAStarGreedy));
                 ah.Wait();
                 ah.Dispose();
 
@@ -31923,7 +31923,7 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     int[,] Tabl = CloneATable(Table);
                     Color aaa = a;
                     AllDraw THISA = AStarGreedyString;
-                     Task<AllDraw> H = Task.Run(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, iiii, jjjj, aaa, CloneATable(Tabl), Ord, false, FOUND, LeafAStarGreedy));
+                     Task<AllDraw> H = Task.Factory.StartNew(() => InitiateAStarGreedyt(PlatformHelper.ProcessorCount + AllDraw.StoreInitMaxAStarGreedy - AllDraw.MaxAStarGreedy, iiii, jjjj, aaa, CloneATable(Tabl), Ord, false, FOUND, LeafAStarGreedy));
                     H.Wait();
                     H.Dispose();
                     AStarGreedyString = THISA;

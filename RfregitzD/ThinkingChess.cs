@@ -1055,7 +1055,7 @@ namespace RefrigtzDLL
                         //if (Before)
                         {
                             bool ab = false;
-                            Task<bool> th = Task.Run(() => ab = IsDistributedObjectAttackNonDistributedEnemyObject(CloneATable(Table), Ord, RowS, ColS, RowD, ColD));
+                            Task<bool> th = Task.Factory.StartNew(() => ab = IsDistributedObjectAttackNonDistributedEnemyObject(CloneATable(Table), Ord, RowS, ColS, RowD, ColD));
                             th.Wait();
                             th.Dispose();
                             if (ab)
@@ -1064,7 +1064,7 @@ namespace RefrigtzDLL
                             }
                             else
                             {
-                                Task<bool> th1 = Task.Run(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
+                                Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
                                 th1.Wait();
                                 th1.Dispose();
 
@@ -1111,10 +1111,10 @@ namespace RefrigtzDLL
                                             object O2 = new object();
                                             lock (O2)
                                             {
-                                                Task<bool> th2 = Task.Run(() => A = Support(CloneATable(Table), g, h, RowD, ColD, aaa, Order * -1));
+                                                Task<bool> th2 = Task.Factory.StartNew(() => A = Support(CloneATable(Table), g, h, RowD, ColD, aaa, Order * -1));
                                                 th2.Wait();
                                                 th2.Dispose();
-                                                Task<bool> th3 = Task.Run(() => B = Support(CloneATable(Table), g, h, RowS, ColS, a, Order));
+                                                Task<bool> th3 = Task.Factory.StartNew(() => B = Support(CloneATable(Table), g, h, RowS, ColS, a, Order));
                                                 th3.Wait();
                                                 th3.Dispose();
                                             }
@@ -1190,7 +1190,7 @@ namespace RefrigtzDLL
                         //if (Before)
                         {
                             bool ab = false;
-                            Task<bool> th = Task.Run(() => ab = IsDistributedObjectAttackNonDistributedEnemyObject(CloneATable(Table), Ord, RowS, ColS, RowD, ColD));
+                            Task<bool> th = Task.Factory.StartNew(() => ab = IsDistributedObjectAttackNonDistributedEnemyObject(CloneATable(Table), Ord, RowS, ColS, RowD, ColD));
                             th.Wait();
                             th.Dispose();
                             if (ab)
@@ -1198,7 +1198,7 @@ namespace RefrigtzDLL
                                 HA += Rational(HA, RationalPenalty) * RationalPenalty; ;
                             }
 
-                            Task<bool> th1 = Task.Run(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
+                            Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
                             th1.Wait();
                             th1.Dispose();
 
@@ -1248,10 +1248,10 @@ namespace RefrigtzDLL
                                         object O12 = new object();
                                         lock (O12)
                                         {
-                                            Task<bool> th2 = Task.Run(() => A = Support(CloneATable(Table), g, h, RowD, ColD, aaa, Order * -1));
+                                            Task<bool> th2 = Task.Factory.StartNew(() => A = Support(CloneATable(Table), g, h, RowD, ColD, aaa, Order * -1));
                                             th2.Wait();
                                             th2.Dispose();
-                                            Task<bool> th3 = Task.Run(() => B = Support(CloneATable(Table), g, h, RowS, ColS, a, Order));
+                                            Task<bool> th3 = Task.Factory.StartNew(() => B = Support(CloneATable(Table), g, h, RowS, ColS, a, Order));
                                             th3.Wait();
                                             th3.Dispose();
                                         }
@@ -1363,7 +1363,7 @@ namespace RefrigtzDLL
                             lock (O1)
                             {
                                 bool ab = false;
-                                Task<bool> th = Task.Run(() => ab = Support(CloneATable(Tab), RowS, ColS, ii, jj, a, Order1 * -1)
+                                Task<bool> th = Task.Factory.StartNew(() => ab = Support(CloneATable(Tab), RowS, ColS, ii, jj, a, Order1 * -1)
                                         && ObjectValueCalculator(CloneATable(Tab), i, j) >= ObjectValueCalculator(CloneATable(Tab), ii, jj));
 
                                 th.Wait();
@@ -1458,7 +1458,7 @@ namespace RefrigtzDLL
                                     {
                                         bool ab = false;
                                         List<int[]> ValuableEnemyNotSupportedA = ValuableEnemyNotSupported;
-                                        Task<bool> th = Task.Run(() => ab = EnemyIsValuable && (!IsObjectValaubleObjectEnemy(Tab[ii, jj], ref ValuableEnemyNotSupportedA)));
+                                        Task<bool> th = Task.Factory.StartNew(() => ab = EnemyIsValuable && (!IsObjectValaubleObjectEnemy(Tab[ii, jj], ref ValuableEnemyNotSupportedA)));
                                         th.Wait();
                                         th.Dispose();
 
@@ -1471,7 +1471,7 @@ namespace RefrigtzDLL
 
                                         EnemyNotSupported = true;
                                         InAttackedNotEnemySupported = false;
-                                        Task<bool> th1 = Task.Run(() => ab = Attack(CloneATable(Tab), i, j, ii, jj, a, Order));
+                                        Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), i, j, ii, jj, a, Order));
                                         th1.Wait();
                                         th1.Dispose();
 
@@ -1500,7 +1500,7 @@ namespace RefrigtzDLL
                                                         a = Color.Brown;
                                                     }
                                                     //
-                                                    Task<bool> th2 = Task.Run(() => ab = Support(CloneATable(Tab), RowS, ColS, ii, jj, a, Order * -1));
+                                                    Task<bool> th2 = Task.Factory.StartNew(() => ab = Support(CloneATable(Tab), RowS, ColS, ii, jj, a, Order * -1));
                                                     th2.Wait();
                                                     th2.Dispose();
 
@@ -1639,7 +1639,7 @@ namespace RefrigtzDLL
                                 }
 
                                 bool ab = false;
-                                Task<bool> th = Task.Run(() => ab = Attack(CloneATable(Tab), ii, jj, RowS, ColS, a, Order * -1));
+                                Task<bool> th = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), ii, jj, RowS, ColS, a, Order * -1));
                                 th.Wait();
                                 th.Dispose();
                                 //when there is attack to some self node.
@@ -1678,7 +1678,7 @@ namespace RefrigtzDLL
                                                 a = Color.Brown;
                                             }
                                             //when there is attack of self node to that enemy node.
-                                            Task<bool> th1 = Task.Run(() => ab = Support(CloneATable(Tab), RowD, ColD, RowS, ColS, a, Order) || Attack(CloneATable(Tab), RowD, ColD, ii, jj, a, Order));
+                                            Task<bool> th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Tab), RowD, ColD, RowS, ColS, a, Order) || Attack(CloneATable(Tab), RowD, ColD, ii, jj, a, Order));
                                             th1.Wait();
                                             th1.Dispose();
                                             if (ab)
@@ -1781,7 +1781,7 @@ namespace RefrigtzDLL
                             lock (OO)
                             {
                                 bool ab = false;
-                                Task<bool> th = Task.Run(() => ab = Attack(CloneATable(Tab), RowS, ColS, i, j, a, Order * -1));
+                                Task<bool> th = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), RowS, ColS, i, j, a, Order * -1));
                                 th.Wait();
                                 th.Dispose();
                                 if (ab)
@@ -1823,7 +1823,7 @@ namespace RefrigtzDLL
                                             }
                                             //When there is support and cuurent is less than enemy.
                                             //method return true when is not supporte and the enemy is less than cuurent in to be hitten.
-                                            Task<bool> th1 = Task.Run(() => ab = Support(CloneATable(Tab), RowD, ColD, i, j, a, Order));
+                                            Task<bool> th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Tab), RowD, ColD, i, j, a, Order));
                                             th1.Wait();
                                             th1.Dispose();
                                             if (ab)
@@ -1893,7 +1893,7 @@ namespace RefrigtzDLL
                 lock (O1)
                 {
                     //list of existence self and valuable dangrouse attack
-                    Task<bool> th = Task.Run(() => IsTowValuableObject = InAttackSelfThatNotSupportedCalculateValuableAll(CloneATable(TableS), Order, color, ikk, jkk, ref ValuableSelfSupported));
+                    Task<bool> th = Task.Factory.StartNew(() => IsTowValuableObject = InAttackSelfThatNotSupportedCalculateValuableAll(CloneATable(TableS), Order, color, ikk, jkk, ref ValuableSelfSupported));
                     th.Wait();
                     th.Dispose();
 
@@ -1923,7 +1923,7 @@ namespace RefrigtzDLL
                     }
                     //when there is another object valuable in List continue.(when movement is dangrouse costly)
                     bool ab = false;
-                    Task<bool> th1 = Task.Run(() => ab = IsTowValuableObject && (IsObjectValaubleObjectSelf(Tab[i, j], ref ValuableSelfSupported)));
+                    Task<bool> th1 = Task.Factory.StartNew(() => ab = IsTowValuableObject && (IsObjectValaubleObjectSelf(Tab[i, j], ref ValuableSelfSupported)));
                     th1.Wait();
                     th1.Dispose();
                     if (ab)
@@ -1976,7 +1976,7 @@ namespace RefrigtzDLL
                     object O2 = new object();
                     lock (O2)
                     {
-                        Task<bool> th2 = Task.Run(() => ab = Attack(CloneATable(Tab), RowS, ColS, i, j, a, Order * -1));
+                        Task<bool> th2 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), RowS, ColS, i, j, a, Order * -1));
                         th2.Wait();
                         th2.Dispose();
                         if (ab)
@@ -2023,7 +2023,7 @@ namespace RefrigtzDLL
                                     }
                                     //When there is supporte and cuurent is less than enemy.
                                     //method return true when is not supporte and the enemy is less than cuurent in to be hitten.
-                                    Task<bool> th3 = Task.Run(() => ab = Support(CloneATable(Tab), RowD, ColD, i, j, a, Order) && (ObjectValueCalculator(CloneATable(Tab), i, j) <= ObjectValueCalculator(CloneATable(Tab), RowS, ColS)));
+                                    Task<bool> th3 = Task.Factory.StartNew(() => ab = Support(CloneATable(Tab), RowD, ColD, i, j, a, Order) && (ObjectValueCalculator(CloneATable(Tab), i, j) <= ObjectValueCalculator(CloneATable(Tab), RowS, ColS)));
                                     th3.Wait();
                                     th3.Dispose();
                                     if (ab)
@@ -2133,7 +2133,7 @@ namespace RefrigtzDLL
                                 lock (O1)
                                 {
                                     bool ab = false;
-                                    Task<bool> th = Task.Run(() => ab = Attack(CloneATable(Tab), RowS, ColS, i, j, a, Order * -1));
+                                    Task<bool> th = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), RowS, ColS, i, j, a, Order * -1));
                                     th.Wait();
                                     th.Dispose();
                                     if (ab)
@@ -2174,7 +2174,7 @@ namespace RefrigtzDLL
                                                     }
                                                 }
                                                 //When There is Supporter For Attacked Self Object and Is Greater than Attacking Object.
-                                                Task<bool> th1 = Task.Run(() => ab = Support(CloneATable(Tab), RowD, ColD, i, j, a, Order) && (ObjectValueCalculator(CloneATable(Tab), i, j) <= ObjectValueCalculator(CloneATable(Tab), RowS, ColS)));
+                                                Task<bool> th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Tab), RowD, ColD, i, j, a, Order) && (ObjectValueCalculator(CloneATable(Tab), i, j) <= ObjectValueCalculator(CloneATable(Tab), RowS, ColS)));
                                                 th1.Wait();
                                                 th1.Dispose();
                                                 if (ab)
@@ -2370,7 +2370,7 @@ namespace RefrigtzDLL
                     Tabl[RowD, ColD] = Tabl[RowS, ColS];
                     Tabl[RowS, ColS] = 0;
                     ChessRules A = new ChessRules(CurrentAStarGredy, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Tab[RowD, ColD], CloneATable(Tab), Order);
-                    Task<bool> th = Task.Run(() => A.CheckMate(Tabl, Order));
+                    Task<bool> th = Task.Factory.StartNew(() => A.CheckMate(Tabl, Order));
                     th.Wait();
                     th.Dispose();
 
@@ -2409,7 +2409,7 @@ namespace RefrigtzDLL
                 else
                 {
                     ChessRules A = new ChessRules(CurrentAStarGredy, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Tab[RowD, ColD], CloneATable(Tab), Order);
-                    Task<bool> th = Task.Run(() => A.CheckMate(Tabl, Order));
+                    Task<bool> th = Task.Factory.StartNew(() => A.CheckMate(Tabl, Order));
                     th.Wait();
                     th.Dispose();
                     if (A.CheckGray || A.CheckBrown)
@@ -2512,7 +2512,7 @@ namespace RefrigtzDLL
                             }
                             //For Support Movments.
                             bool ab = false;
-                            Task<bool> th = Task.Run(() => ab = Support(CloneATable(Tab), RowS, ColS, RowD, ColD, a, Order));
+                            Task<bool> th = Task.Factory.StartNew(() => ab = Support(CloneATable(Tab), RowS, ColS, RowD, ColD, a, Order));
                             th.Wait();
                             th.Dispose();
                             if (ab)
@@ -2575,10 +2575,10 @@ namespace RefrigtzDLL
                                             //When Enemy is Supported.
                                             bool A = new bool();
                                             bool B = new bool();
-                                            Task<bool> th1 = Task.Run(() => A = Support(CloneATable(Tab), g, h, RowS, ColS, aaa, Order));
+                                            Task<bool> th1 = Task.Factory.StartNew(() => A = Support(CloneATable(Tab), g, h, RowS, ColS, aaa, Order));
                                             th1.Wait();
                                             th1.Dispose();
-                                            Task<bool> th2 = Task.Run(() => B = Attack(CloneATable(Tab), g, h, RowS, ColS, aa, Order * -1));
+                                            Task<bool> th2 = Task.Factory.StartNew(() => B = Attack(CloneATable(Tab), g, h, RowS, ColS, aa, Order * -1));
                                             th2.Wait();
                                             th2.Dispose();
                                             //When Enemy is Supported.
@@ -2666,7 +2666,7 @@ namespace RefrigtzDLL
                                         }
                                         //For Support Movments.
                                         bool ab = false;
-                                        Task<bool> th = Task.Run(() => ab = Support(CloneATable(Tab), RowS, ColS, RowD, ColD, a, Order));
+                                        Task<bool> th = Task.Factory.StartNew(() => ab = Support(CloneATable(Tab), RowS, ColS, RowD, ColD, a, Order));
                                         th.Wait();
                                         th.Dispose();
                                         if (ab)
@@ -2729,10 +2729,10 @@ namespace RefrigtzDLL
                                                         //When Enemy is Supported.
                                                         bool A = new bool();
                                                         bool B = new bool();
-                                                        Task<bool> th1 = Task.Run(() => A = Support(CloneATable(Tab), g, h, RowS, ColS, aaa, Order));
+                                                        Task<bool> th1 = Task.Factory.StartNew(() => A = Support(CloneATable(Tab), g, h, RowS, ColS, aaa, Order));
                                                         th1.Wait();
                                                         th1.Dispose();
-                                                        Task<bool> th2 = Task.Run(() => B = Attack(CloneATable(Tab), g, h, RowS, ColS, aa, Order * -1));
+                                                        Task<bool> th2 = Task.Factory.StartNew(() => B = Attack(CloneATable(Tab), g, h, RowS, ColS, aa, Order * -1));
                                                         th2.Wait();
                                                         th2.Dispose();
                                                         //When Enemy is Supported.
@@ -2881,7 +2881,7 @@ namespace RefrigtzDLL
                 if (Order == 1 && Table[ii, jj] < 0)
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = A.Rules(i, j, ii, jj, Order));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = A.Rules(i, j, ii, jj, Order));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -2893,7 +2893,7 @@ namespace RefrigtzDLL
                  if (Order == -1 && Table[ii, jj] > 0)
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = A.Rules(i, j, ii, jj, Order));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = A.Rules(i, j, ii, jj, Order));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -2904,7 +2904,7 @@ namespace RefrigtzDLL
                 if (Order == 1 && Table[ii, jj] == 0)
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = A.Rules(i, j, ii, jj, Order));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = A.Rules(i, j, ii, jj, Order));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -2916,7 +2916,7 @@ namespace RefrigtzDLL
                 if (Order == -1 && Table[ii, jj] == 0)
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = A.Rules(i, j, ii, jj, Order));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = A.Rules(i, j, ii, jj, Order));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -3009,14 +3009,14 @@ namespace RefrigtzDLL
                         }
                         //When there is movment to current OPbject.
                         bool ab = false;
-                        Task<bool> th = Task.Run(() => ab = A.Rules(ii, jj, i, j, Table[ii, jj]));
+                        Task<bool> th = Task.Factory.StartNew(() => ab = A.Rules(ii, jj, i, j, Table[ii, jj]));
                         th.Wait();
                         th.Dispose();
                         if (ab)
                         {
                             //Number of Attacks and take Move.
                             int Count = 0;
-                            Task<int> th1 = Task.Run(() => Count = AttackerCount(CloneATable(Table), Order * -1, a, ii, jj));
+                            Task<int> th1 = Task.Factory.StartNew(() => Count = AttackerCount(CloneATable(Table), Order * -1, a, ii, jj));
                             th1.Wait();
                             th1.Dispose();
                             //When there is Object Danger.
@@ -3037,7 +3037,7 @@ namespace RefrigtzDLL
                                 a = Color.Brown;
                             }
                             //When Current Movments Attacks Enemy.
-                            Task<bool> th2 = Task.Run(() => ab = Attack(CloneATable(Table), i, j, ii, jj, a, Order));
+                            Task<bool> th2 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), i, j, ii, jj, a, Order));
                             th2.Wait();
                             th2.Dispose();
                             if (ab)
@@ -3058,7 +3058,7 @@ namespace RefrigtzDLL
                                             continue;
                                         }
                                         //Whn Value Of Current is Less That Enemy.
-                                        Task<bool> th3 = Task.Run(() => ab = ObjectValueCalculator(CloneATable(Table), i, j) < ObjectValueCalculator(CloneATable(Table), ii, jj));
+                                        Task<bool> th3 = Task.Factory.StartNew(() => ab = ObjectValueCalculator(CloneATable(Table), i, j) < ObjectValueCalculator(CloneATable(Table), ii, jj));
                                         th3.Wait();
                                         th3.Dispose();
                                         if (ab)
@@ -3072,7 +3072,7 @@ namespace RefrigtzDLL
                                                 a = Color.Brown;
                                             }
                                             //When Enemy Attacks Current Moved.
-                                            Task<bool> th4 = Task.Run(() => ab = Attack(CloneATable(Table), RowS, ColS, ii, jj, a, Order * -1));
+                                            Task<bool> th4 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, ii, jj, a, Order * -1));
                                             th4.Wait();
                                             th4.Dispose();
                                             if (ab)
@@ -3099,13 +3099,13 @@ namespace RefrigtzDLL
                                                             a = Color.Brown;
                                                         }
                                                         //When Self Supported Current
-                                                        Task<bool> th5 = Task.Run(() => ab = Support(CloneATable(Table), RowD, ColD, i, j, a, Order));
+                                                        Task<bool> th5 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, i, j, a, Order));
                                                         th5.Wait();
                                                         th5.Dispose();
                                                         if (ab)
                                                         {
                                                             //If V alue of Enemy is Greater Than Current and Value of Enemy is Greater than Supporter.
-                                                            Task<bool> th6 = Task.Run(() => ab = ObjectValueCalculator(CloneATable(Table), RowS, ColS) < ObjectValueCalculator(CloneATable(Table), ii, jj) && ObjectValueCalculator(CloneATable(Table), RowS, ColS) > ObjectValueCalculator(CloneATable(Table), Row, ColS));
+                                                            Task<bool> th6 = Task.Factory.StartNew(() => ab = ObjectValueCalculator(CloneATable(Table), RowS, ColS) < ObjectValueCalculator(CloneATable(Table), ii, jj) && ObjectValueCalculator(CloneATable(Table), RowS, ColS) > ObjectValueCalculator(CloneATable(Table), Row, ColS));
                                                             th6.Wait();
                                                             th6.Dispose();
                                                             if (ab)
@@ -3196,7 +3196,7 @@ namespace RefrigtzDLL
                                             A = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, TablCon[i, j], TablCon, -1);
                                             //When Enemy is Attacked Gray Objects.
                                             bool ab = false;
-                                            Task<bool> th = Task.Run(() => ab = A.Rules(i, j, ii, jj, TablCon[i, j]));
+                                            Task<bool> th = Task.Factory.StartNew(() => ab = A.Rules(i, j, ii, jj, TablCon[i, j]));
                                             th.Wait();
                                             th.Dispose();
                                             if (ab)
@@ -3209,7 +3209,7 @@ namespace RefrigtzDLL
                                                 //Settting Object.
                                                 A = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, TablCon[ii, jj], TablCon, 1);
                                                 //When Occured Check.
-                                                Task<bool> th1 = Task.Run(() => ab = A.Check(TablCon, 1));
+                                                Task<bool> th1 = Task.Factory.StartNew(() => ab = A.Check(TablCon, 1));
                                                 th1.Wait();
                                                 th1.Dispose();
                                                 if (ab)
@@ -3228,7 +3228,7 @@ namespace RefrigtzDLL
                                                                     //Setting Enemy.
                                                                     ChessRules.CurrentOrder = -1;
                                                                     //When Enemy is Supported
-                                                                    Task<bool> th2 = Task.Run(() => ab = Support(TablCon, RowD, ColD, i, j, Color.Brown, -1));
+                                                                    Task<bool> th2 = Task.Factory.StartNew(() => ab = Support(TablCon, RowD, ColD, i, j, Color.Brown, -1));
                                                                     th2.Wait();
                                                                     th2.Dispose();
                                                                     if (ab)
@@ -3296,7 +3296,7 @@ namespace RefrigtzDLL
                                             ChessRules.CurrentOrder = 1;
                                             //When Enemy Attacked Self Objects.
                                             bool ab = false;
-                                            Task<bool> th = Task.Run(() => ab = A.Rules(i, j, ii, jj, TablCon[i, j]));
+                                            Task<bool> th = Task.Factory.StartNew(() => ab = A.Rules(i, j, ii, jj, TablCon[i, j]));
                                             th.Wait();
                                             th.Dispose();
                                             if (ab)
@@ -3308,7 +3308,7 @@ namespace RefrigtzDLL
                                                 ChessRules.CurrentOrder = -1;
                                                 A = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, TablCon[ii, jj], TablCon, -1);
                                                 //When Check Occured.
-                                                Task<bool> th1 = Task.Run(() => ab = A.Check(TablCon, -1));
+                                                Task<bool> th1 = Task.Factory.StartNew(() => ab = A.Check(TablCon, -1));
                                                 th1.Wait();
                                                 th1.Dispose();
                                                 if (ab)
@@ -3327,7 +3327,7 @@ namespace RefrigtzDLL
                                                                     //Setting Enemy Order
                                                                     ChessRules.CurrentOrder = 1;
                                                                     //When Enemy is Supported.
-                                                                    Task<bool> th2 = Task.Run(() => ab = Support(TablCon, RowD, ColD, i, j, Color.Gray, 1));
+                                                                    Task<bool> th2 = Task.Factory.StartNew(() => ab = Support(TablCon, RowD, ColD, i, j, Color.Gray, 1));
                                                                     th2.Wait();
                                                                     th2.Dispose();
                                                                     if (ab)
@@ -3384,7 +3384,7 @@ namespace RefrigtzDLL
                     }
                     //When Enemy Attack Currnet.
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = A.Rules(ik, jk, iki, jki, Tab2[ik, jk]));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = A.Rules(ik, jk, iki, jki, Tab2[ik, jk]));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -3393,7 +3393,7 @@ namespace RefrigtzDLL
                         Tab2[ik, jk] = 0;
                         A = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Tab2[iki, jki], Tab2, Order * -1);
                         //When Current Always is in CheckedMate.
-                        Task<bool> th1 = Task.Run(() => ab = A.CheckMate(Tab2, Order * -1));
+                        Task<bool> th1 = Task.Factory.StartNew(() => ab = A.CheckMate(Tab2, Order * -1));
                         th1.Wait();
                         th1.Dispose();
                         if (ab)
@@ -3485,7 +3485,7 @@ namespace RefrigtzDLL
                         int[] IS = null;
                         lock (O1)
                         {
-                            Task<int[]> th2 = Task.Run(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovment(CloneATable(Tab), Ord, Depth1, OrderP, OrderM, KindCheckedSelf1));
+                            Task<int[]> th2 = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovment(CloneATable(Tab), Ord, Depth1, OrderP, OrderM, KindCheckedSelf1));
                             th2.Wait();
                             th2.Dispose();
                         }
@@ -3583,7 +3583,7 @@ namespace RefrigtzDLL
                                             object O1 = new object();
                                             lock (O1)
                                             {
-                                                Task<int[]> th = Task.Run(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
+                                                Task<int[]> th = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
                                                 th.Wait();
                                                 th.Dispose();
                                                 if (Is[0] == 1)
@@ -3638,7 +3638,7 @@ namespace RefrigtzDLL
                                         object O1 = new object();
                                         lock (O1)
                                         {
-                                            Task<int[]> th = Task.Run(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
+                                            Task<int[]> th = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
                                             th.Wait();
                                             th.Dispose();
                                             if (Is[0] == 1)
@@ -3687,7 +3687,7 @@ namespace RefrigtzDLL
                                         object O1 = new object();
                                         lock (O1)
                                         {
-                                            Task<int[]> th = Task.Run(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
+                                            Task<int[]> th = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
                                             th.Wait();
                                             th.Dispose();
                                             if (Is[0] == 1)
@@ -3736,7 +3736,7 @@ namespace RefrigtzDLL
                                             object O1 = new object();
                                             lock (O1)
                                             {
-                                                Task<int[]> th = Task.Run(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
+                                                Task<int[]> th = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
                                                 th.Wait();
                                                 th.Dispose();
 
@@ -3791,7 +3791,7 @@ namespace RefrigtzDLL
                                         object O1 = new object();
                                         lock (O1)
                                         {
-                                            Task<int[]> th = Task.Run(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
+                                            Task<int[]> th = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
                                             th.Wait();
                                             th.Dispose();
                                             if (Is[0] == 1)
@@ -3840,7 +3840,7 @@ namespace RefrigtzDLL
                                         object O1 = new object();
                                         lock (O1)
                                         {
-                                            Task<int[]> th = Task.Run(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
+                                            Task<int[]> th = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
                                             th.Wait();
                                             th.Dispose();
 
@@ -3897,7 +3897,7 @@ namespace RefrigtzDLL
                                             object O1 = new object();
                                             lock (O1)
                                             {
-                                                Task<int[]> th = Task.Run(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
+                                                Task<int[]> th = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
                                                 th.Wait();
                                                 th.Dispose();
 
@@ -3954,7 +3954,7 @@ namespace RefrigtzDLL
                                             object O1 = new object();
                                             lock (O1)
                                             {
-                                                Task<int[]> th = Task.Run(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
+                                                Task<int[]> th = Task.Factory.StartNew(() => IS = IsNextMovmentIsCheckOrCheckMateForCurrentMovmentbaseKernel(Ord, CloneATable(Tab), ik1, jk1, iki1, jki1, OrderP, OrderM, Depth1, KindCheckedSelf1));
                                                 th.Wait();
                                                 th.Dispose();
                                                 if (Is[0] == 1)
@@ -4034,7 +4034,7 @@ namespace RefrigtzDLL
                     }
 
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = Attack(CloneATable(Tab), ii, jj, RowS, ColS, aa, Order * -1) && (ObjectValueCalculator(CloneATable(Tab), ii, jj) < ObjectValueCalculator(CloneATable(Tab), RowS, ColS)));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), ii, jj, RowS, ColS, aa, Order * -1) && (ObjectValueCalculator(CloneATable(Tab), ii, jj) < ObjectValueCalculator(CloneATable(Tab), RowS, ColS)));
                     th.Wait();
                     th.Dispose();
 
@@ -4100,7 +4100,7 @@ namespace RefrigtzDLL
                                         object O2 = new object();
                                         lock (O2)
                                         {
-                                            Task<bool> th1 = Task.Run(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, TabS[RowD, ColD], TabS, Order)).Rules(RowD, ColD, iiiii, jjjjj, TabS[RowD, ColD]));
+                                            Task<bool> th1 = Task.Factory.StartNew(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, TabS[RowD, ColD], TabS, Order)).Rules(RowD, ColD, iiiii, jjjjj, TabS[RowD, ColD]));
                                             th1.Wait();
                                             th1.Dispose();
                                             if (ab)
@@ -4205,12 +4205,12 @@ namespace RefrigtzDLL
                                     }
                                     //Take Movement.
                                     bool ab = false;
-                                    Task<bool> th = Task.Run(() => ab = Attack(Tabl1, i, j, ii, jj, a, Order * -1));
+                                    Task<bool> th = Task.Factory.StartNew(() => ab = Attack(Tabl1, i, j, ii, jj, a, Order * -1));
                                     th.Wait();
                                     th.Dispose();
                                     if (ab)
                                     {
-                                        Task<bool> th1 = Task.Run(() => ab = ObjectValueCalculator(Tabl1, i, j) <= ObjectValueCalculator(Tabl1, ii, jj));
+                                        Task<bool> th1 = Task.Factory.StartNew(() => ab = ObjectValueCalculator(Tabl1, i, j) <= ObjectValueCalculator(Tabl1, ii, jj));
                                         th1.Wait();
                                         th1.Dispose();
                                         if (ab)
@@ -4233,7 +4233,7 @@ namespace RefrigtzDLL
                                                 a = Color.Brown;
                                             }
 
-                                            Task<bool> th2 = Task.Run(() => IsGardHighPriority = IsGardHighPriority || IsCurrentCanGardHighPriorityEnemy(Depth, CloneATable(Table), Order * -1, a, ii, jj, i, j, OrderPlate));
+                                            Task<bool> th2 = Task.Factory.StartNew(() => IsGardHighPriority = IsGardHighPriority || IsCurrentCanGardHighPriorityEnemy(Depth, CloneATable(Table), Order * -1, a, ii, jj, i, j, OrderPlate));
                                             th2.Wait();
                                             th2.Dispose();
                                         }
@@ -4382,7 +4382,7 @@ namespace RefrigtzDLL
                 if ((ColK == 7) && (ColK - 1 >= 0) && (RowK - 1 >= 0) && (RowK + 1 < 8))
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = SameSign(Table[RowK, ColK], Table[RowK - 1, ColK - 1]) && SameSign(Table[RowK, ColK], Table[RowK + 1, ColK - 1]) && SameSign(Table[RowK, ColK], Table[RowK, ColK - 1]));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = SameSign(Table[RowK, ColK], Table[RowK - 1, ColK - 1]) && SameSign(Table[RowK, ColK], Table[RowK + 1, ColK - 1]) && SameSign(Table[RowK, ColK], Table[RowK, ColK - 1]));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -4393,7 +4393,7 @@ namespace RefrigtzDLL
                 if ((ColK == 0) && (ColK + 1 < 8) && (RowK - 1 >= 0) && (RowK + 1 < 8))
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = SameSign(Table[RowK, ColK], Table[RowK - 1, ColK + 1]) && SameSign(Table[RowK, ColK], Table[RowK + 1, ColK + 1]) && SameSign(Table[RowK, ColK], Table[RowK, ColK + 1]));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = SameSign(Table[RowK, ColK], Table[RowK - 1, ColK + 1]) && SameSign(Table[RowK, ColK], Table[RowK + 1, ColK + 1]) && SameSign(Table[RowK, ColK], Table[RowK, ColK + 1]));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -4412,7 +4412,7 @@ namespace RefrigtzDLL
             {
                 bool Is = false;
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = ThereIsOneSideToRanAwayByEnemyKing(RowK, ColK, CloneATable(Table)));
+                Task<bool> th = Task.Factory.StartNew(() => ab = ThereIsOneSideToRanAwayByEnemyKing(RowK, ColK, CloneATable(Table)));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -4426,7 +4426,7 @@ namespace RefrigtzDLL
 
                         for (int p = 0; p < 8; p++)
                         {
-                            Task<bool> th1 = Task.Run(() => ab = SameSign(Table[RowK, ColK], Table[p, k]));
+                            Task<bool> th1 = Task.Factory.StartNew(() => ab = SameSign(Table[RowK, ColK], Table[p, k]));
                             th1.Wait();
                             th1.Dispose();
                             if (!ab)
@@ -4458,7 +4458,7 @@ namespace RefrigtzDLL
 
                         for (int p = 0; p < 8; p++)
                         {
-                            Task<bool> th1 = Task.Run(() => ab = SameSign(Table[RowK, ColK], Table[k, p]));
+                            Task<bool> th1 = Task.Factory.StartNew(() => ab = SameSign(Table[RowK, ColK], Table[k, p]));
                             th1.Wait();
                             th1.Dispose();
                             if (!ab)
@@ -4595,7 +4595,7 @@ namespace RefrigtzDLL
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order);
                     int[,] Tab = CloneATable(Table);
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = G.CheckMate(CloneATable(Tab), Order));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = G.CheckMate(CloneATable(Tab), Order));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -4616,7 +4616,7 @@ namespace RefrigtzDLL
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order);
                     int[,] Tab = CloneATable(Table);
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = G.CheckMate(CloneATable(Tab), Order));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = G.CheckMate(CloneATable(Tab), Order));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -4648,7 +4648,7 @@ namespace RefrigtzDLL
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order);
                     G.FindBrownKing(CloneATable(Table), ref RowK, ref ColK);
                     bool S1 = false;
-                    Task<bool> H1 = Task.Run(() => S1 = CurrentIsTowCastleOrMinisterBecomeCheckedMateAtCloseRanAway(RowK, ColK, CloneATable(Table)));
+                    Task<bool> H1 = Task.Factory.StartNew(() => S1 = CurrentIsTowCastleOrMinisterBecomeCheckedMateAtCloseRanAway(RowK, ColK, CloneATable(Table)));
                     H1.Wait();
                     H1.Dispose();
                     if (S1)
@@ -4658,7 +4658,7 @@ namespace RefrigtzDLL
                     else
                     {
                         bool S2 = false;
-                        Task<bool> H2 = Task.Run(() => S2 = CurrentCanBecomeClosedRanAwayByOneCastleOrMinister(RowK, ColK, CloneATable(Table)));
+                        Task<bool> H2 = Task.Factory.StartNew(() => S2 = CurrentCanBecomeClosedRanAwayByOneCastleOrMinister(RowK, ColK, CloneATable(Table)));
                         H2.Wait();
                         H2.Dispose();
                         if (S2)
@@ -4668,7 +4668,7 @@ namespace RefrigtzDLL
                         else
                         {
                             bool S3 = false;
-                            Task<bool> H3 = Task.Run(() => S3 = IsObjectrSelfAttackEnemyKing(RowK, ColK, CloneATable(Table), Order));
+                            Task<bool> H3 = Task.Factory.StartNew(() => S3 = IsObjectrSelfAttackEnemyKing(RowK, ColK, CloneATable(Table), Order));
                             H3.Wait();
                             H3.Dispose();
                             if (S3)
@@ -4684,7 +4684,7 @@ namespace RefrigtzDLL
                     ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Table), Order);
                     G.FindGrayKing(CloneATable(Table), ref RowK, ref ColK);
                     bool S1 = false;
-                    Task<bool> H1 = Task.Run(() => S1 = CurrentIsTowCastleOrMinisterBecomeCheckedMateAtCloseRanAway(RowK, ColK, CloneATable(Table)));
+                    Task<bool> H1 = Task.Factory.StartNew(() => S1 = CurrentIsTowCastleOrMinisterBecomeCheckedMateAtCloseRanAway(RowK, ColK, CloneATable(Table)));
                     H1.Wait();
                     H1.Dispose();
                     if (S1)
@@ -4694,7 +4694,7 @@ namespace RefrigtzDLL
                     else
                     {
                         bool S2 = false;
-                        Task<bool> H2 = Task.Run(() => S2 = CurrentCanBecomeClosedRanAwayByOneCastleOrMinister(RowK, ColK, CloneATable(Table)));
+                        Task<bool> H2 = Task.Factory.StartNew(() => S2 = CurrentCanBecomeClosedRanAwayByOneCastleOrMinister(RowK, ColK, CloneATable(Table)));
                         H2.Wait();
                         H2.Dispose();
                         if (S2)
@@ -4704,7 +4704,7 @@ namespace RefrigtzDLL
                         else
                         {
                             bool S3 = false;
-                            Task<bool> H3 = Task.Run(() => S2 = IsObjectrSelfAttackEnemyKing(RowK, ColK, CloneATable(Table), Order));
+                            Task<bool> H3 = Task.Factory.StartNew(() => S2 = IsObjectrSelfAttackEnemyKing(RowK, ColK, CloneATable(Table), Order));
                             H3.Wait();
                             H3.Dispose();
                             if (S3)
@@ -4875,7 +4875,7 @@ namespace RefrigtzDLL
         public bool EnemyKingHaveAtMostOneEmptyItemInAttack(int Rowk, int ColK, int[,] Table, int Order)
         {
             bool ab = false;
-            Task<bool> th = Task.Run(() => ab = IsNumberOfObjecttIsLessThanThreashold(CloneATable(Table)));
+            Task<bool> th = Task.Factory.StartNew(() => ab = IsNumberOfObjecttIsLessThanThreashold(CloneATable(Table)));
             th.Wait();
             th.Dispose();
             if (!ab)
@@ -4895,7 +4895,7 @@ namespace RefrigtzDLL
                 {
                     for (int p = 0; p < 8; p++)
                     {
-                        Task<bool> th1 = Task.Run(() => ab = Attack(CloneATable(Table), k, p, Rowk, ColK, color, Order));
+                        Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), k, p, Rowk, ColK, color, Order));
                         th1.Wait();
                         th1.Dispose();
                         if (ab)
@@ -4908,7 +4908,7 @@ namespace RefrigtzDLL
                                     {
                                         for (int ppp = 0; ppp < 8; ppp++)
                                         {
-                                            Task<bool> th2 = Task.Run(() => ab = Movable(CloneATable(Table), kk, pp, kkk, ppp, color, Order));
+                                            Task<bool> th2 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), kk, pp, kkk, ppp, color, Order));
                                             th2.Wait();
                                             th2.Dispose();
                                             if (ab)
@@ -4917,7 +4917,7 @@ namespace RefrigtzDLL
                                                 Ta[kkk, ppp] = Ta[kk, pp];
                                                 Ta[kk, pp] = 0;
                                                 ChessRules G = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Order, CloneATable(Ta), Order);
-                                                Task<bool> th3 = Task.Run(() => ab = G.CheckMate(CloneATable(Ta), Order));
+                                                Task<bool> th3 = Task.Factory.StartNew(() => ab = G.CheckMate(CloneATable(Ta), Order));
                                                 th3.Wait();
                                                 th3.Dispose();
                                                 if (ab)
@@ -4974,7 +4974,7 @@ namespace RefrigtzDLL
                 bool Is = false;
                 List<int> EmptyR = new List<int>(), EmptyC = new List<int>();
                 int NIs = 0;
-                Task<int> th = Task.Run(() => NIs = EnemyKingHaveAtMostOneEmptyItem(RowK, ColK, CloneATable(Table), ref EmptyR, ref EmptyC));
+                Task<int> th = Task.Factory.StartNew(() => NIs = EnemyKingHaveAtMostOneEmptyItem(RowK, ColK, CloneATable(Table), ref EmptyR, ref EmptyC));
                 th.Wait();
                 th.Dispose();
 
@@ -5011,7 +5011,7 @@ namespace RefrigtzDLL
                                     }
                                     //Self Have Support
                                     bool ab = false;
-                                    Task<bool> th1 = Task.Run(() => ab = Support(CloneATable(Tab), kk, pp, k, p, color, Order));
+                                    Task<bool> th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Tab), kk, pp, k, p, color, Order));
                                     th1.Wait();
                                     th1.Dispose();
                                     if (ab)
@@ -5030,7 +5030,7 @@ namespace RefrigtzDLL
                                                     continue;
                                                 }
                                                 //Enemy King Attack
-                                                Task<bool> th2 = Task.Run(() => ab = Attack(CloneATable(Tab), k, p, kkk, ppp, color, Order));
+                                                Task<bool> th2 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), k, p, kkk, ppp, color, Order));
                                                 th2.Wait();
                                                 th2.Dispose();
                                                 if (ab)
@@ -5159,7 +5159,7 @@ namespace RefrigtzDLL
             if ((RowD == ControlF || RowD == ControlS || ColD == ControlF || ColD == ControlS))
             {
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
+                Task<bool> th = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -5167,7 +5167,7 @@ namespace RefrigtzDLL
                     Is = true;
                 }
 
-                Task<bool> th1 = Task.Run(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
+                Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, a, Order));
                 th1.Wait();
                 th1.Dispose();
                 if (ab)
@@ -5185,31 +5185,31 @@ namespace RefrigtzDLL
             lock (O)
             {
                 double HA = HS;
-                Task<double> H1 = Task.Run(() => HA += Rational(HA, SimpleMate_Zero(ref HA, CloneATable(Table))) * SimpleMate_Zero(ref HA, CloneATable(Table)));
+                Task<double> H1 = Task.Factory.StartNew(() => HA += Rational(HA, SimpleMate_Zero(ref HA, CloneATable(Table))) * SimpleMate_Zero(ref HA, CloneATable(Table)));
                 H1.Wait();
                 H1.Dispose();
 
                 if (HA == 1)
                 {
-                    Task<double> H2 = Task.Run(() => HA += Rational(HA, SimpleMate_One(ref HA, CloneATable(Table))) * SimpleMate_One(ref HA, CloneATable(Table)));
+                    Task<double> H2 = Task.Factory.StartNew(() => HA += Rational(HA, SimpleMate_One(ref HA, CloneATable(Table))) * SimpleMate_One(ref HA, CloneATable(Table)));
                     H2.Wait();
                     H2.Dispose();
                 }
                 if (HA == 1)
                 {
-                    Task<double> H3 = Task.Run(() => HA += Rational(HA, SimpleMate_Tow(ref HA, CloneATable(Table))) * SimpleMate_Tow(ref HA, CloneATable(Table)));
+                    Task<double> H3 = Task.Factory.StartNew(() => HA += Rational(HA, SimpleMate_Tow(ref HA, CloneATable(Table))) * SimpleMate_Tow(ref HA, CloneATable(Table)));
                     H3.Wait();
                     H3.Dispose();
                 }
                 if (HA == 1)
                 {
-                    Task<double> H4 = Task.Run(() => HA += Rational(HA, SimpleMate_Three_And_Four(ref HA, CloneATable(Table))) * SimpleMate_Three_And_Four(ref HA, CloneATable(Table)));
+                    Task<double> H4 = Task.Factory.StartNew(() => HA += Rational(HA, SimpleMate_Three_And_Four(ref HA, CloneATable(Table))) * SimpleMate_Three_And_Four(ref HA, CloneATable(Table)));
                     H4.Wait();
                     H4.Dispose();
                 }
                 bool S1 = false;
 
-                Task<bool> H5 = Task.Run(() => S1 = IsContorlCenter(RowS, ColS, RowD, ColD, CloneATable(Table), a));
+                Task<bool> H5 = Task.Factory.StartNew(() => S1 = IsContorlCenter(RowS, ColS, RowD, ColD, CloneATable(Table), a));
                 H5.Wait();
                 H5.Dispose();
                 if (S1)
@@ -5218,7 +5218,7 @@ namespace RefrigtzDLL
                 }
                 bool S2 = false;
 
-                Task<bool> H6 = Task.Run(() => S2 = IsMinisterOrElephantBecomeActive(RowS, ColS, CloneATable(Table)));
+                Task<bool> H6 = Task.Factory.StartNew(() => S2 = IsMinisterOrElephantBecomeActive(RowS, ColS, CloneATable(Table)));
                 H6.Wait();
                 H6.Dispose();
                 if (S2)
@@ -5264,7 +5264,7 @@ namespace RefrigtzDLL
                         }
                         //If Current Attacks Enemy.
                         bool ab = false;
-                        Task<bool> th = Task.Run(() => ab = Attack(CloneATable(Tab), i, j, ii, jj, a, Order));
+                        Task<bool> th = Task.Factory.StartNew(() => ab = Attack(CloneATable(Tab), i, j, ii, jj, a, Order));
                         th.Wait();
                         th.Dispose();
                         if (ab)
@@ -5316,7 +5316,7 @@ namespace RefrigtzDLL
             object O = new object();
             lock (O)
             {
-                Task th = Task.Run(() => MakeEmptyTableInitiationPreventionOfMultipleMoveWhenAllIsFull());
+                Task th = Task.Factory.StartNew(() => MakeEmptyTableInitiationPreventionOfMultipleMoveWhenAllIsFull());
                 th.Wait();
                 th.Dispose();
 
@@ -5418,7 +5418,7 @@ namespace RefrigtzDLL
                 if (Tab[RowS, ColS] != 0)
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = (Tab[3, 4] == 0) && Movable(CloneATable(Tab), RowS, ColS, 3, 4, a, Order));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = (Tab[3, 4] == 0) && Movable(CloneATable(Tab), RowS, ColS, 3, 4, a, Order));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -5426,7 +5426,7 @@ namespace RefrigtzDLL
                         Is = true;
                     }
 
-                    Task<bool> th1 = Task.Run(() => ab = (Tab[4, 3] == 0) && Movable(CloneATable(Tab), RowS, ColS, 4, 3, a, Order));
+                    Task<bool> th1 = Task.Factory.StartNew(() => ab = (Tab[4, 3] == 0) && Movable(CloneATable(Tab), RowS, ColS, 4, 3, a, Order));
                     th1.Wait();
                     th1.Dispose();
                     if (ab)
@@ -5434,7 +5434,7 @@ namespace RefrigtzDLL
                         Is = true;
                     }
 
-                    Task<bool> th2 = Task.Run(() => ab = (Tab[3, 3] == 0) && Movable(CloneATable(Tab), RowS, ColS, 3, 3, a, Order));
+                    Task<bool> th2 = Task.Factory.StartNew(() => ab = (Tab[3, 3] == 0) && Movable(CloneATable(Tab), RowS, ColS, 3, 3, a, Order));
                     th2.Wait();
                     th2.Dispose();
                     if (ab)
@@ -5442,7 +5442,7 @@ namespace RefrigtzDLL
                         Is = true;
                     }
 
-                    Task<bool> th3 = Task.Run(() => ab = (Tab[4, 4] == 0) && Movable(CloneATable(Tab), RowS, ColS, 4, 4, a, Order));
+                    Task<bool> th3 = Task.Factory.StartNew(() => ab = (Tab[4, 4] == 0) && Movable(CloneATable(Tab), RowS, ColS, 4, 4, a, Order));
                     th3.Wait();
                     th3.Dispose();
                     if (ab)
@@ -5454,7 +5454,7 @@ namespace RefrigtzDLL
                     {
                         if (Order == 1)
                         {
-                            Task<bool> th4 = Task.Run(() => ab = (Tab[3, 4] < 0) && Attack(CloneATable(Tab), RowS, ColS, 3, 4, aa, Order * -1));
+                            Task<bool> th4 = Task.Factory.StartNew(() => ab = (Tab[3, 4] < 0) && Attack(CloneATable(Tab), RowS, ColS, 3, 4, aa, Order * -1));
                             th4.Wait();
                             th4.Dispose();
                             if (ab)
@@ -5462,7 +5462,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th5 = Task.Run(() => ab = (Tab[4, 3] < 0) && Attack(CloneATable(Tab), RowS, ColS, 4, 3, aa, Order * -1));
+                            Task<bool> th5 = Task.Factory.StartNew(() => ab = (Tab[4, 3] < 0) && Attack(CloneATable(Tab), RowS, ColS, 4, 3, aa, Order * -1));
                             th5.Wait();
                             th5.Dispose();
                             if (ab)
@@ -5470,7 +5470,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th6 = Task.Run(() => ab = (Tab[3, 3] < 0) && Attack(CloneATable(Tab), RowS, ColS, 3, 3, aa, Order * -1));
+                            Task<bool> th6 = Task.Factory.StartNew(() => ab = (Tab[3, 3] < 0) && Attack(CloneATable(Tab), RowS, ColS, 3, 3, aa, Order * -1));
                             th6.Wait();
                             th6.Dispose();
                             if (ab)
@@ -5478,7 +5478,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th7 = Task.Run(() => ab = (Tab[4, 4] < 0) && Attack(CloneATable(Tab), RowS, ColS, 4, 4, aa, Order * -1));
+                            Task<bool> th7 = Task.Factory.StartNew(() => ab = (Tab[4, 4] < 0) && Attack(CloneATable(Tab), RowS, ColS, 4, 4, aa, Order * -1));
                             th7.Wait();
                             th7.Dispose();
                             if (ab)
@@ -5486,7 +5486,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th8 = Task.Run(() => ab = (Tab[3, 4] > 0) && Support(CloneATable(Tab), RowS, ColS, 3, 4, a, Order));
+                            Task<bool> th8 = Task.Factory.StartNew(() => ab = (Tab[3, 4] > 0) && Support(CloneATable(Tab), RowS, ColS, 3, 4, a, Order));
                             th8.Wait();
                             th8.Dispose();
                             if (ab)
@@ -5494,7 +5494,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th9 = Task.Run(() => ab = (Tab[4, 3] > 0) && Support(CloneATable(Tab), RowS, ColS, 4, 3, a, Order));
+                            Task<bool> th9 = Task.Factory.StartNew(() => ab = (Tab[4, 3] > 0) && Support(CloneATable(Tab), RowS, ColS, 4, 3, a, Order));
                             th9.Wait();
                             th9.Dispose();
                             if (ab)
@@ -5502,7 +5502,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th10 = Task.Run(() => ab = (Tab[3, 3] > 0) && Support(CloneATable(Tab), RowS, ColS, 3, 3, a, Order));
+                            Task<bool> th10 = Task.Factory.StartNew(() => ab = (Tab[3, 3] > 0) && Support(CloneATable(Tab), RowS, ColS, 3, 3, a, Order));
                             th10.Wait();
                             th10.Dispose();
                             if (ab)
@@ -5510,7 +5510,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th11 = Task.Run(() => ab = (Tab[4, 4] > 0) && Support(CloneATable(Tab), RowS, ColS, 4, 4, a, Order));
+                            Task<bool> th11 = Task.Factory.StartNew(() => ab = (Tab[4, 4] > 0) && Support(CloneATable(Tab), RowS, ColS, 4, 4, a, Order));
                             th11.Wait();
                             th11.Dispose();
                             if (ab)
@@ -5520,7 +5520,7 @@ namespace RefrigtzDLL
                         }
                         else
                         {
-                            Task<bool> th4 = Task.Run(() => ab = (Tab[3, 4] > 0) && Attack(CloneATable(Tab), RowS, ColS, 3, 4, aa, Order * -1));
+                            Task<bool> th4 = Task.Factory.StartNew(() => ab = (Tab[3, 4] > 0) && Attack(CloneATable(Tab), RowS, ColS, 3, 4, aa, Order * -1));
                             th4.Wait();
                             th4.Dispose();
                             if (ab)
@@ -5528,7 +5528,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th5 = Task.Run(() => ab = (Tab[4, 3] > 0) && Attack(CloneATable(Tab), RowS, ColS, 4, 3, aa, Order * -1));
+                            Task<bool> th5 = Task.Factory.StartNew(() => ab = (Tab[4, 3] > 0) && Attack(CloneATable(Tab), RowS, ColS, 4, 3, aa, Order * -1));
                             th5.Wait();
                             th5.Dispose();
                             if (ab)
@@ -5536,7 +5536,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th6 = Task.Run(() => ab = (Tab[3, 3] > 0) && Attack(CloneATable(Tab), RowS, ColS, 3, 3, aa, Order * -1));
+                            Task<bool> th6 = Task.Factory.StartNew(() => ab = (Tab[3, 3] > 0) && Attack(CloneATable(Tab), RowS, ColS, 3, 3, aa, Order * -1));
                             th6.Wait();
                             th6.Dispose();
                             if (ab)
@@ -5544,7 +5544,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th7 = Task.Run(() => ab = (Tab[4, 4] > 0) && Attack(CloneATable(Tab), RowS, ColS, 4, 4, aa, Order * -1));
+                            Task<bool> th7 = Task.Factory.StartNew(() => ab = (Tab[4, 4] > 0) && Attack(CloneATable(Tab), RowS, ColS, 4, 4, aa, Order * -1));
                             th7.Wait();
                             th7.Dispose();
                             if (ab)
@@ -5552,7 +5552,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th8 = Task.Run(() => ab = (Tab[3, 4] < 0) && Support(CloneATable(Tab), RowS, ColS, 3, 4, a, Order));
+                            Task<bool> th8 = Task.Factory.StartNew(() => ab = (Tab[3, 4] < 0) && Support(CloneATable(Tab), RowS, ColS, 3, 4, a, Order));
                             th8.Wait();
                             th8.Dispose();
                             if (ab)
@@ -5560,7 +5560,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th9 = Task.Run(() => ab = (Tab[4, 3] < 0) && Support(CloneATable(Tab), RowS, ColS, 4, 3, a, Order));
+                            Task<bool> th9 = Task.Factory.StartNew(() => ab = (Tab[4, 3] < 0) && Support(CloneATable(Tab), RowS, ColS, 4, 3, a, Order));
                             th9.Wait();
                             th9.Dispose();
                             if (ab)
@@ -5568,7 +5568,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th10 = Task.Run(() => ab = (Tab[3, 3] < 0) && Support(CloneATable(Tab), RowS, ColS, 3, 3, a, Order));
+                            Task<bool> th10 = Task.Factory.StartNew(() => ab = (Tab[3, 3] < 0) && Support(CloneATable(Tab), RowS, ColS, 3, 3, a, Order));
                             th10.Wait();
                             th10.Dispose();
                             if (ab)
@@ -5576,7 +5576,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th11 = Task.Run(() => ab = (Tab[4, 4] < 0) && Support(CloneATable(Tab), RowS, ColS, 4, 4, a, Order));
+                            Task<bool> th11 = Task.Factory.StartNew(() => ab = (Tab[4, 4] < 0) && Support(CloneATable(Tab), RowS, ColS, 4, 4, a, Order));
                             th11.Wait();
                             th11.Dispose();
                             if (ab)
@@ -5590,7 +5590,7 @@ namespace RefrigtzDLL
                             Ta[RowD, ColD] = Tab[RowS, ColS];
                             Tab[RowS, ColS] = 0;
 
-                            Task<bool> th12 = Task.Run(() => ab = (Tab[3, 4] == 0) && Movable(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
+                            Task<bool> th12 = Task.Factory.StartNew(() => ab = (Tab[3, 4] == 0) && Movable(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
                             th12.Wait();
                             th12.Dispose();
                             if (ab)
@@ -5598,7 +5598,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th13 = Task.Run(() => ab = (Tab[4, 3] == 0) && Movable(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
+                            Task<bool> th13 = Task.Factory.StartNew(() => ab = (Tab[4, 3] == 0) && Movable(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
                             th13.Wait();
                             th13.Dispose();
                             if (ab)
@@ -5606,7 +5606,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th14 = Task.Run(() => ab = (Tab[3, 3] == 0) && Movable(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
+                            Task<bool> th14 = Task.Factory.StartNew(() => ab = (Tab[3, 3] == 0) && Movable(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
                             th14.Wait();
                             th14.Dispose();
                             if (ab)
@@ -5614,7 +5614,7 @@ namespace RefrigtzDLL
                                 Is = true;
                             }
 
-                            Task<bool> th15 = Task.Run(() => ab = (Tab[4, 4] == 0) && Movable(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
+                            Task<bool> th15 = Task.Factory.StartNew(() => ab = (Tab[4, 4] == 0) && Movable(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
                             th15.Wait();
                             th15.Dispose();
                             if (ab)
@@ -5626,7 +5626,7 @@ namespace RefrigtzDLL
                             {
                                 if (Order == 1)
                                 {
-                                    Task<bool> th4 = Task.Run(() => ab = (Tab[3, 4] < 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 4, aa, Order * -1));
+                                    Task<bool> th4 = Task.Factory.StartNew(() => ab = (Tab[3, 4] < 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 4, aa, Order * -1));
                                     th4.Wait();
                                     th4.Dispose();
                                     if (ab)
@@ -5634,7 +5634,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th5 = Task.Run(() => ab = (Tab[4, 3] < 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 3, aa, Order * -1));
+                                    Task<bool> th5 = Task.Factory.StartNew(() => ab = (Tab[4, 3] < 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 3, aa, Order * -1));
                                     th5.Wait();
                                     th5.Dispose();
                                     if (ab)
@@ -5642,7 +5642,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th6 = Task.Run(() => ab = (Tab[3, 3] < 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 3, aa, Order * -1));
+                                    Task<bool> th6 = Task.Factory.StartNew(() => ab = (Tab[3, 3] < 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 3, aa, Order * -1));
                                     th6.Wait();
                                     th6.Dispose();
                                     if (ab)
@@ -5650,7 +5650,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th7 = Task.Run(() => ab = (Tab[4, 4] < 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 4, aa, Order * -1));
+                                    Task<bool> th7 = Task.Factory.StartNew(() => ab = (Tab[4, 4] < 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 4, aa, Order * -1));
                                     th7.Wait();
                                     th7.Dispose();
                                     if (ab)
@@ -5658,7 +5658,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th8 = Task.Run(() => ab = (Tab[3, 4] > 0) && Support(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
+                                    Task<bool> th8 = Task.Factory.StartNew(() => ab = (Tab[3, 4] > 0) && Support(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
                                     th8.Wait();
                                     th8.Dispose();
                                     if (ab)
@@ -5666,7 +5666,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th9 = Task.Run(() => ab = (Tab[4, 3] > 0) && Support(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
+                                    Task<bool> th9 = Task.Factory.StartNew(() => ab = (Tab[4, 3] > 0) && Support(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
                                     th9.Wait();
                                     th9.Dispose();
                                     if (ab)
@@ -5674,7 +5674,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th10 = Task.Run(() => ab = (Tab[3, 3] > 0) && Support(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
+                                    Task<bool> th10 = Task.Factory.StartNew(() => ab = (Tab[3, 3] > 0) && Support(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
                                     th10.Wait();
                                     th10.Dispose();
                                     if (ab)
@@ -5682,7 +5682,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th11 = Task.Run(() => ab = (Tab[4, 4] > 0) && Support(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
+                                    Task<bool> th11 = Task.Factory.StartNew(() => ab = (Tab[4, 4] > 0) && Support(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
                                     th11.Wait();
                                     th11.Dispose();
                                     if (ab)
@@ -5692,7 +5692,7 @@ namespace RefrigtzDLL
                                 }
                                 else
                                 {
-                                    Task<bool> th4 = Task.Run(() => ab = (Tab[3, 4] > 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 4, aa, Order * -1));
+                                    Task<bool> th4 = Task.Factory.StartNew(() => ab = (Tab[3, 4] > 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 4, aa, Order * -1));
                                     th4.Wait();
                                     th4.Dispose();
                                     if (ab)
@@ -5700,7 +5700,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th5 = Task.Run(() => ab = (Tab[4, 3] > 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 3, aa, Order * -1));
+                                    Task<bool> th5 = Task.Factory.StartNew(() => ab = (Tab[4, 3] > 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 3, aa, Order * -1));
                                     th5.Wait();
                                     th5.Dispose();
                                     if (ab)
@@ -5708,7 +5708,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th6 = Task.Run(() => ab = (Tab[3, 3] > 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 3, aa, Order * -1));
+                                    Task<bool> th6 = Task.Factory.StartNew(() => ab = (Tab[3, 3] > 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 3, aa, Order * -1));
                                     th6.Wait();
                                     th6.Dispose();
                                     if (ab)
@@ -5716,7 +5716,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th7 = Task.Run(() => ab = (Tab[4, 4] > 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 4, aa, Order * -1));
+                                    Task<bool> th7 = Task.Factory.StartNew(() => ab = (Tab[4, 4] > 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 4, aa, Order * -1));
                                     th7.Wait();
                                     th7.Dispose();
                                     if (ab)
@@ -5724,7 +5724,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th8 = Task.Run(() => ab = (Tab[3, 4] < 0) && Support(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
+                                    Task<bool> th8 = Task.Factory.StartNew(() => ab = (Tab[3, 4] < 0) && Support(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
                                     th8.Wait();
                                     th8.Dispose();
                                     if (ab)
@@ -5732,7 +5732,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th9 = Task.Run(() => ab = (Tab[4, 3] < 0) && Support(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
+                                    Task<bool> th9 = Task.Factory.StartNew(() => ab = (Tab[4, 3] < 0) && Support(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
                                     th9.Wait();
                                     th9.Dispose();
                                     if (ab)
@@ -5740,7 +5740,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th10 = Task.Run(() => ab = (Tab[3, 3] < 0) && Support(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
+                                    Task<bool> th10 = Task.Factory.StartNew(() => ab = (Tab[3, 3] < 0) && Support(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
                                     th10.Wait();
                                     th10.Dispose();
                                     if (ab)
@@ -5748,7 +5748,7 @@ namespace RefrigtzDLL
                                         Is = true;
                                     }
 
-                                    Task<bool> th11 = Task.Run(() => ab = (Tab[4, 4] < 0) && Support(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
+                                    Task<bool> th11 = Task.Factory.StartNew(() => ab = (Tab[4, 4] < 0) && Support(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
                                     th11.Wait();
                                     th11.Dispose();
                                     if (ab)
@@ -5766,7 +5766,7 @@ namespace RefrigtzDLL
                             return Is;
                         }
 
-                        Task<bool> th12 = Task.Run(() => ab = (Tab[3, 4] == 0) && Movable(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
+                        Task<bool> th12 = Task.Factory.StartNew(() => ab = (Tab[3, 4] == 0) && Movable(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
                         th12.Wait();
                         th12.Dispose();
                         if (ab)
@@ -5774,7 +5774,7 @@ namespace RefrigtzDLL
                             Is = true;
                         }
 
-                        Task<bool> th13 = Task.Run(() => ab = (Tab[4, 3] == 0) && Movable(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
+                        Task<bool> th13 = Task.Factory.StartNew(() => ab = (Tab[4, 3] == 0) && Movable(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
                         th13.Wait();
                         th13.Dispose();
                         if (ab)
@@ -5782,7 +5782,7 @@ namespace RefrigtzDLL
                             Is = true;
                         }
 
-                        Task<bool> th14 = Task.Run(() => ab = (Tab[3, 3] == 0) && Movable(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
+                        Task<bool> th14 = Task.Factory.StartNew(() => ab = (Tab[3, 3] == 0) && Movable(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
                         th14.Wait();
                         th14.Dispose();
                         if (ab)
@@ -5790,7 +5790,7 @@ namespace RefrigtzDLL
                             Is = true;
                         }
 
-                        Task<bool> th15 = Task.Run(() => ab = (Tab[4, 4] == 0) && Movable(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
+                        Task<bool> th15 = Task.Factory.StartNew(() => ab = (Tab[4, 4] == 0) && Movable(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
                         th15.Wait();
                         th15.Dispose();
                         if (ab)
@@ -5802,7 +5802,7 @@ namespace RefrigtzDLL
                         {
                             if (Order == 1)
                             {
-                                Task<bool> th4 = Task.Run(() => ab = (Tab[3, 4] < 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 4, aa, Order * -1));
+                                Task<bool> th4 = Task.Factory.StartNew(() => ab = (Tab[3, 4] < 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 4, aa, Order * -1));
                                 th4.Wait();
                                 th4.Dispose();
                                 if (ab)
@@ -5810,7 +5810,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th5 = Task.Run(() => ab = (Tab[4, 3] < 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 3, aa, Order * -1));
+                                Task<bool> th5 = Task.Factory.StartNew(() => ab = (Tab[4, 3] < 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 3, aa, Order * -1));
                                 th5.Wait();
                                 th5.Dispose();
                                 if (ab)
@@ -5818,7 +5818,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th6 = Task.Run(() => ab = (Tab[3, 3] < 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 3, aa, Order * -1));
+                                Task<bool> th6 = Task.Factory.StartNew(() => ab = (Tab[3, 3] < 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 3, aa, Order * -1));
                                 th6.Wait();
                                 th6.Dispose();
                                 if (ab)
@@ -5826,7 +5826,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th7 = Task.Run(() => ab = (Tab[4, 4] < 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 4, aa, Order * -1));
+                                Task<bool> th7 = Task.Factory.StartNew(() => ab = (Tab[4, 4] < 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 4, aa, Order * -1));
                                 th7.Wait();
                                 th7.Dispose();
                                 if (ab)
@@ -5834,7 +5834,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th8 = Task.Run(() => ab = (Tab[3, 4] > 0) && Support(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
+                                Task<bool> th8 = Task.Factory.StartNew(() => ab = (Tab[3, 4] > 0) && Support(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
                                 th8.Wait();
                                 th8.Dispose();
                                 if (ab)
@@ -5842,7 +5842,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th9 = Task.Run(() => ab = (Tab[4, 3] > 0) && Support(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
+                                Task<bool> th9 = Task.Factory.StartNew(() => ab = (Tab[4, 3] > 0) && Support(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
                                 th9.Wait();
                                 th9.Dispose();
                                 if (ab)
@@ -5850,7 +5850,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th10 = Task.Run(() => ab = (Tab[3, 3] > 0) && Support(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
+                                Task<bool> th10 = Task.Factory.StartNew(() => ab = (Tab[3, 3] > 0) && Support(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
                                 th10.Wait();
                                 th10.Dispose();
                                 if (ab)
@@ -5858,7 +5858,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th11 = Task.Run(() => ab = (Tab[4, 4] > 0) && Support(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
+                                Task<bool> th11 = Task.Factory.StartNew(() => ab = (Tab[4, 4] > 0) && Support(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
                                 th11.Wait();
                                 th11.Dispose();
                                 if (ab)
@@ -5868,7 +5868,7 @@ namespace RefrigtzDLL
                             }
                             else
                             {
-                                Task<bool> th4 = Task.Run(() => ab = (Tab[3, 4] > 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 4, aa, Order * -1));
+                                Task<bool> th4 = Task.Factory.StartNew(() => ab = (Tab[3, 4] > 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 4, aa, Order * -1));
                                 th4.Wait();
                                 th4.Dispose();
                                 if (ab)
@@ -5876,7 +5876,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th5 = Task.Run(() => ab = (Tab[4, 3] > 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 3, aa, Order * -1));
+                                Task<bool> th5 = Task.Factory.StartNew(() => ab = (Tab[4, 3] > 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 3, aa, Order * -1));
                                 th5.Wait();
                                 th5.Dispose();
                                 if (ab)
@@ -5884,7 +5884,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th6 = Task.Run(() => ab = (Tab[3, 3] > 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 3, aa, Order * -1));
+                                Task<bool> th6 = Task.Factory.StartNew(() => ab = (Tab[3, 3] > 0) && Attack(CloneATable(Tab), RowD, ColD, 3, 3, aa, Order * -1));
                                 th6.Wait();
                                 th6.Dispose();
                                 if (ab)
@@ -5892,7 +5892,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th7 = Task.Run(() => ab = (Tab[4, 4] > 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 4, aa, Order * -1));
+                                Task<bool> th7 = Task.Factory.StartNew(() => ab = (Tab[4, 4] > 0) && Attack(CloneATable(Tab), RowD, ColD, 4, 4, aa, Order * -1));
                                 th7.Wait();
                                 th7.Dispose();
                                 if (ab)
@@ -5900,7 +5900,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th8 = Task.Run(() => ab = (Tab[3, 4] < 0) && Support(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
+                                Task<bool> th8 = Task.Factory.StartNew(() => ab = (Tab[3, 4] < 0) && Support(CloneATable(Tab), RowD, ColD, 3, 4, a, Order));
                                 th8.Wait();
                                 th8.Dispose();
                                 if (ab)
@@ -5908,7 +5908,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th9 = Task.Run(() => ab = (Tab[4, 3] < 0) && Support(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
+                                Task<bool> th9 = Task.Factory.StartNew(() => ab = (Tab[4, 3] < 0) && Support(CloneATable(Tab), RowD, ColD, 4, 3, a, Order));
                                 th9.Wait();
                                 th9.Dispose();
                                 if (ab)
@@ -5916,7 +5916,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th10 = Task.Run(() => ab = (Tab[3, 3] < 0) && Support(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
+                                Task<bool> th10 = Task.Factory.StartNew(() => ab = (Tab[3, 3] < 0) && Support(CloneATable(Tab), RowD, ColD, 3, 3, a, Order));
                                 th10.Wait();
                                 th10.Dispose();
                                 if (ab)
@@ -5924,7 +5924,7 @@ namespace RefrigtzDLL
                                     Is = true;
                                 }
 
-                                Task<bool> th11 = Task.Run(() => ab = (Tab[4, 4] < 0) && Support(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
+                                Task<bool> th11 = Task.Factory.StartNew(() => ab = (Tab[4, 4] < 0) && Support(CloneATable(Tab), RowD, ColD, 4, 4, a, Order));
                                 th11.Wait();
                                 th11.Dispose();
                                 if (ab)
@@ -6079,7 +6079,7 @@ namespace RefrigtzDLL
                 const int ObjectGray = 0, ObjectBrown = 0;
                 //opperation decision making  on pawn movment
                 bool ab = false;
-                Task<bool> th1 = Task.Run(() => ab = IsTableRowColIsZero(RowS, ColS) && HeuristicAllReducedAttacked.Count == 0);
+                Task<bool> th1 = Task.Factory.StartNew(() => ab = IsTableRowColIsZero(RowS, ColS) && HeuristicAllReducedAttacked.Count == 0);
                 th1.Wait();
                 th1.Dispose();
                 if (ab)
@@ -6091,7 +6091,7 @@ namespace RefrigtzDLL
                     Dis = RationalPenalty;
                 }
 
-                Task<bool> H1 = Task.Run(() => IKIsCentralPawnIsOk = IsCentralPawnIsOk(CloneATable(Tab), Order));
+                Task<bool> H1 = Task.Factory.StartNew(() => IKIsCentralPawnIsOk = IsCentralPawnIsOk(CloneATable(Tab), Order));
                 H1.Wait();
                 H1.Dispose();
 
@@ -6104,7 +6104,7 @@ namespace RefrigtzDLL
                     Dis = Rational(Dis, RationalPenalty) * RationalPenalty;
                 }
 
-                Task<bool> th2 = Task.Run(() => ab = ExistCastleInDouble(Order, CloneATable(Tab), RowS, ColS, RowD, ColD));
+                Task<bool> th2 = Task.Factory.StartNew(() => ab = ExistCastleInDouble(Order, CloneATable(Tab), RowS, ColS, RowD, ColD));
                 th2.Wait();
                 th2.Dispose();
                 if (ab)
@@ -6124,7 +6124,7 @@ namespace RefrigtzDLL
                     }
                     if ((Tab[3, 4] > ObjectGray && Tab[4, 3] > ObjectGray && Tab[3, 3] > ObjectGray && Tab[4, 4] > ObjectGray) || (IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 25)))
                     {
-                        Task<bool> th3 = Task.Run(() => ab = (Tab[RowS, ColS] == 3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0));
+                        Task<bool> th3 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] == 3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0));
                         th3.Wait();
                         th3.Dispose();
                         if (ab)
@@ -6133,7 +6133,7 @@ namespace RefrigtzDLL
                         }
                         else
                         {
-                            Task<bool> th4 = Task.Run(() => ab = (Tab[RowD, ColD] == 3) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0));
+                            Task<bool> th4 = Task.Factory.StartNew(() => ab = (Tab[RowD, ColD] == 3) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0));
                             th4.Wait();
                             th4.Dispose();
                             if (ab)
@@ -6143,7 +6143,7 @@ namespace RefrigtzDLL
                             else
 
                             {
-                                Task<bool> th5 = Task.Run(() => ab = (Tab[RowS, ColS] == 3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) == 0));
+                                Task<bool> th5 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] == 3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) == 0));
                                 th5.Wait();
                                 th5.Dispose();
                                 if (ab)
@@ -6152,7 +6152,7 @@ namespace RefrigtzDLL
                                 }
                                 else
                                 {
-                                    Task<bool> th6 = Task.Run(() => ab = (Tab[RowD, ColD] == 3) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) == 0));
+                                    Task<bool> th6 = Task.Factory.StartNew(() => ab = (Tab[RowD, ColD] == 3) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) == 0));
                                     th6.Wait();
                                     th6.Dispose();
                                     if (ab)
@@ -6166,7 +6166,7 @@ namespace RefrigtzDLL
                     if (IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 32))
                     {
                         int Cor = 0;
-                        Task<int> H2 = Task.Run(() => Cor = RefrigtzDLL.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
+                        Task<int> H2 = Task.Factory.StartNew(() => Cor = RefrigtzDLL.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
                         H2.Wait();
                         H2.Dispose();
 
@@ -6181,7 +6181,7 @@ namespace RefrigtzDLL
                         }
                     }
 
-                    Task<bool> th7 = Task.Run(() => ab = (Tab[RowS, ColS] > 0) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0));
+                    Task<bool> th7 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] > 0) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0));
                     th7.Wait();
                     th7.Dispose();
                     if (ab)
@@ -6190,7 +6190,7 @@ namespace RefrigtzDLL
                     }
                     else
                     {
-                        Task<bool> th8 = Task.Run(() => ab = (Tab[RowD, ColD] > 0) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0));
+                        Task<bool> th8 = Task.Factory.StartNew(() => ab = (Tab[RowD, ColD] > 0) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0));
                         th8.Wait();
                         th8.Dispose();
                         if (ab)
@@ -6199,7 +6199,7 @@ namespace RefrigtzDLL
                         }
                         else
                         {
-                            Task<bool> th9 = Task.Run(() => ab = (Tab[RowS, ColS] > 0) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) == 0));
+                            Task<bool> th9 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] > 0) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) == 0));
                             th9.Wait();
                             th9.Dispose();
                             if (ab)
@@ -6208,7 +6208,7 @@ namespace RefrigtzDLL
                             }
                             else
                             {
-                                Task<bool> th10 = Task.Run(() => ab = (Tab[RowD, ColD] > 0) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) == 0));
+                                Task<bool> th10 = Task.Factory.StartNew(() => ab = (Tab[RowD, ColD] > 0) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) == 0));
                                 th10.Wait();
                                 th10.Dispose();
                                 if (ab)
@@ -6219,18 +6219,18 @@ namespace RefrigtzDLL
                         }
                     }
 
-                    Task<bool> th11 = Task.Run(() => ab = ((Tab[3, 4] > ObjectGray && Tab[4, 3] > ObjectGray && Tab[3, 3] > ObjectGray && Tab[4, 4] > ObjectGray)) && (!IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 25)));
+                    Task<bool> th11 = Task.Factory.StartNew(() => ab = ((Tab[3, 4] > ObjectGray && Tab[4, 3] > ObjectGray && Tab[3, 3] > ObjectGray && Tab[4, 4] > ObjectGray)) && (!IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 25)));
                     th11.Wait();
                     th11.Dispose();
                     if (!ab)
                     {
-                        Task<bool> th12 = Task.Run(() => ab = IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 32));
+                        Task<bool> th12 = Task.Factory.StartNew(() => ab = IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 32));
                         th12.Wait();
                         th12.Dispose();
                         if (!ab)
                         {
                             int Cor = 0;
-                            Task<int> H3 = Task.Run(() => Cor = RefrigtzDLL.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
+                            Task<int> H3 = Task.Factory.StartNew(() => Cor = RefrigtzDLL.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
                             H3.Wait();
                             H3.Dispose();
 
@@ -6254,7 +6254,7 @@ namespace RefrigtzDLL
                     }
                     if ((Tab[3, 4] < ObjectBrown && Tab[4, 3] < ObjectBrown && Tab[3, 3] < ObjectBrown && Tab[4, 4] < ObjectBrown) || (IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 25)))
                     {
-                        Task<bool> th13 = Task.Run(() => ab = (Tab[RowS, ColS] == -3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0));
+                        Task<bool> th13 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] == -3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0));
                         th13.Wait();
                         th13.Dispose();
                         if (ab)
@@ -6263,7 +6263,7 @@ namespace RefrigtzDLL
                         }
                         else
                         {
-                            Task<bool> th14 = Task.Run(() => ab = (Tab[RowD, ColD] == -3) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0));
+                            Task<bool> th14 = Task.Factory.StartNew(() => ab = (Tab[RowD, ColD] == -3) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0));
                             th14.Wait();
                             th14.Dispose();
                             if (ab)
@@ -6272,7 +6272,7 @@ namespace RefrigtzDLL
                             }
                             else
                             {
-                                Task<bool> th15 = Task.Run(() => ab = (Tab[RowS, ColS] == -3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) == 0));
+                                Task<bool> th15 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] == -3) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) == 0));
                                 th15.Wait();
                                 th15.Dispose();
                                 if (ab)
@@ -6281,7 +6281,7 @@ namespace RefrigtzDLL
                                 }
                                 else
                                 {
-                                    Task<bool> th16 = Task.Run(() => ab = (Tab[RowD, ColD] == -3) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) == 0));
+                                    Task<bool> th16 = Task.Factory.StartNew(() => ab = (Tab[RowD, ColD] == -3) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) == 0));
                                     th16.Wait();
                                     th16.Dispose();
                                     if (ab)
@@ -6292,13 +6292,13 @@ namespace RefrigtzDLL
                             }
                         }
                     }
-                    Task<bool> th17 = Task.Run(() => ab = IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 32));
+                    Task<bool> th17 = Task.Factory.StartNew(() => ab = IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 32));
                     th17.Wait();
                     th17.Dispose();
                     if (ab)
                     {
                         int Cor = 0;
-                        Task<int> H4 = Task.Run(() => Cor = RefrigtzDLL.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
+                        Task<int> H4 = Task.Factory.StartNew(() => Cor = RefrigtzDLL.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
                         H4.Wait();
                         H4.Dispose();
                         if (Cor < Colleralation)
@@ -6311,7 +6311,7 @@ namespace RefrigtzDLL
                             ColleralationBrown = Cor;
                         }
                     }
-                    Task<bool> th18 = Task.Run(() => ab = (Tab[RowS, ColS] < 0) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0));
+                    Task<bool> th18 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] < 0) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) > 0));
                     th18.Wait();
                     th18.Dispose();
                     if (ab)
@@ -6320,7 +6320,7 @@ namespace RefrigtzDLL
                     }
                     else
                     {
-                        Task<bool> th19 = Task.Run(() => ab = (Tab[RowD, ColD] < 0) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0));
+                        Task<bool> th19 = Task.Factory.StartNew(() => ab = (Tab[RowD, ColD] < 0) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) > 0));
                         th19.Wait();
                         th19.Dispose();
                         if (ab)
@@ -6329,7 +6329,7 @@ namespace RefrigtzDLL
                         }
                         else
                         {
-                            Task<bool> th20 = Task.Run(() => ab = (Tab[RowS, ColS] < 0) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) == 0));
+                            Task<bool> th20 = Task.Factory.StartNew(() => ab = (Tab[RowS, ColS] < 0) && (NoOfExistInReducedAttackList(Before, RowS, ColS, RowD, ColD) == 0));
                             th20.Wait();
                             th20.Dispose();
                             if (ab)
@@ -6338,7 +6338,7 @@ namespace RefrigtzDLL
                             }
                             else
                             {
-                                Task<bool> th21 = Task.Run(() => ab = (Tab[RowD, ColD] < 0) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) == 0));
+                                Task<bool> th21 = Task.Factory.StartNew(() => ab = (Tab[RowD, ColD] < 0) && (NoOfExistInReducedAttackList(Before, RowD, ColD, RowS, ColS) == 0));
                                 th21.Wait();
                                 th21.Dispose();
                                 if (ab)
@@ -6353,7 +6353,7 @@ namespace RefrigtzDLL
                         if (!IsNumberOfObjecttIsLessThanThreashold(CloneATable(Tab), 32))
                         {
                             int Cor = 0;
-                            Task<int> H5 = Task.Run(() => Cor = RefrigtzDLL.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
+                            Task<int> H5 = Task.Factory.StartNew(() => Cor = RefrigtzDLL.Colleralation.GetCorrelationScore(TableInitiation, CloneATable(Tab), 8, Order));
                             H5.Wait();
                             H5.Dispose();
 
@@ -6494,7 +6494,7 @@ namespace RefrigtzDLL
                             if (Math.Abs(Table[RowS, ColS]) == 1 && SameSign(Table[RowS, ColS], Table[i, j]))
                             {
                                 bool ab = false;
-                                Task<bool> th = Task.Run(() => ab = Support(CloneATable(Table), i, j, RowS, ColS, color, Order));
+                                Task<bool> th = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), i, j, RowS, ColS, color, Order));
                                 th.Wait();
                                 th.Dispose();
                                 if (ab)
@@ -6507,7 +6507,7 @@ namespace RefrigtzDLL
                             if (Math.Abs(Table[RowD, ColD]) == 1 && SameSign(Table[RowD, ColD], Table[i, j]))
                             {
                                 bool ab = false;
-                                Task<bool> th = Task.Run(() => ab = Support(CloneATable(Table), i, j, RowD, ColD, color, Order));
+                                Task<bool> th = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), i, j, RowD, ColD, color, Order));
                                 th.Wait();
                                 th.Dispose();
                                 if (ab)
@@ -6682,7 +6682,7 @@ namespace RefrigtzDLL
                 object O1 = new object();
                 lock (O1)
                 {
-                    Task output = Task.Run(() =>
+                    Task output = Task.Factory.StartNew(() =>
                     {
                         ParallelOptions po = new ParallelOptions
                         {
@@ -6721,12 +6721,12 @@ namespace RefrigtzDLL
                                                 if (HeuristicA[0] == 0)
                                                 {
                                                     bool ab = false;
-                                                    Task<bool> th = Task.Run(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
+                                                    Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
                                                     th.Wait();
                                                     th.Dispose();
                                                     if (ab)
                                                     {
-                                                        Task<bool> th1 = Task.Run(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                                                        Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
                                                         th1.Wait();
                                                         th1.Dispose();
                                                         if (ab)
@@ -6747,12 +6747,12 @@ namespace RefrigtzDLL
                                             if (HeuristicA[2] == 0)
                                             {
                                                 bool ab = false;
-                                                Task<bool> th = Task.Run(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
+                                                Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Order * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
                                                 th.Wait();
                                                 th.Dispose();
                                                 if (ab)
                                                 {
-                                                    Task<bool> th1 = Task.Run(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                                                    Task<bool> th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
                                                     th1.Wait();
                                                     th1.Dispose();
                                                     if (ab)
@@ -6772,12 +6772,12 @@ namespace RefrigtzDLL
                                             if (HeuristicA[1] == 0)
                                             {
                                                 bool ab = false;
-                                                Task<bool> th = Task.Run(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], false, false));
+                                                Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], false, false));
                                                 th.Wait();
                                                 th.Dispose();
                                                 if (ab)
                                                 {
-                                                    Task<bool> th1 = Task.Run(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                                                    Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
                                                     th1.Wait();
                                                     th1.Dispose();
                                                     if (ab)
@@ -6797,12 +6797,12 @@ namespace RefrigtzDLL
                                              if (HeuristicA[3] == 0)
                                              {
                                                  bool ab = false;
-                                                 Task<bool> th = Task.Run(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], true, false));
+                                                 Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Order, Table[RowS, ColS], Table[RowD, ColD], true, false));
                                                  th.Wait();
                                                  th.Dispose();
                                                  if (ab)
                                                  {
-                                                     Task<bool> th1 = Task.Run(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                                                     Task<bool> th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
                                                      th1.Wait();
                                                      th1.Dispose();
                                                      if (ab)
@@ -7260,12 +7260,12 @@ namespace RefrigtzDLL
                 try
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], false, false));
                     th.Wait();
                     th.Dispose();
                     if (ab)
                     {
-                        Task<bool> th1 = Task.Run(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                        Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
                         th1.Wait();
                         th1.Dispose();
                         if (ab)
@@ -7296,12 +7296,12 @@ namespace RefrigtzDLL
                 try
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, false));
                     th.Wait();
                     th.Dispose();
                     if (ab)
                     {
-                        Task<bool> th1 = Task.Run(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                        Task<bool> th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
                         th1.Wait();
                         th1.Dispose();
                         if (ab)
@@ -7332,12 +7332,12 @@ namespace RefrigtzDLL
                 try
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, true));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Ord * -1, Table[RowD, ColD], Table[RowS, ColS], true, true));
                     th.Wait();
                     th.Dispose();
                     if (ab)
                     {
-                        Task<bool> th1 = Task.Run(() => ab = Movable(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
+                        Task<bool> th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowD, ColD, RowS, ColS, OrderColor(Ord * -1), Ord * -1));
                         th1.Wait();
                         th1.Dispose();
                         if (ab)
@@ -7368,12 +7368,12 @@ namespace RefrigtzDLL
                 try
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], false, false));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], false, false));
                     th.Wait();
                     th.Dispose();
                     if (ab)
                     {
-                        Task<bool> th1 = Task.Run(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                        Task<bool> th1 = Task.Factory.StartNew(() => ab = Attack(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
                         th1.Wait();
                         th1.Dispose();
                         if (ab)
@@ -7404,12 +7404,12 @@ namespace RefrigtzDLL
                 try
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, false));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, false));
                     th.Wait();
                     th.Dispose();
                     if (ab)
                     {
-                        Task<bool> th1 = Task.Run(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                        Task<bool> th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
                         th1.Wait();
                         th1.Dispose();
                         if (ab)
@@ -7440,12 +7440,12 @@ namespace RefrigtzDLL
                 try
                 {
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, true));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = Permit(Ord, Table[RowS, ColS], Table[RowD, ColD], true, true));
                     th.Wait();
                     th.Dispose();
                     if (ab)
                     {
-                        Task<bool> th1 = Task.Run(() => ab = Movable(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
+                        Task<bool> th1 = Task.Factory.StartNew(() => ab = Movable(CloneATable(Table), RowS, ColS, RowD, ColD, OrderColor(Ord), Ord));
                         th1.Wait();
                         th1.Dispose();
                         if (ab)
@@ -7514,9 +7514,9 @@ namespace RefrigtzDLL
                                             return;
                                         }
 
-                                        Task output = Task.Run(() =>
+                                        Task output = Task.Factory.StartNew(() =>
                                         {
-                                            Task H70 = Task.Run(() => ExchangeE(Before, Ord, ref Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, ReducedMove, ToMoved, Table, RowS, ColS, RowD, ColD));
+                                            Task H70 = Task.Factory.StartNew(() => ExchangeE(Before, Ord, ref Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, ReducedMove, ToMoved, Table, RowS, ColS, RowD, ColD));
                                             H70.Wait();
                                             H70.Dispose();
                                         });
@@ -7529,11 +7529,11 @@ namespace RefrigtzDLL
                 }
 
                 //When situation is closed
-                Task H71 = Task.Run(() => ExchangeA(Ord, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked));
+                Task H71 = Task.Factory.StartNew(() => ExchangeA(Ord, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked));
                 H71.Wait();
                 H71.Dispose();
                 //when situation is closed and restriction
-                Task H72 = Task.Run(() => ExchangeB(Ord, ref ExchangeSeed, Exchange, ReducedAttacked, ToAttacked));
+                Task H72 = Task.Factory.StartNew(() => ExchangeB(Ord, ref ExchangeSeed, Exchange, ReducedAttacked, ToAttacked));
                 H72.Wait();
                 H72.Dispose();
                 //Closed space remove
@@ -7543,7 +7543,7 @@ namespace RefrigtzDLL
                 ExchangeSeed[2] = (int)(RationalPenalty * ((A2 / 64.0)));
 
                 //When victorian of self on enemy to consideration of weaker self traversal object at active enemy strong traversal
-                Task H73 = Task.Run(() => ExchangeC(Ord, aa, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, Table, Ros, Cos, Rod, Cod));
+                Task H73 = Task.Factory.StartNew(() => ExchangeC(Ord, aa, ref ExchangeSeed, Exchange, ToSupport, ReducedSupport, ReducedAttacked, ToAttacked, Table, Ros, Cos, Rod, Cod));
                 H73.Wait();
                 H73.Dispose();
                 //Simplification of mathematic method when we have victories
@@ -7551,11 +7551,11 @@ namespace RefrigtzDLL
                 double MAX = 64.0;
                 ExchangeSeed[2] += (int)(RationalRegard * (ExchangedOfGameSimplification / MAX));
                 //Remove of most impressive defensive enemy Objects
-                Task H74 = Task.Run(() => ExchangeD(Before, Ord, MAX, ref ExchangeSeed, RemobeActiveDenfesiveObjectsOfEnemy, ReducedSupport, ReducedAttacked, Table, Ros, Cos, Rod, Cod));
+                Task H74 = Task.Factory.StartNew(() => ExchangeD(Before, Ord, MAX, ref ExchangeSeed, RemobeActiveDenfesiveObjectsOfEnemy, ReducedSupport, ReducedAttacked, Table, Ros, Cos, Rod, Cod));
                 H74.Wait();
                 H74.Dispose();
                 //Safty before Attack
-                Task<double> H7 = Task.Run(() => ExchangeSeed[2] += (RationalPenalty * (NoOfExistInReducedMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedSupportList(Before, Ros, Cos, Rod, Cod))) + (RationalRegard * (NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInSupportList(Before, Ros, Cos, Rod, Cod))));
+                Task<double> H7 = Task.Factory.StartNew(() => ExchangeSeed[2] += (RationalPenalty * (NoOfExistInReducedMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInReducedSupportList(Before, Ros, Cos, Rod, Cod))) + (RationalRegard * (NoOfExistInMoveList(Before, Ros, Cos, Rod, Cod) + NoOfExistInAttackList(Before, Ros, Cos, Rod, Cod) + NoOfExistInSupportList(Before, Ros, Cos, Rod, Cod))));
                 H7.Wait();
                 H7.Dispose();
                 Ord = DummyOrd;
@@ -7572,7 +7572,7 @@ namespace RefrigtzDLL
             lock (o)
             {
                 double A1 = 0;
-                Task<double> H1 = Task.Run(() => A1 = IsSupportLessThanReducedSupport(Exchange[ToSupport], Exchange[ReducedSupport]));
+                Task<double> H1 = Task.Factory.StartNew(() => A1 = IsSupportLessThanReducedSupport(Exchange[ToSupport], Exchange[ReducedSupport]));
                 H1.Wait();
                 H1.Dispose();
                 if (A1 > 0)
@@ -7610,7 +7610,7 @@ namespace RefrigtzDLL
             lock (o)
             {
                 double A1 = 0;
-                Task<double> H2 = Task.Run(() => A1 = IsAttackLessThanReducedAttack(Exchange[ToAttacked], Exchange[ReducedAttacked]));
+                Task<double> H2 = Task.Factory.StartNew(() => A1 = IsAttackLessThanReducedAttack(Exchange[ToAttacked], Exchange[ReducedAttacked]));
                 H2.Wait();
                 H2.Dispose();
                 if (A1 > 0)
@@ -7643,7 +7643,7 @@ namespace RefrigtzDLL
                             int[,] Table6 = CloneATable(Table);
                             int Ord6 = Ord;
                             Color aa6 = aa;
-                            Task<double> H3 = Task.Run(() => HAA6 = HeuristicEnemySupported(ref HA, Table6, Ord6, aa6, i6, j6, iiii6, jjjj6));
+                            Task<double> H3 = Task.Factory.StartNew(() => HAA6 = HeuristicEnemySupported(ref HA, Table6, Ord6, aa6, i6, j6, iiii6, jjjj6));
                             H3.Wait();
                             H3.Dispose();
                         }
@@ -7672,13 +7672,13 @@ namespace RefrigtzDLL
                 double[] ExchangeSeed = ExchangeSeedA;
                 double Defen = RemobeActiveDenfesiveObjectsOfEnemy[Ros, Cos] - RemobeActiveDenfesiveObjectsOfEnemy[Rod, Cod];
                 ExchangeSeed[2] += (int)(RationalRegard * (Defen / MAX) * 4);
-                Task<double> H4 = Task.Run(() => ExchangeSeed[2] += HeuristicPromotion(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
+                Task<double> H4 = Task.Factory.StartNew(() => ExchangeSeed[2] += HeuristicPromotion(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
                 H4.Wait();
                 H4.Dispose();
-                Task<double> H5 = Task.Run(() => ExchangeSeed[2] += HeuristicElephantOpen(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
+                Task<double> H5 = Task.Factory.StartNew(() => ExchangeSeed[2] += HeuristicElephantOpen(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
                 H5.Wait();
                 H5.Dispose();
-                Task<double> H6 = Task.Run(() => ExchangeSeed[2] += HeuristicHourseCloseBaseOfWeakHourseIsWhereIsHomeStrong(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
+                Task<double> H6 = Task.Factory.StartNew(() => ExchangeSeed[2] += HeuristicHourseCloseBaseOfWeakHourseIsWhereIsHomeStrong(Before, CloneATable(Table), Ord, Ros, Cos, Rod, Cod));
                 H6.Wait();
                 H6.Dispose();
                 ExchangeSeedA = ExchangeSeed;
@@ -7869,7 +7869,7 @@ namespace RefrigtzDLL
                 int[,] Table = CloneATable(Tab);
                 //when there is a Movment from Parameter One to Second Parameter return Attacke..
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[i, j], CloneATable(Table), Order)).Rules(i, j, ii, jj, Order));
+                Task<bool> th = Task.Factory.StartNew(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[i, j], CloneATable(Table), Order)).Rules(i, j, ii, jj, Order));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -7902,7 +7902,7 @@ namespace RefrigtzDLL
                 ChessRules.CurrentOrder = Order;
                 ///When [i,j] is Attacked [ii,jj] retrun true when enemy is located in [ii,jj].
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[i, j], CloneATable(Table), Order)).Rules(i, j, ii, jj, Order));
+                Task<bool> th = Task.Factory.StartNew(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[i, j], CloneATable(Table), Order)).Rules(i, j, ii, jj, Order));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -7921,7 +7921,7 @@ namespace RefrigtzDLL
                     //Consider Check.
                     ChessRules AA = new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[ii, jj], CloneATable(Table), Order);
 
-                    Task<bool> th1 = Task.Run(() => ab = AA.ObjectDangourKingMove(Order, CloneATable(Table), false));
+                    Task<bool> th1 = Task.Factory.StartNew(() => ab = AA.ObjectDangourKingMove(Order, CloneATable(Table), false));
                     th1.Wait();
                     th1.Dispose();
                     if (ab)
@@ -7986,7 +7986,7 @@ namespace RefrigtzDLL
                 {
                     ///When [i,j] Supporte [ii,jj].
                     bool ab = false;
-                    Task<bool> th = Task.Run(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[i, j], CloneATable(Table), Order)).Rules(i, j, ii, jj, Table[i, j], false) && SameSign(Table[i, j], Table[ii, jj]));
+                    Task<bool> th = Task.Factory.StartNew(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[i, j], CloneATable(Table), Order)).Rules(i, j, ii, jj, Table[i, j], false) && SameSign(Table[i, j], Table[ii, jj]));
                     th.Wait();
                     th.Dispose();
                     if (ab)
@@ -7999,7 +7999,7 @@ namespace RefrigtzDLL
                     if (Order == -1 && Table[i, j] < 0)
                     {  ///When [i,j] Supporte [ii,jj].
                         bool ab = false;
-                        Task<bool> th = Task.Run(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[i, j], CloneATable(Table), Order)).Rules(i, j, ii, jj, Table[i, j], false) && SameSign(Table[i, j], Table[ii, jj]));
+                        Task<bool> th = Task.Factory.StartNew(() => ab = (new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, Table[i, j], CloneATable(Table), Order)).Rules(i, j, ii, jj, Table[i, j], false) && SameSign(Table[i, j], Table[ii, jj]));
                         th.Wait();
                         th.Dispose();
                         if (ab)
@@ -8427,7 +8427,7 @@ namespace RefrigtzDLL
                         if (ii >= 0 && UsePenaltyRegardMechnisamT)
                         {
                             int Hav = HaveKilled;
-                            Task<double> th = Task.Run(() => Hur = (ReturnHeuristicCalculartor(0, ii, j, Order, ref Hav) * LearniningTable.LearingValue(Row, Column)));
+                            Task<double> th = Task.Factory.StartNew(() => Hur = (ReturnHeuristicCalculartor(0, ii, j, Order, ref Hav) * LearniningTable.LearingValue(Row, Column)));
                             th.Wait();
                             th.Dispose();
                             HaveKilled = Hav;
@@ -8435,7 +8435,7 @@ namespace RefrigtzDLL
                         else
                         {
                             int Hav = HaveKilled;
-                            Task<double> th = Task.Run(() => Hur = ReturnHeuristicCalculartor(0, ii, j, Order, ref Hav));
+                            Task<double> th = Task.Factory.StartNew(() => Hur = ReturnHeuristicCalculartor(0, ii, j, Order, ref Hav));
                             th.Wait();
                             th.Dispose();
                             HaveKilled = Hav;
@@ -8444,7 +8444,7 @@ namespace RefrigtzDLL
                     else
                     {
                         int Hav = HaveKilled;
-                        Task<double> th = Task.Run(() => Hur = ReturnHeuristicCalculartor(0, ii, j, Order, ref Hav) + 1000);
+                        Task<double> th = Task.Factory.StartNew(() => Hur = ReturnHeuristicCalculartor(0, ii, j, Order, ref Hav) + 1000);
                         th.Wait();
                         th.Dispose();
                         HaveKilled = Hav;
@@ -8452,7 +8452,7 @@ namespace RefrigtzDLL
                     //Optimization depend of numbers of unpealties nodes quefficient.
                     if (UsePenaltyRegardMechnisamT)
                     {
-                        Task<double> th = Task.Run(() => Hur *= ((NumbersOfAllNode - NumbersOfCurrentBranchesPenalties) / NumbersOfAllNode));
+                        Task<double> th = Task.Factory.StartNew(() => Hur *= ((NumbersOfAllNode - NumbersOfCurrentBranchesPenalties) / NumbersOfAllNode));
                         th.Wait();
                         th.Dispose();
                         return Hur;
@@ -8849,7 +8849,7 @@ namespace RefrigtzDLL
                             for (int m = 0; m < AStarGreedy[k].SodierMidle; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperSolider(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperSolider(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
                             }
@@ -8857,7 +8857,7 @@ namespace RefrigtzDLL
                             for (int m = 0; m < AStarGreedy[k].ElefantMidle; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperElephant(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperElephant(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8867,7 +8867,7 @@ namespace RefrigtzDLL
                             for (int m = 0; m < AStarGreedy[k].HourseMidle; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperHourse(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperHourse(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8877,7 +8877,7 @@ namespace RefrigtzDLL
                             for (int m = 0; m < AStarGreedy[k].CastleMidle; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperCastle(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperCastle(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8887,7 +8887,7 @@ namespace RefrigtzDLL
                             for (int m = 0; m < AStarGreedy[k].MinisterMidle; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperMinister(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperMinister(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8897,7 +8897,7 @@ namespace RefrigtzDLL
                             for (int m = 0; m < AStarGreedy[k].KingMidle; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperKing(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperKing(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8906,7 +8906,7 @@ namespace RefrigtzDLL
                             for (int m = 0; m < 1; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperCastling(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperCastling(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8918,7 +8918,7 @@ namespace RefrigtzDLL
                             for (int m = AStarGreedy[k].SodierMidle; m < AStarGreedy[k].SodierHigh; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperSolider(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperSolider(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8928,7 +8928,7 @@ namespace RefrigtzDLL
                             for (int m = AStarGreedy[k].ElefantMidle; m < AStarGreedy[k].ElefantHigh; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperElephant(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperElephant(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8938,7 +8938,7 @@ namespace RefrigtzDLL
                             for (int m = AStarGreedy[k].HourseMidle; m < AStarGreedy[k].HourseHight; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperHourse(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperHourse(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8948,7 +8948,7 @@ namespace RefrigtzDLL
                             for (int m = AStarGreedy[k].CastleMidle; m < AStarGreedy[k].CastleHigh; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperCastle(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperCastle(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8958,7 +8958,7 @@ namespace RefrigtzDLL
                             for (int m = AStarGreedy[k].MinisterMidle; m < AStarGreedy[k].MinisterHigh; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperMinister(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperMinister(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8968,7 +8968,7 @@ namespace RefrigtzDLL
                             for (int m = 0; m < 1; m++)
                             {
                                 int hav = HaveKilled;
-                                Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeperCastling(k, m, ii, j, Order, ref hav));
+                                Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeperCastling(k, m, ii, j, Order, ref hav));
                                 th.Wait();
                                 th.Dispose();
 
@@ -8995,7 +8995,7 @@ namespace RefrigtzDLL
                 for (int jj = 0; jj < AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0].TableListCastling.Count; jj++)
                 {
                     int hav = HaveKilled;
-                    Task<double> th = Task.Run(() => Heuristic += AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
+                    Task<double> th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].CastlingOnTable[m].CastlingThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
                     th.Wait();
                     th.Dispose();
                     HaveKilled = hav;
@@ -9019,7 +9019,7 @@ namespace RefrigtzDLL
                 for (int jj = 0; jj < AStarGreedy[k].KingOnTable[m].KingThinking[0].TableListKing.Count; jj++)
                 {
                     int hav = HaveKilled;
-                    Task<double> th = Task.Run(() => Heuristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
+                    Task<double> th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].KingOnTable[m].KingThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
                     th.Wait();
                     th.Dispose();
                     HaveKilled = hav;
@@ -9042,7 +9042,7 @@ namespace RefrigtzDLL
                 for (int jj = 0; jj < AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].TableListMinister.Count; jj++)
                 {
                     int hav = HaveKilled;
-                    Task<double> th = Task.Run(() => Heuristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
+                    Task<double> th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].MinisterOnTable[m].MinisterThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
                     th.Wait();
                     th.Dispose();
                     HaveKilled = hav;
@@ -9066,7 +9066,7 @@ namespace RefrigtzDLL
                 for (int jj = 0; jj < AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].TableListCastle.Count; jj++)
                 {
                     int hav = HaveKilled;
-                    Task<double> th = Task.Run(() => Heuristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
+                    Task<double> th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].CastlesOnTable[m].CastleThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
                     th.Wait();
                     th.Dispose();
                     HaveKilled = hav;
@@ -9090,7 +9090,7 @@ namespace RefrigtzDLL
                 for (int jj = 0; jj < AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].TableListHourse.Count; jj++)
                 {
                     int hav = HaveKilled;
-                    Task<double> th = Task.Run(() => Heuristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
+                    Task<double> th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].HoursesOnTable[m].HourseThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
                     th.Wait();
                     th.Dispose();
                     HaveKilled = hav;
@@ -9114,7 +9114,7 @@ namespace RefrigtzDLL
                 for (int jj = 0; jj < AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].TableListElefant.Count; jj++)
                 {
                     int hav = HaveKilled;
-                    Task<double> th = Task.Run(() => Heuristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
+                    Task<double> th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].ElephantOnTable[m].ElefantThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
                     th.Wait();
                     th.Dispose();
                     HaveKilled = hav;
@@ -9140,7 +9140,7 @@ namespace RefrigtzDLL
                 for (int jj = 0; jj < AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].TableListSolder.Count; jj++)
                 {
                     int hav = HaveKilled;
-                    Task<double> th = Task.Run(() => Heuristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
+                    Task<double> th = Task.Factory.StartNew(() => Heuristic += AStarGreedy[k].SolderesOnTable[m].SoldierThinking[0].ReturnHeuristicCalculartor(0, ii, jj, Order * -1, ref hav));
                     th.Wait();
                     th.Dispose();
                     HaveKilled = hav;
@@ -9300,7 +9300,7 @@ namespace RefrigtzDLL
                     //kiiler Heuristic determination//main deeper Heuristic
                     int hav = HaveKilled;
 
-                    Task<double> th = Task.Run(() => Heuristic += ReturnHeuristicCalculartorKiller(ii, j, Order, ref hav));
+                    Task<double> th = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorKiller(ii, j, Order, ref hav));
                     th.Wait();
                     th.Dispose();
                     HaveKilled = hav;
@@ -9308,7 +9308,7 @@ namespace RefrigtzDLL
                     //main deeper Heuristic
                     hav = HaveKilled;
 
-                    Task<double> th1 = Task.Run(() => Heuristic += ReturnHeuristicCalculartorDeeper(ii, j, Order, ref hav));
+                    Task<double> th1 = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorDeeper(ii, j, Order, ref hav));
                     th1.Wait();
                     th1.Dispose();
                     HaveKilled = hav;
@@ -9318,7 +9318,7 @@ namespace RefrigtzDLL
                     //sufacive Heuristic
                     int hav = HaveKilled;
 
-                    Task<double> th1 = Task.Run(() => Heuristic += ReturnHeuristicCalculartorSurface(j, Order));
+                    Task<double> th1 = Task.Factory.StartNew(() => Heuristic += ReturnHeuristicCalculartorSurface(j, Order));
                     th1.Wait();
                     th1.Dispose();
                     HaveKilled = hav;
@@ -9604,7 +9604,7 @@ namespace RefrigtzDLL
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                Task<bool> th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -9612,7 +9612,7 @@ namespace RefrigtzDLL
                     LearningMachine.QuantumAtamata Current = new LearningMachine.QuantumAtamata(3, 3, 3);
                     int CheckedM = 0; bool PenaltyVCar = false;
                     bool Sup = false;
-                    Task newTask1 = Task.Run(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
+                    Task newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                     newTask1.Wait(); newTask1.Dispose();
 
                     if (!Sup)
@@ -9629,7 +9629,7 @@ namespace RefrigtzDLL
                     object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -9640,7 +9640,7 @@ namespace RefrigtzDLL
                     }
                     bool ac=false;
                     int Killed = 0;
-                    newTask1 = Task.Run(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     if (!ac)
                     {
@@ -9655,13 +9655,13 @@ namespace RefrigtzDLL
                         {
                             PenaltyVCar = false;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            newTask1 = Task.Run(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
+                            newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
                     }
                     ///Store of Indexes Changes and Table in specific List.
-                    newTask1 = Task.Run(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                    newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     ///Wehn Predict of Operation Do operate a Predict of this movments.
                     object A5 = new object();
@@ -9670,7 +9670,7 @@ namespace RefrigtzDLL
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -9688,7 +9688,7 @@ namespace RefrigtzDLL
                             {
                                 //if (IgnoreFromCheckandMateHeuristic)
 
-                                newTask1 = Task.Run(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                                newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                                 newTask1.Wait(); newTask1.Dispose();
                                 H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
                                 HeuristicListKing.Add(Hu);
@@ -9701,14 +9701,14 @@ namespace RefrigtzDLL
                     }
                     else
                     {
-                        newTask1 = Task.Run(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         double[] Hu = new double[10];
-                        newTask1 = Task.Run(() => HuMethodSup(ref Hu));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
                         newTask1.Wait(); newTask1.Dispose();
 
                         string H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
-                        newTask1 = Task.Run(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                        newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
                         newTask1.Wait(); newTask1.Dispose();
                     }
                 }
@@ -9740,7 +9740,7 @@ namespace RefrigtzDLL
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                Task<bool> th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -9748,7 +9748,7 @@ namespace RefrigtzDLL
                     LearningMachine.QuantumAtamata Current = new LearningMachine.QuantumAtamata(3, 3, 3);
                     int CheckedM = 0; bool PenaltyVCar = false;
                     bool Sup = false;
-                    Task newTask1 = Task.Run(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
+                    Task newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                     newTask1.Wait(); newTask1.Dispose();
                     if (!Sup)
                     {
@@ -9764,7 +9764,7 @@ namespace RefrigtzDLL
                     object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -9775,7 +9775,7 @@ namespace RefrigtzDLL
                     }
                     bool ac=false;
                     int Killed = 0;
-                    newTask1 = Task.Run(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     if (!ac)
                     {
@@ -9790,13 +9790,13 @@ namespace RefrigtzDLL
                         {
                             PenaltyVCar = false;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            newTask1 = Task.Run(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
+                            newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
                     }
                     ///Store of Indexes Changes and Table in specific List.
-                    newTask1 = Task.Run(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                    newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     ///Wehn Predict of Operation Do operate a Predict of this movments.
                     object A5 = new object();
@@ -9805,7 +9805,7 @@ namespace RefrigtzDLL
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -9823,7 +9823,7 @@ namespace RefrigtzDLL
                             {
                                 //if (IgnoreFromCheckandMateHeuristic)
 
-                                newTask1 = Task.Run(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                                newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                                 newTask1.Wait(); newTask1.Dispose();
                                 H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
                                 HeuristicListMinister.Add(Hu);
@@ -9836,15 +9836,15 @@ namespace RefrigtzDLL
                     }
                     else
                     {
-                        newTask1 = Task.Run(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         double[] Hu = new double[10];
-                        newTask1 = Task.Run(() => HuMethodSup(ref Hu));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
                         newTask1.Wait(); newTask1.Dispose();
 
                         string H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
 
-                        newTask1 = Task.Run(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                        newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
                         newTask1.Wait(); newTask1.Dispose();
                     }
                 }
@@ -9904,7 +9904,7 @@ namespace RefrigtzDLL
                                     }
 
                                     bool ab = false;
-                                    Task<bool> th = Task.Run(() => ab = Attack(CloneATable(TableS), ii, jj, i, j, a, Order * -1));
+                                    Task<bool> th = Task.Factory.StartNew(() => ab = Attack(CloneATable(TableS), ii, jj, i, j, a, Order * -1));
                                     th.Wait();
                                     th.Dispose();
                                     if (ab)
@@ -9932,7 +9932,7 @@ namespace RefrigtzDLL
                                                     a = Color.Brown;
                                                 }
 
-                                                Task<bool> th1 = Task.Run(() => ab = Support(CloneATable(TableS), RowS, ColS, i, j, a, Order));
+                                                Task<bool> th1 = Task.Factory.StartNew(() => ab = Support(CloneATable(TableS), RowS, ColS, i, j, a, Order));
                                                 th1.Wait();
                                                 th1.Dispose();
                                                 if (ab)
@@ -10151,14 +10151,14 @@ namespace RefrigtzDLL
                 lock (O11)
                 {
                     //when true there is attack not supported.
-                    Task<bool> newTask = Task.Run(() => IsPrviousMovemntIsDangrousForCurr = IsPrviousMovemntIsDangrousForCurrent(CloneATable(TableS), Order));
+                    Task<bool> newTask = Task.Factory.StartNew(() => IsPrviousMovemntIsDangrousForCurr = IsPrviousMovemntIsDangrousForCurrent(CloneATable(TableS), Order));
                     newTask.Wait();
                     newTask.Dispose();
                     //when true must penalty
                     if (!IsPrviousMovemntIsDangrousForCurr)
                     {
                         //when dangerouse Move that in it not supported true.
-                        newTask = Task.Run(() => SelfNotSupported = InAttackSelfThatNotSupported(CloneATable(TableS), Order, color, i, j, ii, jj));
+                        newTask = Task.Factory.StartNew(() => SelfNotSupported = InAttackSelfThatNotSupported(CloneATable(TableS), Order, color, i, j, ii, jj));
                         newTask.Wait();
                         newTask.Dispose();
                     } //when true must regard
@@ -10169,7 +10169,7 @@ namespace RefrigtzDLL
                     //For All Current
                     bool[] LearningVars = new bool[3];
                     //every true must have cost.
-                    Task.Run(() => LearningVars = SomeLearningVarsCalculator(CloneATable(TableS), ii, jj, i, j));
+                    Task.Factory.StartNew(() => LearningVars = SomeLearningVarsCalculator(CloneATable(TableS), ii, jj, i, j));
                     object O4 = new object();
                     lock (O4)
                     {
@@ -10194,7 +10194,7 @@ namespace RefrigtzDLL
                             int Ord1 = AllDraw.OrderPlate;
                             int Ord2 = AllDraw.OrderPlate * -1;
                             //when is true must penalty(Superposition)
-                            Task.Run(() => Is = IsNextMovmentIsCheckOrCheckMateForCurrentMovment(CloneATable(Tab), Ord, Depth, Ord1, Ord2, true));
+                            Task.Factory.StartNew(() => Is = IsNextMovmentIsCheckOrCheckMateForCurrentMovment(CloneATable(Tab), Ord, Depth, Ord1, Ord2, true));
                             //A
                         }
                         object OO1 = new object();
@@ -10239,45 +10239,45 @@ namespace RefrigtzDLL
                             }
                         }
                     }
-                    newTask = Task.Run(() => EnemyNotSupported = InAttackEnemyThatIsNotSupportedAll(IsTowValuableObjectEnemy, CloneATable(TableS), Order, color, ref ValuableEnemyNotSupported));
+                    newTask = Task.Factory.StartNew(() => EnemyNotSupported = InAttackEnemyThatIsNotSupportedAll(IsTowValuableObjectEnemy, CloneATable(TableS), Order, color, ref ValuableEnemyNotSupported));
                     newTask.Wait();
                     newTask.Dispose();
                     if (!EnemyNotSupported)
                     {
-                        newTask = Task.Run(() => EnemyNotSupported = InAttackEnemyThatIsNotSupportedAll(IsTowValuableObjectEnemy, CloneATable(TableS), Order, color, ref ValuableEnemyNotSupported));
+                        newTask = Task.Factory.StartNew(() => EnemyNotSupported = InAttackEnemyThatIsNotSupportedAll(IsTowValuableObjectEnemy, CloneATable(TableS), Order, color, ref ValuableEnemyNotSupported));
                         newTask.Wait();
                         newTask.Dispose();
                     }
                     if (!EnemyNotSupported)
                     {
                         //when is true must regard.
-                        newTask = Task.Run(() => IsCurrentCanGardHighPriorityEne = IsCurrentCanGardHighPriorityEnemy(0, CloneATable(TableS), Order, color, i, j, ii, jj, Order));
+                        newTask = Task.Factory.StartNew(() => IsCurrentCanGardHighPriorityEne = IsCurrentCanGardHighPriorityEnemy(0, CloneATable(TableS), Order, color, i, j, ii, jj, Order));
                         newTask.Wait();
                         newTask.Dispose();
                     }
 
                      if ((!IsNextMovemntIsCheckOrCheckMateForCurrent) && (!SelfNotSupported) && (!IsPrviousMovemntIsDangrousForCurr) && (!IsGardForCurrentMovmentsAndIsNotMova) && (!IsNotSafeToMoveAenemeyToAttackMoreThanTowObj) && (!IsDangerous))
                      {
-                         newTask = Task.Run(() => EnemyNotSupported = InAttackEnemyThatIsNotSupportedAll(IsTowValuableObjectEnemy, CloneATable(TableS), Order, color, ref ValuableEnemyNotSupported));
+                         newTask = Task.Factory.StartNew(() => EnemyNotSupported = InAttackEnemyThatIsNotSupportedAll(IsTowValuableObjectEnemy, CloneATable(TableS), Order, color, ref ValuableEnemyNotSupported));
                          newTask.Wait();
                          newTask.Dispose();
                      }
                      if ((!IsNextMovemntIsCheckOrCheckMateForCurrent) && (!SelfNotSupported) && (!IsPrviousMovemntIsDangrousForCurr) && (!IsGardForCurrentMovmentsAndIsNotMova) && (!IsNotSafeToMoveAenemeyToAttackMoreThanTowObj) && (!EnemyNotSupported) && (!IsDangerous))
                      {
-                         newTask = Task.Run(() => EnemyNotSupported = InAttackEnemyThatIsNotSupported(Killed, CloneATable(TableS), Order, color, i, j, ii, jj));
+                         newTask = Task.Factory.StartNew(() => EnemyNotSupported = InAttackEnemyThatIsNotSupported(Killed, CloneATable(TableS), Order, color, i, j, ii, jj));
                          newTask.Wait();
                          newTask.Dispose();
                      }
                      if ((!IsNextMovemntIsCheckOrCheckMateForCurrent) && (!SelfNotSupported) && (!IsPrviousMovemntIsDangrousForCurr) && (!IsGardForCurrentMovmentsAndIsNotMova) && (!IsNotSafeToMoveAenemeyToAttackMoreThanTowObj) && (!EnemyNotSupported) && (!IsDangerous))
                      {
-                         newTask = Task.Run(() => EnemyNotSupported = InAttackEnemyThatIsNotSupportedAll(IsTowValuableObjectEnemy, CloneATable(TableS), Order, color, ref ValuableEnemyNotSupported));
+                         newTask = Task.Factory.StartNew(() => EnemyNotSupported = InAttackEnemyThatIsNotSupportedAll(IsTowValuableObjectEnemy, CloneATable(TableS), Order, color, ref ValuableEnemyNotSupported));
                          newTask.Wait();
                          newTask.Dispose();
                      }
                      if (CurrentAStarGredyMax == 0 && (!IsNextMovemntIsCheckOrCheckMateForCurrent) && (!SelfNotSupported) && (!IsPrviousMovemntIsDangrousForCurr) && (!IsGardForCurrentMovmentsAndIsNotMova) && (!IsNotSafeToMoveAenemeyToAttackMoreThanTowObj) && (!EnemyNotSupported) && (!IsDangerous))
                      {
                          //when is true must regard.
-                         newTask = Task.Run(() => IsCurrentCanGardHighPriorityEne = IsCurrentCanGardHighPriorityEnemy(0, CloneATable(TableS), Order, color, i, j, ii, jj, Order));
+                         newTask = Task.Factory.StartNew(() => IsCurrentCanGardHighPriorityEne = IsCurrentCanGardHighPriorityEnemy(0, CloneATable(TableS), Order, color, i, j, ii, jj, Order));
                          newTask.Wait();
                          newTask.Dispose();
                      }
@@ -10340,7 +10340,7 @@ namespace RefrigtzDLL
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                Task<bool> th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10348,7 +10348,7 @@ namespace RefrigtzDLL
                     LearningMachine.QuantumAtamata Current = new LearningMachine.QuantumAtamata(3, 3, 3);
                     int CheckedM = 0; bool PenaltyVCar = false;
                     bool Sup = false;
-                    Task newTask1 = Task.Run(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
+                    Task newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                     newTask1.Wait(); newTask1.Dispose();
 
                     if (!Sup)
@@ -10365,7 +10365,7 @@ namespace RefrigtzDLL
                     object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -10376,7 +10376,7 @@ namespace RefrigtzDLL
                     }
                     bool ac=false;
                     int Killed = 0;
-                    newTask1 = Task.Run(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     if (!ac)
                     {
@@ -10391,13 +10391,13 @@ namespace RefrigtzDLL
                         {
                             PenaltyVCar = false;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            newTask1 = Task.Run(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
+                            newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
                     }
                     ///Store of Indexes Changes and Table in specific List.
-                    newTask1 = Task.Run(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                    newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     ///Wehn Predict of Operation Do operate a Predict of this movments.
                     object A5 = new object();
@@ -10406,7 +10406,7 @@ namespace RefrigtzDLL
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -10424,7 +10424,7 @@ namespace RefrigtzDLL
                             {
                                 //if (IgnoreFromCheckandMateHeuristic)
 
-                                newTask1 = Task.Run(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                                newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                                 newTask1.Wait(); newTask1.Dispose();
                                 H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
                                 HeuristicListCastle.Add(Hu);
@@ -10437,14 +10437,14 @@ namespace RefrigtzDLL
                     }
                     else
                     {
-                        newTask1 = Task.Run(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         double[] Hu = new double[10];
-                        newTask1 = Task.Run(() => HuMethodSup(ref Hu));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
                         newTask1.Wait(); newTask1.Dispose();
 
                         string H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
-                        newTask1 = Task.Run(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                        newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
                         newTask1.Wait(); newTask1.Dispose();
                     }
                 }
@@ -10476,7 +10476,7 @@ namespace RefrigtzDLL
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                Task<bool> th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10484,7 +10484,7 @@ namespace RefrigtzDLL
                     LearningMachine.QuantumAtamata Current = new LearningMachine.QuantumAtamata(3, 3, 3);
                     int CheckedM = 0; bool PenaltyVCar = false;
                     bool Sup = false;
-                    Task newTask1 = Task.Run(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
+                    Task newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                     newTask1.Wait(); newTask1.Dispose();
                     if (!Sup)
                     {
@@ -10500,7 +10500,7 @@ namespace RefrigtzDLL
                     object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -10511,7 +10511,7 @@ namespace RefrigtzDLL
                     }
                     bool ac=false;
                     int Killed = 0;
-                    newTask1 = Task.Run(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     if (!ac)
                     {
@@ -10526,13 +10526,13 @@ namespace RefrigtzDLL
                         {
                             PenaltyVCar = false;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            newTask1 = Task.Run(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
+                            newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
                     }
                     ///Store of Indexes Changes and Table in specific List.
-                    newTask1 = Task.Run(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                    newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     ///Wehn Predict of Operation Do operate a Predict of this movments.
                     object A5 = new object();
@@ -10541,7 +10541,7 @@ namespace RefrigtzDLL
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -10559,7 +10559,7 @@ namespace RefrigtzDLL
                             {
                                 //if (IgnoreFromCheckandMateHeuristic)
 
-                                newTask1 = Task.Run(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                                newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                                 newTask1.Wait(); newTask1.Dispose();
                                 H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
                                 HeuristicListHourse.Add(Hu);
@@ -10572,14 +10572,14 @@ namespace RefrigtzDLL
                     }
                     else
                     {
-                        newTask1 = Task.Run(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         double[] Hu = new double[10];
-                        newTask1 = Task.Run(() => HuMethodSup(ref Hu));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
                         newTask1.Wait(); newTask1.Dispose();
 
                         string H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
-                        newTask1 = Task.Run(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                        newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
                         newTask1.Wait(); newTask1.Dispose();
                     }
                 }
@@ -10612,7 +10612,7 @@ namespace RefrigtzDLL
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                Task<bool> th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -10620,7 +10620,7 @@ namespace RefrigtzDLL
                     LearningMachine.QuantumAtamata Current = new LearningMachine.QuantumAtamata(3, 3, 3);
                     int CheckedM = 0; bool PenaltyVCar = false;
                     bool Sup = false;
-                    Task newTask1 = Task.Run(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
+                    Task newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                     newTask1.Wait(); newTask1.Dispose();
                     if (!Sup)
                     {
@@ -10636,7 +10636,7 @@ namespace RefrigtzDLL
                     object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -10647,7 +10647,7 @@ namespace RefrigtzDLL
                     }
                     bool ac=false;
                     int Killed = 0;
-                    newTask1 = Task.Run(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
+                    newTask1 = Task.Factory.StartNew(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     if (!ac)
                     {
@@ -10662,13 +10662,13 @@ namespace RefrigtzDLL
                         {
                             PenaltyVCar = false;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            newTask1 = Task.Run(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
+                            newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
                     }
                     ///Store of Indexes Changes and Table in specific List.
-                    newTask1 = Task.Run(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                    newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     ///Wehn Predict of Operation Do operate a Predict of this movments.
                     object A5 = new object();
@@ -10677,7 +10677,7 @@ namespace RefrigtzDLL
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -10696,7 +10696,7 @@ namespace RefrigtzDLL
                             {
                                 //if (IgnoreFromCheckandMateHeuristic)
 
-                                newTask1 = Task.Run(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                                newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                                 newTask1.Wait(); newTask1.Dispose();
                                 H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
                                 HeuristicListElefant.Add(Hu);
@@ -10709,14 +10709,14 @@ namespace RefrigtzDLL
                     }
                     else
                     {
-                        newTask1 = Task.Run(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         double[] Hu = new double[10];
-                        newTask1 = Task.Run(() => HuMethodSup(ref Hu));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
                         newTask1.Wait(); newTask1.Dispose();
 
                         string H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
-                        newTask1 = Task.Run(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                        newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
                         newTask1.Wait(); newTask1.Dispose();
                     }
                 }
@@ -11170,49 +11170,49 @@ namespace RefrigtzDLL
                 {
                     if (kind == 1 && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListSolder != null && PenaltyRegardListSolder.Count == TableListSolder.Count)
                     {
-                        Task<bool[]> newTask2 = Task.Run(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
+                        Task<bool[]> newTask2 = Task.Factory.StartNew(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
                         newTask2.Wait();
                         newTask2.Dispose();
                     }
                     else
                      if (kind == 2 && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListElefant != null && PenaltyRegardListElefant.Count == TableListElefant.Count)
                     {
-                        Task<bool[]> newTask2 = Task.Run(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
+                        Task<bool[]> newTask2 = Task.Factory.StartNew(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
                         newTask2.Wait();
                         newTask2.Dispose();
                     }
                     else
                         if (kind == 3 && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListHourse != null && PenaltyRegardListHourse.Count == TableListHourse.Count)
                     {
-                        Task<bool[]> newTask2 = Task.Run(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
+                        Task<bool[]> newTask2 = Task.Factory.StartNew(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
                         newTask2.Wait();
                         newTask2.Dispose();
                     }
                     else
                         if (kind == 4 && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListCastle != null && PenaltyRegardListCastle.Count == TableListCastle.Count)
                     {
-                        Task<bool[]> newTask2 = Task.Run(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
+                        Task<bool[]> newTask2 = Task.Factory.StartNew(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
                         newTask2.Wait();
                         newTask2.Dispose();
                     }
                     else
                             if (kind == 5 && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListMinister != null && PenaltyRegardListMinister.Count == TableListMinister.Count)
                     {
-                        Task<bool[]> newTask2 = Task.Run(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
+                        Task<bool[]> newTask2 = Task.Factory.StartNew(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
                         newTask2.Wait();
                         newTask2.Dispose();
                     }
                     else
                                 if (kind == 6 && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListKing != null && PenaltyRegardListKing.Count == TableListKing.Count)
                     {
-                        Task<bool[]> newTask2 = Task.Run(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
+                        Task<bool[]> newTask2 = Task.Factory.StartNew(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
                         newTask2.Wait();
                         newTask2.Dispose();
                     }
                     else
                                 if ((kind == 7 || Kind == -7) && PenRegStrore && UsePenaltyRegardMechnisamT && PenaltyRegardListCastling != null && PenaltyRegardListCastling.Count == TableListCastling.Count)
                     {
-                        Task<bool[]> newTask2 = Task.Run(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
+                        Task<bool[]> newTask2 = Task.Factory.StartNew(() => LearningV = CalculateLearningVars(Killed, CloneATable(TableS), ii, jj, i, j));
                         newTask2.Wait();
                         newTask2.Dispose();
                     }
@@ -12021,7 +12021,7 @@ namespace RefrigtzDLL
                 ChessRules.CurrentOrder = DummyCurrentOrder;
                 ///When There is Movments.
                 bool ab = false;
-                Task<bool> th = Task.Run(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
+                Task<bool> th = Task.Factory.StartNew(() => ab = ThinkingChessRuleThinking(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination));
                 th.Wait();
                 th.Dispose();
                 if (ab)
@@ -12030,12 +12030,12 @@ namespace RefrigtzDLL
                     LearningMachine.QuantumAtamata Current = new LearningMachine.QuantumAtamata(3, 3, 3);
                     int CheckedM = 0; bool PenaltyVCar = false;
                     bool Sup = false;
-                    Task newTask1 = Task.Run(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
+                    Task newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                     newTask1.Wait(); newTask1.Dispose();
 
                     if (!Sup)
                     {
-                        newTask1 = Task.Run(() => SoldierConversion(ref t, RowSource, ColumnSource, RowDestination, ColumnDestination, TableS));
+                        newTask1 = Task.Factory.StartNew(() => SoldierConversion(ref t, RowSource, ColumnSource, RowDestination, ColumnDestination, TableS));
                         newTask1.Wait(); newTask1.Dispose();
                         ///Add Table to List of Private.
                         HitNumberSoldier.Add(TableS[RowDestination, ColumnDestination]);
@@ -12049,7 +12049,7 @@ namespace RefrigtzDLL
                     object A = new object();
                     lock (A)
                     {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -12060,7 +12060,7 @@ namespace RefrigtzDLL
                     }
                     bool ac=false;
                     int Killed = 0;
-                    newTask1 = Task.Run(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS, t));
+                    newTask1 = Task.Factory.StartNew(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS, t));
                     newTask1.Wait(); newTask1.Dispose();
                     if (!ac)
                     {
@@ -12075,13 +12075,13 @@ namespace RefrigtzDLL
                         {
                             PenaltyVCar = false;
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            newTask1 = Task.Run(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
+                            newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
                     }
                     ///Store of Indexes Changes and Table in specific List.
-                    newTask1 = Task.Run(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                    newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
                     newTask1.Wait(); newTask1.Dispose();
                     ///Wehn Predict of Operation Do operate a Predict of this movments.
                     object A5 = new object();
@@ -12090,7 +12090,7 @@ namespace RefrigtzDLL
                         //Caused this for Stachostic results.
                         if (!Sup)
                         {
-                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                            int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                         }
@@ -12108,7 +12108,7 @@ namespace RefrigtzDLL
                             {
                                 //if (IgnoreFromCheckandMateHeuristic)
 
-                                newTask1 = Task.Run(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                                newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                                 newTask1.Wait(); newTask1.Dispose();
                                 H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
                                 HeuristicListSolder.Add(Hu);
@@ -12121,14 +12121,14 @@ namespace RefrigtzDLL
                     }
                     else
                     {
-                        newTask1 = Task.Run(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         double[] Hu = new double[10];
-                        newTask1 = Task.Run(() => HuMethodSup(ref Hu));
+                        newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
                         newTask1.Wait(); newTask1.Dispose();
 
                         string H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
-                        newTask1 = Task.Run(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                        newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
                         newTask1.Wait(); newTask1.Dispose();
                     }
                 }
@@ -12159,7 +12159,7 @@ namespace RefrigtzDLL
                 LearningMachine.QuantumAtamata Current = new LearningMachine.QuantumAtamata(3, 3, 3);
                 int CheckedM = 0; bool PenaltyVCar = false;
                 bool Sup = false;
-                Task newTask1 = Task.Run(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
+                Task newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                 newTask1.Wait(); newTask1.Dispose();
                 if (!Sup)
                 {
@@ -12175,7 +12175,7 @@ namespace RefrigtzDLL
                 object A = new object();
                 lock (A)
                 {
-                    int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                    int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                     newTask1.Wait(); newTask1.Dispose();
                     LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                 }
@@ -12186,7 +12186,7 @@ namespace RefrigtzDLL
                 }
                 bool ac=false;
                 int Killed = 0;
-                newTask1 = Task.Run(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
+                newTask1 = Task.Factory.StartNew(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                 newTask1.Wait(); newTask1.Dispose();
                 if (!ac)
                 {
@@ -12201,13 +12201,13 @@ namespace RefrigtzDLL
                     {
                         PenaltyVCar = false;
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        newTask1 = Task.Run(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
+                        newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
                 }
                 ///Store of Indexes Changes and Table in specific List.
-                newTask1 = Task.Run(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
                 newTask1.Wait(); newTask1.Dispose();
                 ///Wehn Predict of Operation Do operate a Predict of this movments.
                 object A5 = new object();
@@ -12216,7 +12216,7 @@ namespace RefrigtzDLL
                     //Caused this for Stachostic results.
                     if (!Sup)
                     {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -12234,7 +12234,7 @@ namespace RefrigtzDLL
                         {
                             //if (IgnoreFromCheckandMateHeuristic)
 
-                            newTask1 = Task.Run(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                            newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
                             HeuristicListCastling.Add(Hu);
@@ -12247,15 +12247,15 @@ namespace RefrigtzDLL
                 }
                 else
                 {
-                    newTask1 = Task.Run(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                    newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                     newTask1.Wait(); newTask1.Dispose();
                     double[] Hu = new double[10];
-                    newTask1 = Task.Run(() => HuMethodSup(ref Hu));
+                    newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
                     newTask1.Wait(); newTask1.Dispose();
 
                     string H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
 
-                    newTask1 = Task.Run(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                    newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
                     newTask1.Wait(); newTask1.Dispose();
                 }
             }
@@ -12318,7 +12318,7 @@ namespace RefrigtzDLL
                 double[] Heuristic = null;
                 double[] Exchange = new double[3];
                 double[] HeuristicRemain = new double[6];
-                Task output = Task.Run(() =>
+                Task output = Task.Factory.StartNew(() =>
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
@@ -12344,7 +12344,7 @@ namespace RefrigtzDLL
                 });
 
                 output.Wait(); output.Dispose();
-                Task output1 = Task.Run(() =>
+                Task output1 = Task.Factory.StartNew(() =>
                 {
                     //if (!feedCancellationTokenSource.IsCancellationRequested)
                     {
@@ -12446,7 +12446,7 @@ namespace RefrigtzDLL
 
                     int[,] TableSS = CloneATable(TableS);
                     int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                    Task<double[]> H = Task.Run(() => Heuristic = HeuristicAll(Killed, TableSS, Order));
+                    Task<double[]> H = Task.Factory.StartNew(() => Heuristic = HeuristicAll(Killed, TableSS, Order));
                     H.Wait();
                     H.Dispose();
                 }
@@ -12473,7 +12473,7 @@ namespace RefrigtzDLL
 
                     int[,] TableSS = CloneATable(TableS);
                     int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
-                    Task<double[]> H = Task.Run(() => Exchange = HeuristicExchange(Before, Killed, TableSS, color, Order, RowS, ColS, RowD, ColD));
+                    Task<double[]> H = Task.Factory.StartNew(() => Exchange = HeuristicExchange(Before, Killed, TableSS, color, Order, RowS, ColS, RowD, ColD));
                     H.Wait();
                     H.Dispose();
                 }
@@ -12505,7 +12505,7 @@ namespace RefrigtzDLL
 
                         int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
                         int[,] TableSS = CloneATable(TableS);
-                        Task<double> H = Task.Run(() => HeuristicRemain = HeuristicCheckAndCheckMate(ref HA, RoS, CoS, RoD, CoD, TableSS, color//, ref HeuristicReducedMovementValue
+                        Task<double> H = Task.Factory.StartNew(() => HeuristicRemain = HeuristicCheckAndCheckMate(ref HA, RoS, CoS, RoD, CoD, TableSS, color//, ref HeuristicReducedMovementValue
                         ));
                         H.Wait();
                         H.Dispose();
@@ -12537,7 +12537,7 @@ namespace RefrigtzDLL
 
                         int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
                         int[,] TableSS = CloneATable(TableS);
-                        Task<double> H = Task.Run(() => HeuristicRemain = HeuristicDistribution(Before, TableSS, Order, color, RowS, ColS, RowD, ColD//, ref HeuristicDistributionValue
+                        Task<double> H = Task.Factory.StartNew(() => HeuristicRemain = HeuristicDistribution(Before, TableSS, Order, color, RowS, ColS, RowD, ColD//, ref HeuristicDistributionValue
                              ));
                         H.Wait();
                         H.Dispose();
@@ -12566,7 +12566,7 @@ namespace RefrigtzDLL
 
                     int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
                     int[,] TableSS = CloneATable(TableS);
-                    Task<double> H = Task.Run(() => HeuristicRemain = HeuristicKingSafety(ref HA, TableSS, Order, RoS, CoS//, ref HeuristicKingSafe
+                    Task<double> H = Task.Factory.StartNew(() => HeuristicRemain = HeuristicKingSafety(ref HA, TableSS, Order, RoS, CoS//, ref HeuristicKingSafe
                          ));
                     H.Wait();
                     H.Dispose();
@@ -12597,7 +12597,7 @@ namespace RefrigtzDLL
 
                     int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
                     int[,] TableSS = CloneATable(TableS);
-                    Task<double> H = Task.Run(() => HeuristicRemain = HeuristicKingPreventionOfCheckedAtBegin(ref HA, TableSS, Order, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
+                    Task<double> H = Task.Factory.StartNew(() => HeuristicRemain = HeuristicKingPreventionOfCheckedAtBegin(ref HA, TableSS, Order, CurrentAStarGredyMax, RoS, CoS, RoD, CoD//, ref HeuristicKingSafe
                     ));
                     H.Wait();
                     H.Dispose();
@@ -12627,7 +12627,7 @@ namespace RefrigtzDLL
 
                         int RoS = RowS, CoS = ColS, RoD = RowD, CoD = ColD;
                         int[,] TableSS = CloneATable(TableS);
-                        Task<double> H = Task.Run(() => HeuristicRemain = HeuristicObjectAtCenterAndPawnAttackTraversalObjectsAndDangourForEnemy(ref HA, TableSS, color, Order, RoS, CoS, RoD, CoD));
+                        Task<double> H = Task.Factory.StartNew(() => HeuristicRemain = HeuristicObjectAtCenterAndPawnAttackTraversalObjectsAndDangourForEnemy(ref HA, TableSS, color, Order, RoS, CoS, RoD, CoD));
                         H.Wait();
                         H.Dispose();
                     }
@@ -12668,7 +12668,7 @@ namespace RefrigtzDLL
                             colorE = Color.Brown;
                         }
 
-                        Task<double> H = Task.Run(() => HeuristicRemain = HeuristicBetterSpace(ref HA, TableSS, color, colorE, Order, Order * -1));
+                        Task<double> H = Task.Factory.StartNew(() => HeuristicRemain = HeuristicBetterSpace(ref HA, TableSS, color, colorE, Order, Order * -1));
                         H.Wait();
                         H.Dispose();
                     }
@@ -12813,13 +12813,13 @@ namespace RefrigtzDLL
                                         {
                                             int Killed = Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
                                             Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
-                                            Task<double[]> th1 = Task.Run(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]));
+                                            Task<double[]> th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]));
                                             th1.Wait();
                                             th1.Dispose();
-                                            Task th2 = Task.Run(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3], Order));
+                                            Task th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3], Order));
                                             th2.Wait();
                                             th2.Dispose();
-                                            Task<int> th3 = Task.Run(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
+                                            Task<int> th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
                                             th3.Wait();
                                             th3.Dispose();
                                         }
@@ -12849,13 +12849,13 @@ namespace RefrigtzDLL
                                         {
                                             int Killed = Math.Abs(Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]]);
                                             Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
-                                            Task<double[]> th1 = Task.Run(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]));
+                                            Task<double[]> th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]));
                                             th1.Wait();
                                             th1.Dispose();
-                                            Task th2 = Task.Run(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3], Order));
+                                            Task th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[0][i][j][0], AchmazPure[0][i][j][1], AchmazPure[0][i][j][2], AchmazPure[0][i][j][3], Order));
                                             th2.Wait();
                                             th2.Dispose();
-                                            Task<int> th3 = Task.Run(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
+                                            Task<int> th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
                                             th3.Wait();
                                             th3.Dispose();
                                         }
@@ -12941,13 +12941,13 @@ namespace RefrigtzDLL
                                         {
                                             int Killed = Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
                                             Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
-                                            Task<double[]> th1 = Task.Run(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]));
+                                            Task<double[]> th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]));
                                             th1.Wait();
                                             th1.Dispose();
-                                            Task th2 = Task.Run(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3], Order));
+                                            Task th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3], Order));
                                             th2.Wait();
                                             th2.Dispose();
-                                            Task<int> th3 = Task.Run(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
+                                            Task<int> th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
                                             th3.Wait();
                                             th3.Dispose();
                                         }
@@ -12972,13 +12972,13 @@ namespace RefrigtzDLL
                                         {
                                             int Killed = Math.Abs(Tab[AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]]);
                                             Tab[AchmazPure[0][i][j][2], AchmazPure[0][i][j][3]] = 0;
-                                            Task<double[]> th1 = Task.Run(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]));
+                                            Task<double[]> th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order), Order, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3]));
                                             th1.Wait();
                                             th1.Dispose();
-                                            Task th2 = Task.Run(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3], Order));
+                                            Task th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazPure[1][i][j][0], AchmazPure[1][i][j][1], AchmazPure[1][i][j][2], AchmazPure[1][i][j][3], Order));
                                             th2.Wait();
                                             th2.Dispose();
-                                            Task<int> th3 = Task.Run(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
+                                            Task<int> th3 = Task.Factory.StartNew(() => No += t.AchmazPuredBefore(Before, CloneATable(Tab), 2));
                                             th3.Wait();
                                             th3.Dispose();
                                         }
@@ -13064,13 +13064,13 @@ namespace RefrigtzDLL
                                         {
                                             int Killed = Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]);
                                             Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] = 0;
-                                            Task<double[]> th1 = Task.Run(() => t.HeuristicExchange(Before, Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]), CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
+                                            Task<double[]> th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]), CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
                                             th1.Wait();
                                             th1.Dispose();
-                                            Task th2 = Task.Run(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], Order));
+                                            Task th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], Order));
                                             th2.Wait();
                                             th2.Dispose();
-                                            Task<int> th3 = Task.Run(() => No += t.AchmazReducedBefore(Before, CloneATable(Tab), 2));
+                                            Task<int> th3 = Task.Factory.StartNew(() => No += t.AchmazReducedBefore(Before, CloneATable(Tab), 2));
                                             th3.Wait();
                                             th3.Dispose();
                                         }
@@ -13095,13 +13095,13 @@ namespace RefrigtzDLL
                                         {
                                             int Killed = Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]);
                                             Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]] = 0;
-                                            Task<double[]> th1 = Task.Run(() => t.HeuristicExchange(Before, Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]), CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
+                                            Task<double[]> th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Math.Abs(Tab[AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]]), CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
                                             th1.Wait();
                                             th1.Dispose();
-                                            Task th2 = Task.Run(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], Order));
+                                            Task th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3], Order));
                                             th2.Wait();
                                             th2.Dispose();
-                                            Task<int> th3 = Task.Run(() => No += t.AchmazReducedBefore(Before, CloneATable(Tab), 2));
+                                            Task<int> th3 = Task.Factory.StartNew(() => No += t.AchmazReducedBefore(Before, CloneATable(Tab), 2));
                                             th3.Wait();
                                             th3.Dispose();
                                         }
@@ -13187,13 +13187,13 @@ namespace RefrigtzDLL
                                         {
                                             int Killed = Math.Abs(Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]]);
                                             Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] = 0;
-                                            Task<double[]> th1 = Task.Run(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
+                                            Task<double[]> th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
                                             th1.Wait();
                                             th1.Dispose();
-                                            Task th2 = Task.Run(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1], AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], Order * -1));
+                                            Task th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1], AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], Order * -1));
                                             th2.Wait();
                                             th2.Dispose();
-                                            Task<int> th3 = Task.Run(() => No += t.AchmazReducedAfter(Before, CloneATable(Tab), 2));
+                                            Task<int> th3 = Task.Factory.StartNew(() => No += t.AchmazReducedAfter(Before, CloneATable(Tab), 2));
                                             th3.Wait();
                                             th3.Dispose();
                                         }
@@ -13218,13 +13218,13 @@ namespace RefrigtzDLL
                                         {
                                             int Killed = Math.Abs(Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]]);
                                             Tab[AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3]] = 0;
-                                            Task<double[]> th1 = Task.Run(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
+                                            Task<double[]> th1 = Task.Factory.StartNew(() => t.HeuristicExchange(Before, Killed, CloneATable(Tab), OrderColor(Order * -1), Order * -1, AchmazReduced[0][i][j][0], AchmazReduced[0][i][j][1], AchmazReduced[0][i][j][2], AchmazReduced[0][i][j][3]));
                                             th1.Wait();
                                             th1.Dispose();
-                                            Task th2 = Task.Run(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1], AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], Order * -1));
+                                            Task th2 = Task.Factory.StartNew(() => t.Achmaz(CloneATable(Tab), Before, AchmazReduced[1][i][j][0], AchmazReduced[1][i][j][1], AchmazReduced[1][i][j][2], AchmazReduced[1][i][j][3], Order * -1));
                                             th2.Wait();
                                             th2.Dispose();
-                                            Task<int> th3 = Task.Run(() => No += t.AchmazReducedAfter(Before, CloneATable(Tab), 2));
+                                            Task<int> th3 = Task.Factory.StartNew(() => No += t.AchmazReducedAfter(Before, CloneATable(Tab), 2));
                                             th3.Wait();
                                             th3.Dispose();
                                         }
@@ -13877,49 +13877,49 @@ namespace RefrigtzDLL
                 List<List<int[]>> EleRedAchmaz = null, EleAchmaz = null, HourAchmaz = null, HourRedAchmaz = null, CastRedAchmaz = null, CastAchmaz = null, MiniRedAchmaz = null, MiniAchmaz = null, KingRedAchmaz = null, KingAchmaz = null;
                 //if (System.Math.Abs(Table[RowS, ColS]) == 2 || System.Math.Abs(Table[RowD, ColD]) == 2)
                 {
-                    Task tth = Task.Run(() =>
+                    Task tth = Task.Factory.StartNew(() =>
                     {
                         ParallelOptions po = new ParallelOptions
                         {
                             MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                         }; Parallel.Invoke(() =>
                         {
-                            Task<List<List<int[]>>> tth1 = Task.Run(() => EleRedAchmaz = AchMazReducedElephasnt(CloneATable(Table), Before, RowS, ColS, Order));
+                            Task<List<List<int[]>>> tth1 = Task.Factory.StartNew(() => EleRedAchmaz = AchMazReducedElephasnt(CloneATable(Table), Before, RowS, ColS, Order));
                             tth1.Wait();
                             tth1.Dispose();
                         }, () =>
                         {
-                            Task<List<List<int[]>>> tth2 = Task.Run(() => EleAchmaz = AchMazElephasnt(CloneATable(Table), Before, RowS, ColS, Order));
+                            Task<List<List<int[]>>> tth2 = Task.Factory.StartNew(() => EleAchmaz = AchMazElephasnt(CloneATable(Table), Before, RowS, ColS, Order));
                             tth2.Wait();
                             tth2.Dispose();
                         }, () =>
                         {
-                            Task<List<List<int[]>>> tth1 = Task.Run(() => CastRedAchmaz = AchMazReducedCastle(CloneATable(Table), Before, RowS, ColS, Order));
+                            Task<List<List<int[]>>> tth1 = Task.Factory.StartNew(() => CastRedAchmaz = AchMazReducedCastle(CloneATable(Table), Before, RowS, ColS, Order));
                             tth1.Wait();
                             tth1.Dispose();
                         }, () =>
                         {
-                            Task<List<List<int[]>>> tth2 = Task.Run(() => CastAchmaz = AchMazCastle(CloneATable(Table), Before, RowS, ColS, Order));
+                            Task<List<List<int[]>>> tth2 = Task.Factory.StartNew(() => CastAchmaz = AchMazCastle(CloneATable(Table), Before, RowS, ColS, Order));
                             tth2.Wait();
                             tth2.Dispose();
                         }, () =>
                         {
-                            Task<List<List<int[]>>> tth1 = Task.Run(() => MiniRedAchmaz = AchMazReducedMinister(CloneATable(Table), Before, RowS, ColS, Order));
+                            Task<List<List<int[]>>> tth1 = Task.Factory.StartNew(() => MiniRedAchmaz = AchMazReducedMinister(CloneATable(Table), Before, RowS, ColS, Order));
                             tth1.Wait();
                             tth1.Dispose();
                         }, () =>
                         {
-                            Task<List<List<int[]>>> tth2 = Task.Run(() => MiniAchmaz = AchMazMinister(CloneATable(Table), Before, RowS, ColS, Order));
+                            Task<List<List<int[]>>> tth2 = Task.Factory.StartNew(() => MiniAchmaz = AchMazMinister(CloneATable(Table), Before, RowS, ColS, Order));
                             tth2.Wait();
                             tth2.Dispose();
                         }, () =>
                         {
-                            Task<List<List<int[]>>> tth1 = Task.Run(() => KingRedAchmaz = AchMazReducedKing(CloneATable(Table), Before, RowS, ColS, Order));
+                            Task<List<List<int[]>>> tth1 = Task.Factory.StartNew(() => KingRedAchmaz = AchMazReducedKing(CloneATable(Table), Before, RowS, ColS, Order));
                             tth1.Wait();
                             tth1.Dispose();
                         }, () =>
                         {
-                            Task<List<List<int[]>>> tth2 = Task.Run(() => KingAchmaz = AchMazKing(CloneATable(Table), Before, RowS, ColS, Order));
+                            Task<List<List<int[]>>> tth2 = Task.Factory.StartNew(() => KingAchmaz = AchMazKing(CloneATable(Table), Before, RowS, ColS, Order));
                             tth2.Wait();
                             tth2.Dispose();
                         });
@@ -13927,19 +13927,19 @@ namespace RefrigtzDLL
                     tth.Wait();
                     tth.Dispose();
                 }
-                Task ttttth = Task.Run(() =>
+                Task ttttth = Task.Factory.StartNew(() =>
                 {
                     ParallelOptions po = new ParallelOptions
                     {
                         MaxDegreeOfParallelism = System.Threading.PlatformHelper.ProcessorCount
                     }; Parallel.Invoke(() =>
                     {
-                        Task tth1 = Task.Run(() => AchmazPure.Add(CollectionSummation(EleAchmaz, HourAchmaz, CastAchmaz, MiniAchmaz)));
+                        Task tth1 = Task.Factory.StartNew(() => AchmazPure.Add(CollectionSummation(EleAchmaz, HourAchmaz, CastAchmaz, MiniAchmaz)));
                         tth1.Wait();
                         tth1.Dispose();
                     }, () =>
                     {
-                        Task tth2 = Task.Run(() => AchmazReduced.Add(CollectionSummation(EleRedAchmaz, HourRedAchmaz, CastRedAchmaz, MiniRedAchmaz)));
+                        Task tth2 = Task.Factory.StartNew(() => AchmazReduced.Add(CollectionSummation(EleRedAchmaz, HourRedAchmaz, CastRedAchmaz, MiniRedAchmaz)));
                         tth2.Wait();
                         tth2.Dispose();
                     });
@@ -14472,7 +14472,7 @@ namespace RefrigtzDLL
                 double HDoubleAttack = 0, HDoubleDefense = 0;
                 double HWin = 0, HLose = 0;
                 bool IsS = false;
-                Task<double[]> th = Task.Run(() => Hu = CalculateHeuristicsParallel(ref HA, Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
+                Task<double[]> th = Task.Factory.StartNew(() => Hu = CalculateHeuristicsParallel(ref HA, Before, Killed, CloneATable(TableS), RowS, ColS, RowD, ColD, color));
                 th.Wait();
                 th.Dispose();
 
@@ -14783,7 +14783,7 @@ namespace RefrigtzDLL
                     }
                     if (!IsSupHuTrue() && (Order == AllDraw.OrderPlateDraw))
                     {
-                        H1 = Task.Run(() => Achmaz(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
+                        H1 = Task.Factory.StartNew(() => Achmaz(CloneATable(TableS), Before, RowS, ColS, RowD, ColD, Order));
                         H1.Wait();
                         H1.Dispose();
                         if (Before)
@@ -14833,8 +14833,8 @@ namespace RefrigtzDLL
                     }
                     if (!IsSupHuTrue() && (Order == AllDraw.OrderPlateDraw))
                     {
-                        H2 = Task.Run(() => HDoubleAttack = DoubleAttack(CloneATable(TableS), Before, Order));
-                        H3 = Task.Run(() => HDoubleDefense = DoubleDefence(CloneATable(TableS), Before, Order));
+                        H2 = Task.Factory.StartNew(() => HDoubleAttack = DoubleAttack(CloneATable(TableS), Before, Order));
+                        H3 = Task.Factory.StartNew(() => HDoubleDefense = DoubleDefence(CloneATable(TableS), Before, Order));
                         H2.Wait();
                         H3.Wait();
                         H2.Dispose();
@@ -15126,7 +15126,7 @@ namespace RefrigtzDLL
                 LearningMachine.QuantumAtamata Current = new LearningMachine.QuantumAtamata(3, 3, 3);
                 int CheckedM = 0; bool PenaltyVCar = false;
                 bool Sup = false;
-                Task newTask1 = Task.Run(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
+                Task newTask1 = Task.Factory.StartNew(() => SupMethod(CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, ref Sup));
                 newTask1.Wait(); newTask1.Dispose();
                 if (!Sup)
                 {
@@ -15142,7 +15142,7 @@ namespace RefrigtzDLL
                 object A = new object();
                 lock (A)
                 {
-                    int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                    int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, true, Order, 0, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                     newTask1.Wait(); newTask1.Dispose();
                     LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                 }
@@ -15153,7 +15153,7 @@ namespace RefrigtzDLL
                 }
                 bool ac=false;
                 int Killed = 0;
-                newTask1 = Task.Run(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
+                newTask1 = Task.Factory.StartNew(() => ac=KilledMethod(ref Killed, Sup, RowSource, ColumnSource, RowDestination, ColumnDestination, ref TableS));
                 newTask1.Wait(); newTask1.Dispose();
                 if (!ac)
                 {
@@ -15168,13 +15168,13 @@ namespace RefrigtzDLL
                     {
                         PenaltyVCar = false;
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        newTask1 = Task.Run(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
+                        newTask1 = Task.Factory.StartNew(() => PenaltyMechanisam(ref PenaltyVCar, ref TmpL, ref TmpW, ref CheckedM, Killed, Kind, CloneATable(TableS), RowSource, ColumnSource, ref Current, DoEnemySelf, PenRegStrore, RowDestination, ColumnDestination));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
                 }
                 ///Store of Indexes Changes and Table in specific List.
-                newTask1 = Task.Run(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
+                newTask1 = Task.Factory.StartNew(() => ObjectIndexes(Kind, Sup, RowDestination, ColumnDestination, TableS));
                 newTask1.Wait(); newTask1.Dispose();
                 ///Wehn Predict of Operation Do operate a Predict of this movments.
                 object A5 = new object();
@@ -15183,7 +15183,7 @@ namespace RefrigtzDLL
                     //Caused this for Stachostic results.
                     if (!Sup)
                     {
-                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Run(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
+                        int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled; newTask1 = Task.Factory.StartNew(() => CalculateHeuristics(TmpL, TmpW, false, Order, Killed, CloneATable(TableS), RowSource, ColumnSource, RowDestination, ColumnDestination, color, ref HeuristicAttackValue, ref HeuristicMovementValue, ref HeuristicSelfSupportedValue, ref HeuristicReducedMovementValue, ref HeuristicReducedSupport, ref HeuristicReducedAttackValue, ref HeuristicDistributionValue, ref HeuristicKingSafe, ref HeuristicFromCenter, ref HeuristicKingDangour, ref HeuristicCheckedMate));
                         newTask1.Wait(); newTask1.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
                     }
@@ -15201,7 +15201,7 @@ namespace RefrigtzDLL
                         {
                             //if (IgnoreFromCheckandMateHeuristic)
 
-                            newTask1 = Task.Run(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                            newTask1 = Task.Factory.StartNew(() => HuMethod(ref Hu, HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                             newTask1.Wait(); newTask1.Dispose();
                             H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
                             HeuristicListCastling.Add(Hu);
@@ -15214,15 +15214,15 @@ namespace RefrigtzDLL
                 }
                 else
                 {
-                    newTask1 = Task.Run(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
+                    newTask1 = Task.Factory.StartNew(() => HuMethodSup(HeuristicAttackValue, HeuristicMovementValue, HeuristicSelfSupportedValue, HeuristicReducedMovementValue, HeuristicReducedSupport, HeuristicReducedAttackValue, HeuristicDistributionValue, HeuristicKingSafe, HeuristicFromCenter, HeuristicKingDangour, HeuristicCheckedMate));
                     newTask1.Wait(); newTask1.Dispose();
                     double[] Hu = new double[10];
-                    newTask1 = Task.Run(() => HuMethodSup(ref Hu));
+                    newTask1 = Task.Factory.StartNew(() => HuMethodSup(ref Hu));
                     newTask1.Wait(); newTask1.Dispose();
 
                     string H = " HAttack:" + ((Hu[0])).ToString() + " HMove:" + ((Hu[1])).ToString() + " HSelSup:" + ((Hu[2])).ToString() + " HCheckedMateDang:" + ((Hu[3])).ToString() + " HKiller:" + ((Hu[4])).ToString() + " HReduAttack:" + ((Hu[5])).ToString() + " HDisFromCurrentEnemyking:" + ((Hu[6])).ToString() + " HKingSafe:" + ((Hu[7])).ToString() + " HObjFromCeneter:" + ((Hu[8])).ToString() + " HKingDang:" + ((Hu[9])).ToString();
 
-                    newTask1 = Task.Run(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
+                    newTask1 = Task.Factory.StartNew(() => HeuristicInsertion(Kind, RowDestination, ColumnDestination, CloneATable(TableS), Hu));
                     newTask1.Wait(); newTask1.Dispose();
                 }
             }
@@ -15319,7 +15319,7 @@ namespace RefrigtzDLL
                 {
                     Order = ord;
                     int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                    Task newTask = Task.Run(() => SolderThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                    Task newTask = Task.Factory.StartNew(() => SolderThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
                     newTask.Wait(); newTask.Dispose();
                     LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15354,7 +15354,7 @@ namespace RefrigtzDLL
                                     }
                                 }
 
-                                Task newTask = Task.Run(() => ThinkingSoldierbase(ref TmpL, ref TmpW, ord, ii, jj, i, j, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                                Task newTask = Task.Factory.StartNew(() => ThinkingSoldierbase(ref TmpL, ref TmpW, ord, ii, jj, i, j, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                                 newTask.Wait(); newTask.Dispose();
                             }
@@ -15384,7 +15384,7 @@ namespace RefrigtzDLL
                     {
                         Order = ord;
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        Task newTask = Task.Run(() => ElefantThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                        Task newTask = Task.Factory.StartNew(() => ElefantThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
                         newTask.Wait(); newTask.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15414,7 +15414,7 @@ namespace RefrigtzDLL
                             {
                                 if (Scop(ii, jj, i, j, 2))
                                 {
-                                    Task newTask = Task.Run(() => ThinkingElephantbase(ref TmpL, ref TmpW, ord, ii, jj, i, j, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                                    Task newTask = Task.Factory.StartNew(() => ThinkingElephantbase(ref TmpL, ref TmpW, ord, ii, jj, i, j, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                                     newTask.Wait(); newTask.Dispose();
                                 }
@@ -15444,7 +15444,7 @@ namespace RefrigtzDLL
                     if (Scop(ii, jj, ii + 2, jj + 1, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        Task newTask = Task.Run(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj + 1, Castle));
+                        Task newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj + 1, Castle));
 
                         newTask.Wait(); newTask.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15469,7 +15469,7 @@ namespace RefrigtzDLL
                 if (Scop(ii, jj, ii - 2, jj - 1, 3))
                 {
                     int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                    Task newTask = Task.Run(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj - 1, Castle));
+                    Task newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj - 1, Castle));
 
                     newTask.Wait(); newTask.Dispose();
                     LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15495,7 +15495,7 @@ namespace RefrigtzDLL
                     if (Scop(ii, jj, ii + 2, jj - 1, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        Task newTask = Task.Run(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj - 1, Castle));
+                        Task newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 2, jj - 1, Castle));
 
                         newTask.Wait(); newTask.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15520,7 +15520,7 @@ namespace RefrigtzDLL
                 if (Scop(ii, jj, ii - 2, jj + 1, 3))
                 {
                     int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                    Task newTask = Task.Run(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj + 1, Castle));
+                    Task newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 2, jj + 1, Castle));
 
                     newTask.Wait(); newTask.Dispose();
                     LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15546,7 +15546,7 @@ namespace RefrigtzDLL
                     if (Scop(ii, jj, ii + 1, jj + 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        Task newTask = Task.Run(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj + 2, Castle));
+                        Task newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj + 2, Castle));
 
                         newTask.Wait(); newTask.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15573,7 +15573,7 @@ namespace RefrigtzDLL
                     if (Scop(ii, jj, ii - 1, jj - 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        Task newTask = Task.Run(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj - 2, Castle));
+                        Task newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj - 2, Castle));
 
                         newTask.Wait(); newTask.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15600,7 +15600,7 @@ namespace RefrigtzDLL
                     if (Scop(ii, jj, ii + 1, jj - 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        Task newTask = Task.Run(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj - 2, Castle));
+                        Task newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii + 1, jj - 2, Castle));
 
                         newTask.Wait(); newTask.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15627,7 +15627,7 @@ namespace RefrigtzDLL
                     if (Scop(ii, jj, ii - 1, jj + 2, 3))
                     {
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        Task newTask = Task.Run(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj + 2, Castle));
+                        Task newTask = Task.Factory.StartNew(() => HourseThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, ii - 1, jj + 2, Castle));
 
                         newTask.Wait(); newTask.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15643,7 +15643,7 @@ namespace RefrigtzDLL
             lock (O)
             {
                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                Task newTask = Task.Run(() => ThinkingHourseOne(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask = Task.Factory.StartNew(() => ThinkingHourseOne(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                 newTask.Wait(); newTask.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15652,7 +15652,7 @@ namespace RefrigtzDLL
             lock (O1)
             {
                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                Task newTask = Task.Run(() => ThinkingHourseTwo(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask = Task.Factory.StartNew(() => ThinkingHourseTwo(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                 newTask.Wait(); newTask.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15661,7 +15661,7 @@ namespace RefrigtzDLL
             lock (O2)
             {
                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                Task newTask = Task.Run(() => ThinkingHourseThree(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask = Task.Factory.StartNew(() => ThinkingHourseThree(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                 newTask.Wait(); newTask.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15670,7 +15670,7 @@ namespace RefrigtzDLL
             lock (O3)
             {
                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                Task newTask = Task.Run(() => ThinkingHourseFour(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask = Task.Factory.StartNew(() => ThinkingHourseFour(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                 newTask.Wait(); newTask.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15679,7 +15679,7 @@ namespace RefrigtzDLL
             lock (O4)
             {
                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                Task newTask = Task.Run(() => ThinkingHourseFive(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask = Task.Factory.StartNew(() => ThinkingHourseFive(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                 newTask.Wait(); newTask.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15688,7 +15688,7 @@ namespace RefrigtzDLL
             lock (O5)
             {
                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                Task newTask = Task.Run(() => ThinkingHourseSix(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask = Task.Factory.StartNew(() => ThinkingHourseSix(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                 newTask.Wait(); newTask.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15697,7 +15697,7 @@ namespace RefrigtzDLL
             lock (O6)
             {
                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                Task newTask = Task.Run(() => ThinkingHourseSeven(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask = Task.Factory.StartNew(() => ThinkingHourseSeven(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                 newTask.Wait(); newTask.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15706,7 +15706,7 @@ namespace RefrigtzDLL
             lock (O7)
             {
                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                Task newTask = Task.Run(() => ThinkingHourseEight(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask = Task.Factory.StartNew(() => ThinkingHourseEight(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                 newTask.Wait(); newTask.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15739,7 +15739,7 @@ namespace RefrigtzDLL
                         if (Scop(ii, jj, i, j, 4) && System.Math.Abs(TableS[ii, jj]) == 4 && System.Math.Abs(Kind) == 4)
                         {
                             Order = ord;
-                            Task newTask = Task.Run(() => CastlesThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                            Task newTask = Task.Factory.StartNew(() => CastlesThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                         }
@@ -15777,7 +15777,7 @@ namespace RefrigtzDLL
                         if (Scop(ii, jj, i, j, 4) && System.Math.Abs(TableS[ii, jj]) == 4 && System.Math.Abs(Kind) == 4)
                         {
                             Order = ord;
-                            Task newTask = Task.Run(() => CastlesThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                            Task newTask = Task.Factory.StartNew(() => CastlesThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
                             newTask.Wait(); newTask.Dispose();
                         }
                     }
@@ -15793,10 +15793,10 @@ namespace RefrigtzDLL
             lock (O)
             {
                 int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                Task newTask1 = Task.Run(() => ThinkingCastleOne(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask1 = Task.Factory.StartNew(() => ThinkingCastleOne(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
                 newTask1.Wait(); newTask1.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
-                Task newTask2 = Task.Run(() => ThinkingCastleTow(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                Task newTask2 = Task.Factory.StartNew(() => ThinkingCastleTow(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
                 newTask2.Wait(); newTask2.Dispose();
                 LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
             }
@@ -15819,7 +15819,7 @@ namespace RefrigtzDLL
                     {
                         Order = ord;
                         int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                        Task newTask = Task.Run(() => MinisterThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                        Task newTask = Task.Factory.StartNew(() => MinisterThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
                         newTask.Wait(); newTask.Dispose();
                         LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15846,7 +15846,7 @@ namespace RefrigtzDLL
                         object O = new object();
                         lock (O)
                         {
-                            Task newTask = Task.Run(() => ThinkingMinisterbase(ref TmpL, ref TmpW, ord, ii, jj, i, j, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                            Task newTask = Task.Factory.StartNew(() => ThinkingMinisterbase(ref TmpL, ref TmpW, ord, ii, jj, i, j, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                         }
@@ -15875,7 +15875,7 @@ namespace RefrigtzDLL
                         if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, -7, CloneATable(TableS), Order)).Rules(ii, jj, i, jj, -7) && (ChessRules.CastlingAllowedBrown))
                         {
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            Task newTask = Task.Run(() => CastleThinkingBrown(ref TmpL, ref TmpW, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));
+                            Task newTask = Task.Factory.StartNew(() => CastleThinkingBrown(ref TmpL, ref TmpW, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15903,7 +15903,7 @@ namespace RefrigtzDLL
                         if ((new ChessRules(CurrentAStarGredyMax, MovementsAStarGreedyHeuristicFoundT, IgnoreSelfObjectsT, UsePenaltyRegardMechnisamT, BestMovmentsT, PredictHeuristicT, OnlySelfT, AStarGreedyHeuristicT, ArrangmentsChanged, 7, CloneATable(TableS), Order)).Rules(ii, jj, i, jj, 7) && (ChessRules.CastlingAllowedGray))
                         {
                             int[] TmpL = LoseOcuuredatChiled; int TmpW = WinOcuuredatChiled;
-                            Task newTask = Task.Run(() => CastleThinkingGray(ref TmpL, ref TmpW, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));
+                            Task newTask = Task.Factory.StartNew(() => CastleThinkingGray(ref TmpL, ref TmpW, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, jj, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             LoseOcuuredatChiled[0] += TmpL[0]; WinOcuuredatChiled += TmpW;
@@ -15941,7 +15941,7 @@ namespace RefrigtzDLL
                             if (Scop(ii, jj, i, j, 6) && System.Math.Abs(TableS[ii, jj]) == 6 && System.Math.Abs(Kind) == 6)
                             {
                                 Order = ord;
-                                Task newTask = Task.Run(() => KingThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
+                                Task newTask = Task.Factory.StartNew(() => KingThinkingChess(ref TmpL, ref TmpW, DummyOrder, DummyCurrentOrder, CloneATable(TableS), ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, i, j, Castle));
 
                                 newTask.Wait(); newTask.Dispose();
                             }
@@ -16224,6 +16224,8 @@ namespace RefrigtzDLL
         {
             try
             {
+                if (RowS < 0 || ColS < 0 || RowD < 0 || ColD < 0 || RowS > 7 | ColS > 7 || RowD > 7 || ColD > 7)
+                    return;
                 if (Before)
                 {
                     if (MovableAllObjectsList.Count == 0)
@@ -16231,6 +16233,10 @@ namespace RefrigtzDLL
                         for (int i = 0; i < 8; i++)
                         {
                             MovableAllObjectsList.Add(new List<List<int[]>>());
+
+                        }
+                        for (int i = 0; i < 8; i++)
+                        {
                             for (int k = 0; k < 8; k++)
                             {
                                 MovableAllObjectsList[i].Add(new List<int[]>());
@@ -16274,6 +16280,10 @@ namespace RefrigtzDLL
                         for (int i = 0; i < 8; i++)
                         {
                             MovableAllObjectsList.Add(new List<List<int[]>>());
+
+                        }
+                        for (int i = 0; i < 8; i++)
+                        {
                             for (int k = 0; k < 8; k++)
                             {
                                 MovableAllObjectsList[i].Add(new List<int[]>());
@@ -16533,54 +16543,54 @@ namespace RefrigtzDLL
                     {
                         case 7:
 
-                            Task newTask = Task.Run(() => ThinkingCastleGray(ref TmpL, ref TmpW, ord, ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                            Task newTask = Task.Factory.StartNew(() => ThinkingCastleGray(ref TmpL, ref TmpW, ord, ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             break;
 
                         case -7:
 
-                            newTask = Task.Run(() => ThinkingCastleBrown(ref TmpL, ref TmpW, ord, ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                            newTask = Task.Factory.StartNew(() => ThinkingCastleBrown(ref TmpL, ref TmpW, ord, ii, jj, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             break;
 
                         case 1:///For Soldier Thinking
 
-                            newTask = Task.Run(() => ThinkingSoldier(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                            newTask = Task.Factory.StartNew(() => ThinkingSoldier(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             break;
 
                         case 2:///For Elephant Thinking
 
-                            newTask = Task.Run(() => ThinkingElephant(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                            newTask = Task.Factory.StartNew(() => ThinkingElephant(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             break;
 
                         case 3:///For Hourse Thinking
 
-                            newTask = Task.Run(() => ThinkingHourse(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                            newTask = Task.Factory.StartNew(() => ThinkingHourse(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             break;
                         ///Else For Castles Thinking.
                         case 4:///For Castle Thinking
-                            newTask = Task.Run(() => ThinkingCastle(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                            newTask = Task.Factory.StartNew(() => ThinkingCastle(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             break;
                         ///Else for Minister Thinkings.
                         case 5:///For Minister Thinking
 
-                            newTask = Task.Run(() => ThinkingMinister(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                            newTask = Task.Factory.StartNew(() => ThinkingMinister(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             break;
                         ///Else For Kings Thinkings.
                         case 6:///For King Thinking
-                            newTask = Task.Run(() => ThinkingKing(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
+                            newTask = Task.Factory.StartNew(() => ThinkingKing(ref TmpL, ref TmpW, ord, ii, jj, DummyOrder, DummyCurrentOrder, DoEnemySelf, PenRegStrore, EnemyCheckMateActionsString, Castle));
 
                             newTask.Wait(); newTask.Dispose();
                             break;

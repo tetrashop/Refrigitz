@@ -32878,12 +32878,6 @@ if (Kind == 2 && ElephantOnTable[i].ElefantThinkingQuantum[0].AStarGreedy != nul
                     }
                     catch (Exception t) { Log(t); }
                 }
-                try
-                {
-                    Node.ElefantMidle = (int)Formatters.Deserialize(DummyFileStream);
-                    Node.ElefantHigh = (int)Formatters.Deserialize(DummyFileStream);
-                }
-                catch (Exception t) { Log(t); }
                 //  if (!Act)
 
                 return Node;

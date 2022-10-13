@@ -146,5 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="libman.json" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
